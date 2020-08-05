@@ -32,7 +32,8 @@ class SubjectTile extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(45.0)),
                       border: Border.all(
                         width: 3.0,
-                        color: app.theme.evalColors[(classAvg.round() - 1).clamp(0, 4)],
+                        color: app.theme
+                            .evalColors[(classAvg.round() - 1).clamp(0, 4)],
                       ),
                     ),
                     padding: EdgeInsets.all(5.0),
@@ -47,7 +48,8 @@ class SubjectTile extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                color: app.theme.evalColors[(studentAvg.round() - 1).clamp(0, 4)],
+                color:
+                    app.theme.evalColors[(studentAvg.round() - 1).clamp(0, 4)],
               ),
               padding: EdgeInsets.all(8.0),
               margin: EdgeInsets.only(left: 8.0),

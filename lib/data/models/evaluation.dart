@@ -99,6 +99,8 @@ class EvaluationValue {
   int weight;
 
   EvaluationValue(this.value, this.valueName, this.shortName, this.weight) {
+    if (weight == 0) weight = 100;
+
     if (value == 0 &&
         ["peldas", "jo", "valtozo", "rossz", "hanyag"]
             .contains(SearchController.specialChars(valueName.toLowerCase()))) {

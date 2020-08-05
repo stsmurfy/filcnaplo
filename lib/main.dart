@@ -1,3 +1,4 @@
+import 'package:filcnaplo/data/context/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -27,7 +28,6 @@ void main() async {
 
   await app.settings.update(login: false);
 
-
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) => runApp(App()));
 }
@@ -44,6 +44,41 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     I18n.onLocaleChanged = onLocaleChange;
+
+    if (app.settings.theme.brightness == Brightness.light) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.grey[200],
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ));
+    }
+
+    if (app.settings.theme.backgroundColor.value ==
+        ThemeContext().tinted().backgroundColor.value) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xFF101C19),
+        systemNavigationBarIconBrightness: Brightness.light,
+      ));
+    }
+
+    if (app.settings.theme.backgroundColor.value !=
+            ThemeContext().tinted().backgroundColor.value &&
+        app.settings.theme.brightness == Brightness.dark &&
+        app.settings.backgroundColor == 1) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0xff18191c),
+        systemNavigationBarIconBrightness: Brightness.light,
+      ));
+    }
+
+    if (app.settings.theme.backgroundColor.value !=
+            ThemeContext().tinted().backgroundColor.value &&
+        app.settings.theme.brightness == Brightness.dark &&
+        app.settings.backgroundColor == 0) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ));
+    }
   }
 
   void onLocaleChange(Locale locale) {
@@ -74,6 +109,10 @@ class _AppState extends State<App> {
               I18n.locale = device;
               app.settings.deviceLanguage = device.toString();
               app.settings.language = device.toString();
+
+              if (!['hu_HU', 'en_US', 'de_DE']
+                  .contains(app.settings.deviceLanguage))
+                app.settings.deviceLanguage = "en_US";
             }
 
             return i18n.resolution(fallback: Locale("hu", "HU"))(

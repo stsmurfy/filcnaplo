@@ -3,7 +3,7 @@ import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/models/absence.dart';
 
 class AbsenceBuilder {
-  List<AbsenceTile> absenceTiles = [];
+  List<AbsenceTileGroup> absenceTiles = [];
 
   void build() {
     absenceTiles = [];
@@ -15,11 +15,17 @@ class AbsenceBuilder {
       (a, b) => -a.date.compareTo(b.date),
     );
 
-    absences.forEach((absence) => absenceTiles.add(AbsenceTile(absence)));
+    Map<String, List<Absence>> absenceDays = {};
+    absences.forEach((absence) {
+      if (!absenceDays.keys.contains(absence.date.toString())) {
+        absenceDays[absence.date.toString()] = [];
+      }
+
+      absenceDays[absence.date.toString()].add(absence);
+    });
+
+    absenceDays.keys.forEach((day) {
+      absenceTiles.add(AbsenceTileGroup(absenceDays[day]));
+    });
   }
 }
-
-// Absence States
-// Igazolatlan red x
-// Igazolt     green tick
-// Igazolando  yellow clock

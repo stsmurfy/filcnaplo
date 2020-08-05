@@ -63,13 +63,31 @@ class _AbsenceTabsState extends State<AbsenceTabs>
               },
               tabs: <Widget>[
                 Tab(
-                  child: Text(capital(I18n.of(context).absenceAbsences)),
+                  child: Text(
+                    capital(I18n.of(context).absenceAbsences),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: app.settings.theme.textTheme.bodyText1.color),
+                  ),
                 ),
                 Tab(
-                  child: Text(capital(I18n.of(context).absenceDelays)),
+                  child: Text(
+                    capital(I18n.of(context).absenceDelays),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: app.settings.theme.textTheme.bodyText1.color),
+                  ),
                 ),
                 Tab(
-                  child: Text(capital(I18n.of(context).absenceMisses)),
+                  child: Text(
+                    capital(I18n.of(context).absenceMisses),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: app.settings.theme.textTheme.bodyText1.color),
+                  ),
                 ),
               ],
             ),

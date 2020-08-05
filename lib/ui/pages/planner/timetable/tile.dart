@@ -167,7 +167,7 @@ class SpecialDateTile extends LessonTile {
       children: <Widget>[
         Container(
           padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
-          margin: EdgeInsets.fromLTRB(12.0, 0, 12.0, 8.0),
+          margin: EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 8.0),
           constraints:
               //haxx
               BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 24),

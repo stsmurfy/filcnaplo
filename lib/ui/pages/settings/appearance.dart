@@ -1,5 +1,6 @@
-import 'package:filcnaplo/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:filcnaplo/utils/colors.dart';
 import 'package:filcnaplo/data/context/theme.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/generated/i18n.dart';
@@ -52,7 +53,7 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
-                      Theme.of(context).brightness == Brightness.light
+                      app.settings.theme.brightness == Brightness.light
                           ? Container(
                               height: 64.0,
                               width: 64.0,
@@ -68,6 +69,11 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                           ThemeContext().light(app.settings.appColor);
 
                       DynamicTheme.of(context).setThemeData(app.settings.theme);
+
+                      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                        systemNavigationBarColor: Colors.grey[200],
+                        systemNavigationBarIconBrightness: Brightness.dark,
+                      ));
                     });
 
                     app.storage.storage.update("settings", {
@@ -90,10 +96,7 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                         ),
                       ),
                       app.settings.theme.backgroundColor.value ==
-                              ThemeContext()
-                                  .tinted(app.settings.appColor)
-                                  .backgroundColor
-                                  .value
+                              ThemeContext().tinted().backgroundColor.value
                           ? Container(
                               height: 64.0,
                               width: 64.0,
@@ -105,15 +108,19 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                   ),
                   onTap: () {
                     setState(() {
-                      app.settings.theme =
-                          ThemeContext().tinted(app.settings.appColor);
+                      app.settings.appColor = Colors.teal[600];
+                      app.settings.theme = ThemeContext().tinted();
 
                       DynamicTheme.of(context).setThemeData(app.settings.theme);
+
+                      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                        systemNavigationBarColor: Color(0xFF101C19),
+                        systemNavigationBarIconBrightness: Brightness.light,
+                      ));
                     });
 
-                    app.storage.storage.update("settings", {
-                      "theme": "tinted",
-                    });
+                    app.storage.storage.update("settings",
+                        {"theme": "tinted", "app_color": "default"});
                   },
                 ),
 
@@ -132,10 +139,11 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                       ),
                       app.settings.theme.backgroundColor.value !=
                                   ThemeContext()
-                                      .tinted(app.settings.appColor)
+                                      .tinted()
                                       .backgroundColor
                                       .value &&
-                              Theme.of(context).brightness == Brightness.dark &&
+                              app.settings.theme.brightness ==
+                                  Brightness.dark &&
                               app.settings.backgroundColor == 1
                           ? Container(
                               height: 64.0,
@@ -153,6 +161,11 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                           app.settings.appColor, app.settings.backgroundColor);
 
                       DynamicTheme.of(context).setThemeData(app.settings.theme);
+
+                      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                        systemNavigationBarColor: Color(0xff18191c),
+                        systemNavigationBarIconBrightness: Brightness.light,
+                      ));
                     });
 
                     app.storage.storage.update("settings", {
@@ -177,10 +190,11 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                       ),
                       app.settings.theme.backgroundColor.value !=
                                   ThemeContext()
-                                      .tinted(app.settings.appColor)
+                                      .tinted()
                                       .backgroundColor
                                       .value &&
-                              Theme.of(context).brightness == Brightness.dark &&
+                              app.settings.theme.brightness ==
+                                  Brightness.dark &&
                               app.settings.backgroundColor == 0
                           ? Container(
                               height: 64.0,
@@ -198,6 +212,11 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                           app.settings.appColor, app.settings.backgroundColor);
 
                       DynamicTheme.of(context).setThemeData(app.settings.theme);
+
+                      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                        systemNavigationBarColor: Colors.black,
+                        systemNavigationBarIconBrightness: Brightness.light,
+                      ));
                     });
 
                     app.storage.storage.update("settings", {
@@ -274,6 +293,10 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
                     ),
                     onTap: () {
                       setState(() {
+                        if (app.settings.theme.backgroundColor.value ==
+                            ThemeContext().tinted().backgroundColor.value)
+                          return;
+
                         app.settings.appColor = color;
 
                         if (Theme.of(context).brightness == Brightness.light)
@@ -347,7 +370,7 @@ class _AppearanceSettingsState extends State<AppearanceSettings> {
       "color" + (value + 1).toString():
           "#" + color.toString().substring(10, 16),
     });
-    
+
     DynamicTheme.of(context).setThemeData(app.settings.theme);
   }
 }

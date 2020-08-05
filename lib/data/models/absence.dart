@@ -9,7 +9,7 @@ class Absence {
   DateTime submitDate;
   String teacher;
   String state;
-  Type absenceType;
+  Type justification;
   Type type;
   Type mode;
   Subject subject;
@@ -25,7 +25,7 @@ class Absence {
     this.submitDate,
     this.teacher,
     this.state,
-    this.absenceType,
+    this.justification,
     this.type,
     this.mode,
     this.subject,
@@ -46,7 +46,7 @@ class Absence {
         : null;
     String teacher = json["RogzitoTanarNeve"] ?? "";
     String state = json["IgazolasAllapota"] ?? "";
-    Type absenceType = json["IgazolasTipusa"] != null
+    Type justification = json["IgazolasTipusa"] != null
         ? Type.fromJson(json["IgazolasTipusa"])
         : null;
     Type type = json["Tipus"] != null ? Type.fromJson(json["Tipus"]) : null;
@@ -77,7 +77,7 @@ class Absence {
       submitDate,
       teacher,
       state,
-      absenceType,
+      justification,
       type,
       mode,
       subject,

@@ -16,9 +16,9 @@ class ThemeContext {
 
   List<Color> evalColors = [
     Colors.red,
-    Colors.brown,
+    Colors.amber[700],
     Colors.yellow[600],
-    Colors.orange[600],
+    Colors.lime[600],
     Colors.green,
   ];
 
@@ -49,9 +49,9 @@ class ThemeContext {
             iconTheme: IconThemeData(color: lightTextColor)),
       );
 
-  ThemeData tinted(Color appColor) => ThemeData(
+  ThemeData tinted() => ThemeData(
         brightness: Brightness.dark,
-        accentColor: Colors.teal[300],
+        accentColor: Colors.teal[600],
         backgroundColor: Color(0xFF273d38),
         scaffoldBackgroundColor: Color(0xFF1c2d2a),
         textTheme: darkText,
@@ -59,7 +59,7 @@ class ThemeContext {
         fontFamily: GoogleFonts.openSans().fontFamily,
         snackBarTheme: SnackBarThemeData(
           backgroundColor: Color(0xFF273d38),
-          actionTextColor: appColor,
+          actionTextColor: Colors.teal[600],
           contentTextStyle: TextStyle(color: darkTextColor),
         ),
         appBarTheme: AppBarTheme(

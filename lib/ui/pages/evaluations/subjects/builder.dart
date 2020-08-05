@@ -37,6 +37,8 @@ class SubjectBuilder {
             (a) => a[0].id == evaluation.subject.id,
             orElse: () => [null, 0.0])[1];
 
+        if (average.isNaN) average = 0.0;
+
         subjectTiles
             .add(SubjectTile(evaluation.subject, average, classAverage));
       }

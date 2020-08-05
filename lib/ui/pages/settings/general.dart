@@ -17,6 +17,8 @@ class _GeneralSettingsState extends State<GeneralSettings> {
 
   @override
   Widget build(BuildContext context) {
+    print(app.settings.deviceLanguage);
+
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
@@ -30,10 +32,10 @@ class _GeneralSettingsState extends State<GeneralSettings> {
               title: Text(I18n.of(context).settingsGeneralLanguage),
               trailing: DropdownButton(
                 underline: Container(),
-                value: ['hu_HU', 'en_US', 'de_DE']
-                        .contains(app.settings.language)
-                    ? app.settings.language
-                    : app.settings.deviceLanguage,
+                value:
+                    ['hu_HU', 'en_US', 'de_DE'].contains(app.settings.language)
+                        ? app.settings.language
+                        : app.settings.deviceLanguage,
                 items: ['hu_HU', 'en_US', 'de_DE'].map((String value) {
                   return DropdownMenuItem(
                     value: value,

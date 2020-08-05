@@ -18,6 +18,7 @@ class EvaluationsDial extends StatelessWidget {
       animatedIcon: AnimatedIcons.menu_close,
       animatedIconTheme:
           IconThemeData(size: 22.0, color: app.settings.appColor),
+      marginRight: 14.0,
       curve: Curves.bounceIn,
       overlayColor: Colors.black,
       overlayOpacity: 0.35,

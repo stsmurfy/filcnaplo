@@ -98,7 +98,7 @@ class _TimetableFrameState extends State<TimetableFrame>
                     IconButton(
                       icon: Icon(FeatherIcons.chevronRight),
                       onPressed: () {
-                        if (selectedWeek < 53) setState(() => selectedWeek++);
+                        if (selectedWeek < 51) setState(() => selectedWeek++);
                       },
                     ),
                   ],
@@ -123,7 +123,6 @@ class _TimetableFrameState extends State<TimetableFrame>
                       child: TimetableTabBar(
                         color: app.settings.theme.textTheme.bodyText1.color,
                         currentDayColor: Colors.grey,
-                        //indicatorColor: Colors.transparent,
                         controller: _tabController,
                         days: _timetableBuilder.week.days.length > 0
                             ? _timetableBuilder.week.days

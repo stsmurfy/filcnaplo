@@ -95,7 +95,7 @@ class EvaluationBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = TinyColor(color).darken(20).color;
+    Color backgroundColor = TinyColor(color).darken(15).color;
 
     return Container(
       margin: EdgeInsets.all(8.0),

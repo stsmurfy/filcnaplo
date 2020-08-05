@@ -20,7 +20,7 @@ class AboutPrivacy extends StatelessWidget {
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
-                    "A Filc Napló alkalmazás arra való, hogy a KRÉTA szervereiről lekérje iskolai adataidat, és azokat egy" +
+                    "A Filc Napló alkalmazás arra való, hogy a KRÉTA szervereiről lekérje iskolai adataidat, és azokat egy " +
                         "jól használható felületen keresztül megjelenítse. Ezek az adatok csakis az alkalmazás és a KRÉTA szerverei " +
                         "között kerülnek továbbításra, a Filc saját szerverére nem. Felhasználási adatot vagy statisztikát sem gyűjt " +
                         "az alkalmazás, semmit sem továbbítunk a saját szerverünkre. Adataid annyira vannak biztonságban, mint a " +

@@ -4,6 +4,34 @@ import 'package:filcnaplo/ui/pages/absences/absence/view.dart';
 import 'package:filcnaplo/utils/format.dart';
 import 'package:flutter/material.dart';
 
+class AbsenceTileGroup extends StatelessWidget {
+  final List<Absence> absences;
+
+  AbsenceTileGroup(this.absences);
+
+  @override
+  Widget build(BuildContext context) {
+    return absences.length > 0
+        ? ExpansionTile(
+            leading: Icon(
+              absences.any((absence) =>
+                      absence.state == "Igazolatlan" ||
+                      absence.state == "Igazolando")
+                  ? FeatherIcons.slash
+                  : FeatherIcons.check,
+              color: absences.any((absence) => absence.state == "Igazolatlan")
+                  ? Colors.red
+                  : absences.any((absence) => absence.state == "Ingazolando")
+                      ? Colors.yellow[600]
+                      : Colors.green,
+            ),
+            title: Text(formatDate(context, absences[0].date)),
+            children: absences.map((a) => AbsenceTile(a)).toList(),
+          )
+        : Container();
+  }
+}
+
 class AbsenceTile extends StatelessWidget {
   final Absence absence;
 

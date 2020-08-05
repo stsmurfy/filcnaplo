@@ -316,6 +316,8 @@ class I18n implements WidgetsLocalizations {
   String get absenceAbsences => "mulasztások";
   /// "hiányok"
   String get absenceMisses => "hiányok";
+  /// "igazolás módja"
+  String get absenceJustification => "igazolás módja";
   /// "órarend"
   String get timetable => "órarend";
   /// "Ezen a héten nincsenek óráid"
@@ -1042,6 +1044,9 @@ class _I18n_en_US extends I18n {
   /// "misses"
   @override
   String get absenceMisses => "misses";
+  /// "justification mode"
+  @override
+  String get absenceJustification => "justification mode";
   /// "Timetable"
   @override
   String get timetable => "Timetable";

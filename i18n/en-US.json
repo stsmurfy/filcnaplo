@@ -189,7 +189,8 @@
     "parental": "parental excuse(s): {count}",
     "delays": "delays",
     "absences": "absences",
-    "misses": "misses"
+    "misses": "misses",
+    "justification": "justification mode"
   },
   "timetable": {
     "": "Timetable",

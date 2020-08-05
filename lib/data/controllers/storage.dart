@@ -44,10 +44,10 @@ class StorageController {
         await db.execute(
             "create table eval_colors (color1 TEXT, color2 TEXT, color3 TEXT, color4 TEXT, color5 TEXT)");
         await db.insert("eval_colors", {
-          "color1": "#443336",
-          "color2": "#795448",
-          "color3": "#ff9800",
-          "color4": "#dd8535",
+          "color1": "#f44336",
+          "color2": "#ffa000",
+          "color3": "#fdd835",
+          "color4": "#c0ca33",
           "color5": "#4caf50",
         });
 

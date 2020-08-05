@@ -66,79 +66,81 @@ class _MessageTabsState extends State<MessageTabs>
               app.storage.storage.update("tabs", {"messages": value});
             },
             tabs: [
-              FlatButton(
-                key: _menuKeyMessages,
-                padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Expanded(
-                            child: Text(
-                              [
-                                capital(I18n.of(context).messageDrawerInbox),
-                                capital(I18n.of(context).messageDrawerSent),
-                                capital(I18n.of(context).messageDrawerTrash),
-                                capital(I18n.of(context).messageDrawerDrafts),
-                              ][app.selectedMessagePage],
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: app.settings.theme.textTheme.bodyText1
-                                      .color),
+              SizedBox(
+                height: 46.0,
+                child: FlatButton(
+                  key: _menuKeyMessages,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                [
+                                  capital(I18n.of(context).messageDrawerInbox),
+                                  capital(I18n.of(context).messageDrawerSent),
+                                  capital(I18n.of(context).messageDrawerTrash),
+                                  capital(I18n.of(context).messageDrawerDrafts),
+                                ][app.selectedMessagePage],
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: app.settings.theme.textTheme
+                                        .bodyText1.color),
+                              ),
                             ),
-                          ),
-                          Icon(Icons.arrow_drop_down),
-                        ],
+                            Icon(Icons.arrow_drop_down),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  onPressed: () {
+                    if (_tabController.index == 0) {
+                      showMenu(
+                        context: context,
+                        position: () {
+                          Offset pos = _getPosition(_menuKeyMessages);
+                          return RelativeRect.fromLTRB(0, pos.dy, pos.dx, 0);
+                        }(),
+                        items: [
+                          PopupMenuItem(
+                            value: 1,
+                            child: Text(
+                                capital(I18n.of(context).messageDrawerInbox)),
+                          ),
+                          PopupMenuItem(
+                            value: 2,
+                            child: Text(
+                                capital(I18n.of(context).messageDrawerSent)),
+                          ),
+                          PopupMenuItem(
+                            value: 3,
+                            child: Text(
+                                capital(I18n.of(context).messageDrawerTrash)),
+                          ),
+                          PopupMenuItem(
+                            value: 4,
+                            child: Text(
+                                capital(I18n.of(context).messageDrawerDrafts)),
+                          ),
+                        ],
+                      ).then((value) {
+                        if (value != null)
+                          setState(() => app.selectedMessagePage = value - 1);
+                      });
+                    } else {
+                      app.tabState.messages.index = 0;
+                      _tabController.animateTo(0);
+                      app.sync.updateCallback();
+                      app.storage.storage.update("tabs", {"messages": 0});
+                    }
+                  },
                 ),
-                onPressed: () {
-                  if (_tabController.index == 0) {
-                    showMenu(
-                      context: context,
-                      position: () {
-                        Offset pos = _getPosition(_menuKeyMessages);
-                        return RelativeRect.fromLTRB(0, pos.dy, pos.dx, 0);
-                      }(),
-                      items: [
-                        PopupMenuItem(
-                          value: 1,
-                          child: Text(
-                              capital(I18n.of(context).messageDrawerInbox)),
-                        ),
-                        PopupMenuItem(
-                          value: 2,
-                          child:
-                              Text(capital(I18n.of(context).messageDrawerSent)),
-                        ),
-                        PopupMenuItem(
-                          value: 3,
-                          child: Text(
-                              capital(I18n.of(context).messageDrawerTrash)),
-                        ),
-                        PopupMenuItem(
-                          value: 4,
-                          child: Text(
-                              capital(I18n.of(context).messageDrawerDrafts)),
-                        ),
-                      ],
-                    ).then((value) {
-                      if (value != null)
-                        setState(() => app.selectedMessagePage = value - 1);
-                    });
-                  } else {
-                    app.tabState.messages.index = 0;
-                    _tabController.animateTo(0);
-                    app.sync.updateCallback();
-                    app.storage.storage.update("tabs", {"messages": 0});
-                  }
-                },
               ),
               Tab(
                 child: Text(

@@ -49,7 +49,7 @@ class SettingsController {
     backgroundColor = settingsInstance[0]["background_color"];
     theme = {
       "light": ThemeContext().light(app.settings.appColor),
-      "tinted": ThemeContext().tinted(app.settings.appColor),
+      "tinted": ThemeContext().tinted(),
       "dark": ThemeContext()
           .dark(app.settings.appColor, app.settings.backgroundColor)
     }[settingsInstance[0]["theme"]];

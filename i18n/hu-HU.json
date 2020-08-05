@@ -189,7 +189,8 @@
     "parental": "Szülői igazolás: {count} db",
     "delays": "késések",
     "absences": "mulasztások",
-    "misses": "hiányok"
+    "misses": "hiányok",
+    "justification": "igazolás módja"
   },
   "timetable": {
     "": "órarend",

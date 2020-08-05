@@ -12,7 +12,7 @@ class AbsenceView extends StatelessWidget {
   AbsenceView(this.absence);
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     // todo: Justify button in parental mode
     return Container(
       padding: EdgeInsets.only(top: 14.0),
@@ -39,7 +39,8 @@ class AbsenceView extends StatelessWidget {
                 ),
               ],
             ),
-            subtitle: Text(capital(absence.subject.name),
+            subtitle: Text(
+              capital(absence.subject.name),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -51,27 +52,46 @@ class AbsenceView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                AbsenceDetail(
-                  I18n.of(context).delayLesson,
-                  absence.lessonIndex.toString() +
-                      ". (" +
-                      DateFormat("hh:mm").format(absence.lessonStart) +
-                      " - " +
-                      DateFormat("hh:mm").format(absence.lessonEnd) +
-                      ")",
-                ),
-                AbsenceDetail(
-                  I18n.of(context).delayMode,
-                  absence.mode.description,
-                ),
-                AbsenceDetail(
-                  I18n.of(context).delayState,
-                  absence.state.toString(),
-                ),
-                AbsenceDetail(
-                  I18n.of(context).administrationTime,
-                  formatDate(context, absence.submitDate, showTime: true),
-                ),
+                absence.lessonIndex != null
+                    ? AbsenceDetail(
+                        I18n.of(context).delayLesson,
+                        absence.lessonIndex.toString() +
+                            ". (" +
+                            (absence.lessonStart != null
+                                ? DateFormat("hh:mm")
+                                    .format(absence.lessonStart)
+                                : "?") +
+                            " - " +
+                            (absence.lessonEnd != null
+                                ? DateFormat("hh:mm").format(absence.lessonEnd)
+                                : "?") +
+                            ")",
+                      )
+                    : Container(),
+                absence.mode != null
+                    ? AbsenceDetail(
+                        I18n.of(context).delayMode,
+                        absence.mode.description,
+                      )
+                    : Container(),
+                absence.justification != null
+                    ? AbsenceDetail(
+                        I18n.of(context).absenceJustification,
+                        absence.justification.description,
+                      )
+                    : Container(),
+                absence.state != null
+                    ? AbsenceDetail(
+                        I18n.of(context).delayState,
+                        absence.state,
+                      )
+                    : Container(),
+                absence.submitDate != null
+                    ? AbsenceDetail(
+                        I18n.of(context).administrationTime,
+                        formatDate(context, absence.submitDate, showTime: true),
+                      )
+                    : Container(),
               ],
             ),
           ),
