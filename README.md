@@ -9,4 +9,4 @@
 #### A projektről
 
 A Filc Napló újraírása mellett döntöttünk. Ennek fő oka az volt, hogy a BoA által írt Szivacs kódjára épült a projekt, amit mi csak foltozgattunk és idővel átláthatatlanná vált a kódbázis. 
-A másik fő ok az, hogy a Kréta egy új, jelenleg zárt béta fázisban levő appon dolgozik, ami immár nem küzd a logikátlanság és lassúság gyerekbetegségével. Ezért a Filcet egy teljes körű iskolai asszisztenssé szeretnénk tenni, ami pl. megmondja, holnap mire kell készülnöd, amiben beoszthatod az idődet, stb.
+A másik fő ok az, hogy a Kréta egy új appon dolgozik, ami immár nem küzd a logikátlanság és lassúság gyerekbetegségével. Ezért a Filcet egy teljes körű iskolai asszisztenssé szeretnénk tenni, ami pl. megmondja, holnap mire kell készülnöd, amiben beoszthatod az idődet, stb.
