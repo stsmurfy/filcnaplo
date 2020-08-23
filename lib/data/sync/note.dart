@@ -29,11 +29,9 @@ class NoteSync {
             });
           }
         });
-
-        return true;
-      } else {
-        return false;
       }
+      
+      return notes != null;
     } else {
       data = Dummy.notes;
       return true;

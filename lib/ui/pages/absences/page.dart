@@ -1,8 +1,5 @@
-import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/ui/pages/absences/tabs.dart';
 import 'package:flutter/material.dart';
-import 'package:filcnaplo/generated/i18n.dart';
-import 'package:filcnaplo/ui/pages/accounts/page.dart';
 import 'package:filcnaplo/ui/pages/absences/absence/builder.dart';
 import 'package:filcnaplo/ui/pages/absences/delay/builder.dart';
 import 'package:filcnaplo/ui/pages/absences/miss/builder.dart';
@@ -42,39 +39,12 @@ class _AbsencesPageState extends State<AbsencesPage>
   Widget build(BuildContext context) {
     buildPage();
 
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.fromLTRB(18.0, 42.0, 18.0, 12.0),
-            child: Row(
-              children: <Widget>[
-                Text(
-                  I18n.of(context).absenceTitle,
-                  style: TextStyle(fontSize: 18.0),
-                ),
-                Spacer(),
-                GestureDetector(
-                  child: app.user.profileIcon,
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AccountPage()));
-                  },
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: AbsenceTabs(
-              widget._scaffoldKey,
-              _absenceBuilder.absenceTiles,
-              _delayBuilder.delayTiles,
-              _missBuilder.missTiles,
-              updateCallback,
-            ),
-          ),
-        ],
-      ),
+    return AbsenceTabs(
+      widget._scaffoldKey,
+      _absenceBuilder.absenceTiles,
+      _delayBuilder.delayTiles,
+      _missBuilder.missTiles,
+      updateCallback,
     );
   }
 }

@@ -22,7 +22,7 @@ class StudentSync {
 
       if (student != null) {
         data = student;
-        
+
         await app.user.storage.delete("student");
         app.user.realName = student.name;
 
@@ -41,11 +41,9 @@ class StudentSync {
             "json": jsonEncode(student.json),
           });
         }
-
-        return true;
-      } else {
-        return false;
       }
+      
+      return student != null;
     } else {
       data = Dummy.student;
       if (app.user.customProfileIcon != null) {

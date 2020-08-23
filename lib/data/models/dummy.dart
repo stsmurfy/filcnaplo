@@ -47,7 +47,7 @@ class Dummy {
       Type("0", "Test 2", "Test 2"),
       DateTime.now(),
       DateTime.now(),
-      "test 2",
+      "exam 2",
     ),
     Evaluation(
       "2345123134",

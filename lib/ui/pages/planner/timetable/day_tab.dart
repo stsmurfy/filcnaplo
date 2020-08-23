@@ -40,18 +40,16 @@ class DayTabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        borderRadius: BorderRadius.circular(8.0),
       ),
-      padding: EdgeInsets.symmetric(vertical: 12.0),
+      padding: EdgeInsets.symmetric(vertical: 8.0),
       child: Text(
         days(context, day.date.weekday).toUpperCase(),
         style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24.0,
             fontFamily: "Roboto",
-            color: color
-            // : app.settings.theme.textTheme.bodyText1.color,
-            ),
+            color: color),
       ),
     );
   }
@@ -104,7 +102,11 @@ class TimetableTabIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
+        margin: EdgeInsets.all(4.0),
         child: FlatButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+          padding: EdgeInsets.zero,
           onPressed: () {
             controller.animateTo(index);
           },

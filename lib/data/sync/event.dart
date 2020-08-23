@@ -28,11 +28,9 @@ class EventSync {
             });
           }
         });
-
-        return true;
-      } else {
-        return false;
       }
+
+      return events != null;
     } else {
       return true;
     }

@@ -13,53 +13,56 @@ class BottomNavbar extends StatelessWidget {
       items: <BottomNavigationBarItem>[
         // Home Page
         BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Icon(
-                FeatherIcons.search,
-              ),
+          icon: Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Icon(
+              FeatherIcons.search,
             ),
-            title: Text("")),
+          ),
+          label: "",
+        ),
 
         // Evaluations Page
         BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Icon(
-                FeatherIcons.bookmark,
-              ),
+          icon: Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Icon(
+              FeatherIcons.bookmark,
             ),
-            title: Text("")),
+          ),
+          label: "",
+        ),
 
         // Timetable Page
         BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Icon(
-                FeatherIcons.calendar,
-              ),
+          icon: Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Icon(
+              FeatherIcons.calendar,
             ),
-            title: Text("")),
-
+          ),
+          label: "",
+        ),
         // Messages Page
         BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Icon(
-                FeatherIcons.messageSquare,
-              ),
+          icon: Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Icon(
+              FeatherIcons.messageSquare,
             ),
-            title: Text("")),
-
+          ),
+          label: "",
+        ),
         // Absences Page
         BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.all(14.0),
-              child: Icon(
-                FeatherIcons.slash,
-              ),
+          icon: Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Icon(
+              FeatherIcons.slash,
             ),
-            title: Text("")),
+          ),
+          label: "",
+        ),
       ],
       currentIndex: app.selectedPage,
       selectedFontSize: 0,

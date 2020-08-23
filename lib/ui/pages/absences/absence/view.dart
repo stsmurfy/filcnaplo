@@ -58,12 +58,12 @@ class AbsenceView extends StatelessWidget {
                         absence.lessonIndex.toString() +
                             ". (" +
                             (absence.lessonStart != null
-                                ? DateFormat("hh:mm")
+                                ? DateFormat("HH:mm")
                                     .format(absence.lessonStart)
                                 : "?") +
                             " - " +
                             (absence.lessonEnd != null
-                                ? DateFormat("hh:mm").format(absence.lessonEnd)
+                                ? DateFormat("HH:mm").format(absence.lessonEnd)
                                 : "?") +
                             ")",
                       )

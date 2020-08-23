@@ -4,7 +4,8 @@ import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/context/message.dart';
 import 'package:filcnaplo/data/models/attachment.dart';
 import 'package:filcnaplo/data/models/subject.dart';
-import 'package:filcnaplo/data/models/test.dart';
+import 'package:filcnaplo/data/models/supporter.dart';
+import 'package:filcnaplo/data/models/exam.dart';
 import 'package:filcnaplo/data/models/homework.dart';
 import 'package:filcnaplo/data/models/lesson.dart';
 import 'package:http/http.dart' as http;
@@ -56,9 +57,9 @@ class KretaClient {
 
     try {
       var response = await http.get(
-        (app.debugVersion ? BaseURL.FILC_DEBUG : BaseURL.FILC) +
+        (FilcEndpoints.FILC_DEBUG ? BaseURL.FILC_DEBUG : BaseURL.FILC) +
             FilcEndpoints.schoolList2,
-        headers: {"Content-type": "application/json"},
+        headers: {"Content-Type": "application/json"},
       );
 
       checkResponse(response);
@@ -71,10 +72,40 @@ class KretaClient {
           school["name"] ?? "-",
           school["city"] ?? "-")));
 
+      schools.add(School(
+        "klik035246001",
+        "Zuglói Szent Szakáll Gimnázium",
+        "Budapest",
+      ));
+
       return schools;
     } catch (error) {
       print("ERROR: KretaAPI.getSchools: " + error.toString());
       return [];
+    }
+  }
+
+  Future<List<List<Supporter>>> getSupporters() async {
+    try {
+      var response = await http.get(
+        (FilcEndpoints.FILC_DEBUG ? BaseURL.FILC_DEBUG : BaseURL.FILC) + FilcEndpoints.supporters,
+        headers: {"Content-Type": "application/json"},
+      );
+
+      checkResponse(response);
+
+      Map responseJson = jsonDecode(response.body);
+      List<List<Supporter>> supporters = [[], []];
+
+      responseJson["top"].forEach(
+          (supporter) => supporters[0].add(Supporter.fromJson(supporter)));
+      responseJson["all"].forEach(
+          (supporter) => supporters[1].add(Supporter.fromJson(supporter)));
+
+      return supporters;
+    } catch (error) {
+      print("ERROR: KretaAPI.getSupporters: " + error.toString());
+      return [[], []];
     }
   }
 
@@ -98,20 +129,12 @@ class KretaClient {
       if (app.debugVersion) {
         print("DEBUG: KretaAPI.login: " +
             "\n       InstituteCode: " +
-            "*" * (user.instituteCode.toString().length - 4) +
-            user.instituteCode
-                .toString()
-                .substring(user.instituteCode.toString().length - 4) +
+            user.instituteCode.toString().substring(0, 5) +
+            "*" * (user.instituteCode.toString().length - 5) +
             "\n       Username: " +
-            "*" * (user.username.toString().length - 4) +
-            user.username
-                .toString()
-                .substring(user.username.toString().length - 4) +
-            "\n       Password: " +
-            "*" * (user.password.toString().length - 4) +
-            user.password
-                .toString()
-                .substring(user.password.toString().length - 4));
+            user.username.toString().substring(0, 3) +
+            "*" * (user.username.toString().length - 3) +
+            "\n       Password: ********");
       }
 
       await checkResponse(response, retry: false);
@@ -570,10 +593,10 @@ class KretaClient {
     }
   }
 
-  Future<List<Test>> getTests() async {
+  Future<List<Exam>> getExams() async {
     try {
       var response = await client.get(
-        BaseURL.kreta(instituteCode) + KretaEndpoints.tests,
+        BaseURL.kreta(instituteCode) + KretaEndpoints.exams,
         headers: {
           "Authorization": "Bearer $accessToken",
           "User-Agent": userAgent
@@ -583,13 +606,13 @@ class KretaClient {
       await checkResponse(response);
 
       List responseJson = jsonDecode(response.body);
-      List<Test> tests = [];
+      List<Exam> exams = [];
 
-      responseJson.forEach((test) => tests.add(Test.fromJson(test)));
+      responseJson.forEach((exam) => exams.add(Exam.fromJson(exam)));
 
-      return tests;
+      return exams;
     } catch (error) {
-      print("ERROR: KretaAPI.getTests: " + error.toString());
+      print("ERROR: KretaAPI.getExams: " + error.toString());
       return null;
     }
   }

@@ -4,6 +4,7 @@ import 'package:filcnaplo/ui/profile_icon.dart';
 import 'package:filcnaplo/utils/format.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/models/user.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/ui/pages/settings/page.dart';
 import 'package:filcnaplo/generated/i18n.dart';
@@ -26,7 +27,7 @@ class _AccountPageState extends State<AccountPage> {
     });
     app.sync.updateCallback();
     app.sync.fullSync();
-    Navigator.of(context).pop();
+    Navigator.pop(context);
   }
 
   @override
@@ -47,8 +48,8 @@ class _AccountPageState extends State<AccountPage> {
         child: Column(
           children: <Widget>[
             Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(top: 32.0, left: 12.0),
+              alignment: Alignment.topRight,
+              padding: EdgeInsets.only(top: 32.0, right: 12.0),
               child: IconButton(
                 icon: Icon(FeatherIcons.x),
                 onPressed: () {
@@ -75,33 +76,40 @@ class _AccountPageState extends State<AccountPage> {
 
                     app.users.length > 1
                         ? Flexible(
-                            child: ListView(
-                              physics: BouncingScrollPhysics(),
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              children: users,
+                            child: CupertinoScrollbar(
+                              child: ListView(
+                                physics: BouncingScrollPhysics(),
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                children: users,
+                              ),
                             ),
                           )
                         : Container(),
 
                     // Add user
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: ListTile(
-                        leading: Padding(
-                          padding: EdgeInsets.only(left: 8.0),
-                          child: Icon(
-                            FeatherIcons.userPlus,
-                            color: app.debugUser ? Colors.grey : null,
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 14.0),
+                      child: FlatButton(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6.0)),
+                        child: ListTile(
+                          leading: Padding(
+                            padding: EdgeInsets.only(left: 8.0),
+                            child: Icon(
+                              FeatherIcons.userPlus,
+                              color: app.debugUser ? Colors.grey : null,
+                            ),
+                          ),
+                          title: Text(
+                            capitalize(I18n.of(context).accountAdd),
+                            style: TextStyle(
+                              color: app.debugUser ? Colors.grey : null,
+                            ),
                           ),
                         ),
-                        title: Text(
-                          capitalize(I18n.of(context).accountAdd),
-                          style: TextStyle(
-                            color: app.debugUser ? Colors.grey : null,
-                          ),
-                        ),
-                        onTap: !app.debugUser
+                        onPressed: !app.debugUser
                             ? () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => LoginPage()));
@@ -117,14 +125,23 @@ class _AccountPageState extends State<AccountPage> {
             // Settings
             Padding(
               padding: EdgeInsets.only(bottom: 8.0),
-              child: ListTile(
-                contentPadding: EdgeInsets.only(left: 24.0),
-                leading: Icon(FeatherIcons.settings),
-                title: Text(I18n.of(context).settingsTitle),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SettingsPage()));
-                },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 14.0),
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6.0)),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: Icon(FeatherIcons.settings),
+                    title: Text(I18n.of(context).settingsTitle),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingsPage()));
+                  },
+                ),
               ),
             ),
           ],
@@ -148,21 +165,23 @@ class AccountTile extends StatefulWidget {
 class _AccountTileState extends State<AccountTile> {
   @override
   Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: () {
-        widget.onSelect(app.users.indexOf(widget.user));
-      },
-      onLongPress: () {
-        showModalBottomSheet(
-          context: context,
-          builder: (context) => AccountView(widget.user, callback: setState),
-          backgroundColor: Colors.transparent,
-        ).then((deleted) {
-          if (deleted == true) widget.onDelete();
-        });
-      },
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.0),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 14.0),
+      child: FlatButton(
+        padding: EdgeInsets.zero,
+        onPressed: () {
+          widget.onSelect(app.users.indexOf(widget.user));
+        },
+        onLongPress: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => AccountView(widget.user, callback: setState),
+            backgroundColor: Colors.transparent,
+          ).then((deleted) {
+            if (deleted == true) widget.onDelete();
+          });
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
         child: ListTile(
           leading: ProfileIcon(
               name: widget.user.name,

@@ -42,11 +42,9 @@ class MessageSync {
             });
           }
         });
-
-        return true;
-      } else {
-        return false;
       }
+
+      return messages != null;
     } else {
       data[0] = Dummy.messages;
       return true;

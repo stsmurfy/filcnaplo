@@ -1,7 +1,7 @@
 import 'package:filcnaplo/data/models/absence.dart';
 import 'package:filcnaplo/data/models/homework.dart';
 import 'package:filcnaplo/data/models/lesson.dart';
-import 'package:filcnaplo/data/models/test.dart';
+import 'package:filcnaplo/data/models/exam.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -227,11 +227,11 @@ Future loadData(User user) async {
     globalSync.absence.data.add(Absence.fromJson(jsonDecode(absence["json"])));
   });
 
-  List tests = await userStorage.query("kreta_tests");
+  List exams = await userStorage.query("kreta_exams");
 
   globalSync.absence.data = [];
-  tests.forEach((test) {
-    globalSync.test.data.add(Test.fromJson(jsonDecode(test["json"])));
+  exams.forEach((exam) {
+    globalSync.exam.data.add(Exam.fromJson(jsonDecode(exam["json"])));
   });
 
   List homeworks = await userStorage.query("kreta_homeworks");

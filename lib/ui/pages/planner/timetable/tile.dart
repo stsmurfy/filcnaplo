@@ -2,7 +2,7 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/models/homework.dart';
 import 'package:filcnaplo/data/models/lesson.dart';
-import 'package:filcnaplo/data/models/test.dart';
+import 'package:filcnaplo/data/models/exam.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/view.dart';
 import 'package:filcnaplo/utils/format.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +15,16 @@ class LessonTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Homework homework;
-    List<Test> tests = [];
+    List<Exam> exams = [];
 
     if (lesson.homeworkId != null) {
       homework = app.user.sync.homework.data
           .firstWhere((h) => h.id == lesson.homeworkId, orElse: () => null);
     }
 
-    lesson.tests.forEach((test) => tests.add(
-          app.user.sync.test.data
-              .firstWhere((t) => t.id == test, orElse: () => null),
+    lesson.exams.forEach((exam) => exams.add(
+          app.user.sync.exam.data
+              .firstWhere((t) => t.id == exam, orElse: () => null),
         ));
 
     return GestureDetector(
@@ -56,7 +56,7 @@ class LessonTile extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: Text(
-                (lesson.lessonIndex ?? "+").toString(),
+                lesson.lessonIndex,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: "Sans",
@@ -114,10 +114,10 @@ class LessonTile extends StatelessWidget {
                     ),
                   )
                 : Container(),
-            tests.length > 0
+            exams.length > 0
                 ? Column(
-                    children: tests
-                        .map((test) => Padding(
+                    children: exams
+                        .map((exam) => Padding(
                               padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 12.0),
                               child: Row(
                                 children: <Widget>[
@@ -126,9 +126,9 @@ class LessonTile extends StatelessWidget {
                                     child: Padding(
                                       padding: EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        test.description != ""
-                                            ? test.description
-                                            : test.mode.description,
+                                        exam.description != ""
+                                            ? exam.description
+                                            : exam.mode.description,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -146,7 +146,7 @@ class LessonTile extends StatelessWidget {
       onTap: () => showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
-        builder: (context) => TimetableView(lesson, homework, tests),
+        builder: (context) => TimetableView(lesson, homework, exams),
       ),
     );
   }

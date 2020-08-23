@@ -90,12 +90,10 @@ class EvaluationView extends StatelessWidget {
                           evaluation.evaluationType.description,
                         )
                       : Container(),
-                  evaluation.type != null
+                  evaluation.writeDate != null
                       ? EvaluationDetail(
-                          I18n.of(context).evaluationDate,
-                          evaluation.type.description
-                              .split("/")[0]
-                              .replaceAll("jegy", ""),
+                          I18n.of(context).evaluationWriteDate,
+                          formatDate(context, evaluation.writeDate),
                         )
                       : Container(),
                 ],

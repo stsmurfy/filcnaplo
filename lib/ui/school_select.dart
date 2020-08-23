@@ -1,4 +1,5 @@
 import 'package:filcnaplo/data/models/school.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:filcnaplo/generated/i18n.dart';
@@ -63,7 +64,7 @@ class _SchoolSelectState extends State<SchoolSelect> {
           // Schools
           loginContext.schoolState
               ? Expanded(
-                  child: Scrollbar(
+                  child: CupertinoScrollbar(
                     child: ListView.builder(
                       physics: BouncingScrollPhysics(),
                       itemCount: schoolList.length,
@@ -101,7 +102,7 @@ class SchoolTile extends StatelessWidget {
       padding: EdgeInsets.zero,
       onPressed: () {
         loginContext.selectedSchool = School(schoolId, title, city);
-        Navigator.of(context).pop();
+        Navigator.pop(context);
       },
       child: ListTile(
         title: Text(title),

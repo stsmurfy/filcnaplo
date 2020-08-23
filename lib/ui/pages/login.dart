@@ -37,12 +37,14 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    loginUsernameController.dispose();
-    loginPasswordController.dispose();
-    super.dispose();
+    if (mounted) {
+      loginUsernameController.dispose();
+      loginPasswordController.dispose();
+      super.dispose();
+    }
   }
 
-  IconButton inputIcon({int type}) {
+  Widget inputIcon({int type}) {
     switch (type) {
       case 1:
         return IconButton(
@@ -58,12 +60,8 @@ class _LoginPageState extends State<LoginPage> {
             });
           },
         );
-      default:
-        return IconButton(
-          icon: Container(),
-          onPressed: () {},
-        );
     }
+    return null;
   }
 
   InputDecoration inputDecoration({int type}) {
@@ -97,9 +95,10 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: <Widget>[
                 app.users.where((user) => user.loginState).length > 0
-                    ? Row(children: <Widget>[
-                        BackButton(color: Colors.white),
-                      ])
+                    ? Container(
+                        alignment: Alignment.topLeft,
+                        child: BackButton(color: Colors.white),
+                      )
                     : Container(),
 
                 Spacer(),
@@ -188,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: FlatButton(
                     color: Colors.black12,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6)),
+                        borderRadius: BorderRadius.circular(6.0)),
                     padding:
                         EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
                     child: Text(

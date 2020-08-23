@@ -44,7 +44,7 @@ class AboutPrivacy extends StatelessWidget {
                   style: TextStyle(color: app.settings.appColor),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.pop(context);
                 },
               ),
             ),

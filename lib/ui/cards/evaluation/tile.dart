@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/utils/format.dart';
 import 'package:filcnaplo/utils/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EvaluationTile extends StatelessWidget {
   final Evaluation evaluation;
@@ -28,9 +29,9 @@ class EvaluationTile extends StatelessWidget {
                 ? evaluation.value.value.toString()
                 : "?",
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 26.0,
-              fontFamily: "sans",
+            style: GoogleFonts.quicksand(
+              fontSize: 32.0,
+              height: 1.2,
               fontWeight: FontWeight.w500,
               color: evaluation.value.value != 0
                   ? textColor(app.theme

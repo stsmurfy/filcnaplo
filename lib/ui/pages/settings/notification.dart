@@ -12,13 +12,16 @@ class _NotificationSettingsState extends State<NotificationSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(),
-        title: Text(I18n.of(context).settingsNotificationsTitle),
-      ),
       body: Container(
         child: Column(
           children: <Widget>[
+            AppBar(
+              centerTitle: true,
+              leading: BackButton(),
+              title: Text(I18n.of(context).settingsNotificationsTitle),
+              shadowColor: Colors.transparent,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            ),
             ListTile(
               leading: Icon(app.settings.enableNotifications
                   ? FeatherIcons.bell
@@ -32,8 +35,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   });
 
                   app.storage.storage.update("settings", {
-                    "notifications":
-                        (app.settings.enableNotifications ? 1 : 0)
+                    "notifications": (app.settings.enableNotifications ? 1 : 0)
                   });
                 },
               ),

@@ -17,16 +17,17 @@ class _GeneralSettingsState extends State<GeneralSettings> {
 
   @override
   Widget build(BuildContext context) {
-    print(app.settings.deviceLanguage);
-
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(),
-        title: Text(I18n.of(context).settingsGeneralTitle),
-      ),
       body: Container(
         child: Column(
           children: <Widget>[
+            AppBar(
+              centerTitle: true,
+              leading: BackButton(),
+              title: Text(I18n.of(context).settingsGeneralTitle),
+              shadowColor: Colors.transparent,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            ),
             ListTile(
               leading: Icon(FeatherIcons.globe),
               title: Text(I18n.of(context).settingsGeneralLanguage),

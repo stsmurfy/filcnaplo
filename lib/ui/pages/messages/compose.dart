@@ -1,7 +1,9 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/generated/i18n.dart';
+import 'package:filcnaplo/ui/profile_icon.dart';
 import 'package:filcnaplo/utils/format.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:file_picker/file_picker.dart';
@@ -23,25 +25,42 @@ class _NewMessagePageState extends State<NewMessagePage> {
 
   @override
   void dispose() {
-    _typeAheadController.dispose();
-    subjectController.dispose();
-    messageController.dispose();
-    super.dispose();
+    if (mounted) {
+      _typeAheadController.dispose();
+      subjectController.dispose();
+      messageController.dispose();
+      super.dispose();
+    }
   }
+
+  InputDecoration inputDecoration({String hint}) => InputDecoration(
+      enabledBorder: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(width: 0, color: Colors.transparent),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(width: 0, color: Colors.transparent),
+      ),
+      fillColor: Colors.black12,
+      filled: true,
+      contentPadding: EdgeInsets.all(8.0),
+      isDense: true,
+      hintText: hint);
 
   List<Recipient> recipientsAll = [];
 
   Widget searchField() {
     return TypeAheadFormField(
       textFieldConfiguration: TextFieldConfiguration(
-          controller: _typeAheadController,
-          decoration: InputDecoration(border: InputBorder.none)),
+          controller: _typeAheadController, decoration: inputDecoration()),
       suggestionsCallback: (pattern) {
         return SearchController.recipientResults(recipientsAll, pattern);
       },
       itemBuilder: (context, suggestion) {
         return ListTile(
-          title: Text(suggestion.name ?? ""),
+          leading: ProfileIcon(name: suggestion.name, size: 0.7),
+          title: Text(suggestion.name ?? "", style: TextStyle(fontSize: 14)),
         );
       },
       transitionBuilder: (context, suggestionsBox, controller) {
@@ -100,6 +119,7 @@ class _NewMessagePageState extends State<NewMessagePage> {
           Padding(
             padding: EdgeInsets.only(left: 4.0),
             child: Chip(
+              avatar: ProfileIcon(name: recipient.name, size: 0.5),
               label: Text(
                 recipient.name,
                 overflow: TextOverflow.ellipsis,
@@ -133,9 +153,9 @@ class _NewMessagePageState extends State<NewMessagePage> {
     }
 
     if (recipientsAll.length == 0) {
-      app.user.sync.recipients.sync().then((result) {
-        if (result) {
-          recipientsAll = app.user.sync.recipients.data;
+      app.user.kreta.getRecipients().then((result) {
+        if (result != null) {
+          recipientsAll = result;
         } else {
           _scaffoldKey.currentState.showSnackBar(SnackBar(
             content: Text(
@@ -160,6 +180,7 @@ class _NewMessagePageState extends State<NewMessagePage> {
       key: _scaffoldKey,
       body: Container(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Container(
             padding: EdgeInsets.only(top: 32.0),
             constraints:
@@ -171,7 +192,7 @@ class _NewMessagePageState extends State<NewMessagePage> {
                     // Back
                     BackButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.pop(context);
                       },
                     ),
 
@@ -210,13 +231,13 @@ class _NewMessagePageState extends State<NewMessagePage> {
 
                     // Send
                     IconButton(
-                      icon: Icon(FeatherIcons.send,
-                          color: app.settings.appColor),
+                      icon:
+                          Icon(FeatherIcons.send, color: app.settings.appColor),
                       tooltip: capital(I18n.of(context).messageSend),
                       onPressed: () {
                         sendMessage().then((success) {
                           if (success) {
-                            Navigator.of(context).pop();
+                            Navigator.pop(context);
                           } else {
                             _scaffoldKey.currentState.showSnackBar(SnackBar(
                               content: Text(
@@ -232,13 +253,13 @@ class _NewMessagePageState extends State<NewMessagePage> {
                     ),
                   ],
                 ),
-                Divider(),
                 Expanded(
                   child: Column(
                     children: <Widget>[
                       // Recipients
                       Padding(
-                        padding: EdgeInsets.only(left: 14.0, right: 14.0),
+                        padding:
+                            EdgeInsets.only(top: 6.0, left: 14.0, right: 14.0),
                         child: Row(
                           children: <Widget>[
                             Padding(
@@ -251,7 +272,7 @@ class _NewMessagePageState extends State<NewMessagePage> {
                             Container(
                               constraints: BoxConstraints(
                                   maxHeight: 200.0, maxWidth: 200.0),
-                              child: Scrollbar(
+                              child: CupertinoScrollbar(
                                 child: SingleChildScrollView(
                                   physics: BouncingScrollPhysics(),
                                   child: Wrap(
@@ -266,11 +287,10 @@ class _NewMessagePageState extends State<NewMessagePage> {
                         ),
                       ),
 
-                      Divider(),
-
                       // Subject
                       Padding(
-                        padding: EdgeInsets.only(left: 14.0, right: 14.0),
+                        padding:
+                            EdgeInsets.only(top: 6.0, left: 14.0, right: 14.0),
                         child: Row(
                           children: <Widget>[
                             Text(
@@ -281,15 +301,12 @@ class _NewMessagePageState extends State<NewMessagePage> {
                             Expanded(
                               child: TextField(
                                 controller: subjectController,
-                                decoration:
-                                    InputDecoration(border: InputBorder.none),
+                                decoration: inputDecoration(),
                               ),
                             ),
                           ],
                         ),
                       ),
-
-                      Divider(),
 
                       // Body
                       Expanded(
@@ -300,6 +317,7 @@ class _NewMessagePageState extends State<NewMessagePage> {
                             textAlignVertical: TextAlignVertical.top,
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
+                            scrollPhysics: BouncingScrollPhysics(),
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: capital(I18n.of(context).message)),
@@ -307,17 +325,13 @@ class _NewMessagePageState extends State<NewMessagePage> {
                         ),
                       ),
 
-                      messageContext.attachments.length > 0
-                          ? Divider()
-                          : Container(),
-
                       // Attachments
                       Container(
                         alignment: Alignment.bottomLeft,
                         padding: EdgeInsets.fromLTRB(14.0, 0, 14.0, 0),
                         child: Container(
                           constraints: BoxConstraints(maxHeight: 200.0),
-                          child: Scrollbar(
+                          child: CupertinoScrollbar(
                             child: SingleChildScrollView(
                               physics: BouncingScrollPhysics(),
                               child: Column(

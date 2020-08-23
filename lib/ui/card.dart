@@ -11,23 +11,17 @@ class BaseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: key,
-      onDismissed: (direction) {
-        // magic
-      },
-      child: Container(
-        margin: EdgeInsets.fromLTRB(18.0, 0, 18.0, 12.0),
-        padding: padding ?? EdgeInsets.all(12.0),
-        decoration: BoxDecoration(
-          color: app.settings.theme.backgroundColor,
-          borderRadius: BorderRadius.circular(8.0),
-          boxShadow: app.settings.theme.brightness == Brightness.dark
-              ? null
-              : [BoxShadow(color: Colors.grey[400], blurRadius: 6.0)],
-        ),
-        child: child,
+    return Container(
+      margin: EdgeInsets.fromLTRB(18.0, 0, 18.0, 12.0),
+      padding: padding ?? EdgeInsets.all(12.0),
+      decoration: BoxDecoration(
+        color: app.settings.theme.backgroundColor,
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: app.settings.theme.brightness == Brightness.dark
+            ? null
+            : [BoxShadow(color: Colors.grey[300], blurRadius: 6.0)],
       ),
+      child: child,
     );
   }
 }

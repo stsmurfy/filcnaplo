@@ -33,12 +33,11 @@ class TimetableSync {
             });
           }
         });
-
-        return true;
       } else {
         data = [];
-        return false;
       }
+
+      return lessons != null;
     } else {
       //data[0] = Dummy.lessons;
       return true;

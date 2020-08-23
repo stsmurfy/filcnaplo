@@ -6,7 +6,7 @@ class Lesson {
   Type status;
   DateTime date;
   Subject subject;
-  int lessonIndex;
+  String lessonIndex;
   int lessonYearIndex;
   String substituteTeacher;
   String teacher;
@@ -15,7 +15,7 @@ class Lesson {
   DateTime end;
   Type studentPresence;
   String homeworkId;
-  List tests;
+  List exams;
   String id;
   Type type;
   String description;
@@ -36,7 +36,7 @@ class Lesson {
     this.end,
     this.studentPresence,
     this.homeworkId,
-    this.tests,
+    this.exams,
     this.id,
     this.type,
     this.description,
@@ -53,7 +53,8 @@ class Lesson {
         json["Datum"] != null ? DateTime.parse(json["Datum"]).toLocal() : null;
     Subject subject =
         json["Tantargy"] != null ? Subject.fromJson(json["Tantargy"]) : null;
-    int lessonIndex = json["Oraszam"] ?? 0;
+    String lessonIndex =
+        json["Oraszam"] != null ? json["Oraszam"].toString() : "+";
     int lessonYearIndex = json["OraEvesSorszama"];
     String substituteTeacher = json["HelyettesTanarNeve"] ?? "";
     String teacher = json["TanarNeve"] ?? "";
@@ -66,7 +67,7 @@ class Lesson {
         : null;
     Type studentPresence;
     String homeworkId = json["HaziFeladatUid"];
-    List tests = json["BejelentettSzamonkeresUids"] != null
+    List exams = json["BejelentettSzamonkeresUids"] != null
         ? json["BejelentettSzamonkeresUids"]
         : [];
     String id = json["Uid"];
@@ -90,7 +91,7 @@ class Lesson {
       end,
       studentPresence,
       homeworkId,
-      tests,
+      exams,
       id,
       type,
       description,

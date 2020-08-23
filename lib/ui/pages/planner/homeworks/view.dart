@@ -4,6 +4,7 @@ import 'package:filcnaplo/data/models/homework.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/profile_icon.dart';
 import 'package:filcnaplo/utils/format.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -60,6 +61,8 @@ class _HomeworkViewState extends State<HomeworkView> {
                 child: Column(
                   children: <Widget>[
                     FlatButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6.0)),
                       padding: EdgeInsets.zero,
                       onPressed: () =>
                           setState(() => widget.onSolved(widget.homework)),
@@ -86,38 +89,40 @@ class _HomeworkViewState extends State<HomeworkView> {
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(14.0),
-              child: ListView(
-                physics: BouncingScrollPhysics(),
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: HomeworkDetail(
-                      I18n.of(context).homeworkDeadline,
-                      formatDate(context, widget.homework.deadline),
+              child: CupertinoScrollbar(
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 8.0),
+                      child: HomeworkDetail(
+                        I18n.of(context).homeworkDeadline,
+                        formatDate(context, widget.homework.deadline),
+                      ),
                     ),
-                  ),
 
-                  // Message content
-                  app.settings.renderHtml
-                      ? Html(
-                          data: widget.homework.content,
-                          onLinkTap: (url) async {
-                            if (await canLaunch(url))
-                              await launch(url);
-                            else
-                              throw 'Invalid URL';
-                          },
-                        )
-                      : SelectableLinkify(
-                          text: escapeHtml(widget.homework.content),
-                          onOpen: (url) async {
-                            if (await canLaunch(url.url))
-                              await launch(url.url);
-                            else
-                              throw 'Invalid URL';
-                          },
-                        ),
-                ],
+                    // Message content
+                    app.settings.renderHtml
+                        ? Html(
+                            data: widget.homework.content,
+                            onLinkTap: (url) async {
+                              if (await canLaunch(url))
+                                await launch(url);
+                              else
+                                throw 'Invalid URL';
+                            },
+                          )
+                        : SelectableLinkify(
+                            text: escapeHtml(widget.homework.content),
+                            onOpen: (url) async {
+                              if (await canLaunch(url.url))
+                                await launch(url.url);
+                              else
+                                throw 'Invalid URL';
+                            },
+                          ),
+                  ],
+                ),
               ),
             ),
           ),

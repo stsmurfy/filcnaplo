@@ -24,9 +24,9 @@ class ThemeContext {
 
   static Color lightTextColor = Colors.grey[700];
   static TextTheme lightText = TextTheme(
-      headline6: TextStyle(color: lightTextColor, fontSize: 20.0),
-      bodyText1: TextStyle(color: lightTextColor),
-      bodyText2: TextStyle(color: lightTextColor));
+      headline6: GoogleFonts.openSans(color: lightTextColor, fontSize: 20.0),
+      bodyText1: GoogleFonts.openSans(color: lightTextColor),
+      bodyText2: GoogleFonts.openSans(color: lightTextColor));
 
   static Color lightBackground = Colors.white;
 
@@ -43,6 +43,7 @@ class ThemeContext {
           actionTextColor: appColor,
           contentTextStyle: TextStyle(color: lightTextColor),
         ),
+        dialogBackgroundColor: lightBackground,
         appBarTheme: AppBarTheme(
             color: Colors.white,
             textTheme: lightText,
@@ -62,6 +63,7 @@ class ThemeContext {
           actionTextColor: Colors.teal[600],
           contentTextStyle: TextStyle(color: darkTextColor),
         ),
+        dialogBackgroundColor: Color(0xFF273d38),
         appBarTheme: AppBarTheme(
             color: Color(0xFF273d38),
             textTheme: darkText,
@@ -70,9 +72,9 @@ class ThemeContext {
 
   static Color darkTextColor = Colors.grey[100];
   static TextTheme darkText = TextTheme(
-      headline6: TextStyle(color: darkTextColor, fontSize: 20.0),
-      bodyText1: TextStyle(color: darkTextColor),
-      bodyText2: TextStyle(color: darkTextColor));
+      headline6: GoogleFonts.openSans(color: darkTextColor, fontSize: 20.0),
+      bodyText1: GoogleFonts.openSans(color: darkTextColor),
+      bodyText2: GoogleFonts.openSans(color: darkTextColor));
 
   static Color darkBackground = Color(0xff36393f);
   static Color blackBackground = Color(0xff18191c);
@@ -94,6 +96,8 @@ class ThemeContext {
           actionTextColor: appColor,
           contentTextStyle: TextStyle(color: darkTextColor),
         ),
+        dialogBackgroundColor:
+            backgroundColor == 0 ? blackBackground : darkBackground,
         appBarTheme: AppBarTheme(
             color: backgroundColor == 0 ? blackBackground : darkBackground,
             textTheme: darkText),

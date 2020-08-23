@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -52,22 +53,24 @@ class NoteView extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(12.0, 0, 12.0, 8.0),
-                  child: SelectableLinkify(
-                    text: note.content,
-                    onOpen: (url) async {
-                      if (await canLaunch(url.url))
-                        await launch(url.url);
-                      else
-                        throw 'Invalid URL';
-                    },
+            child: CupertinoScrollbar(
+              child: ListView(
+                physics: BouncingScrollPhysics(),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(12.0, 0, 12.0, 8.0),
+                    child: SelectableLinkify(
+                      text: note.content,
+                      onOpen: (url) async {
+                        if (await canLaunch(url.url))
+                          await launch(url.url);
+                        else
+                          throw 'Invalid URL';
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

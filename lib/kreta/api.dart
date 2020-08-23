@@ -12,10 +12,12 @@ class BaseURL {
 }
 
 class FilcEndpoints {
+  static const FILC_DEBUG = true;
   static const schoolList = "/school_list.json";
   static const schoolList2 = "/v2/school_list.json";
   static const config = "/settings.json";
   static const config2 = "/v2/config.json";
+  static const supporters = "/v2/supporters.json";
 }
 
 class KretaEndpoints {
@@ -29,7 +31,7 @@ class KretaEndpoints {
   static const classAverages =
       "/ellenorzo/V3/Sajat/Ertekelesek/Atlagok/OsztalyAtlagok";
   static const timetable = "/ellenorzo/V3/Sajat/OrarendElemek";
-  static const tests = "/ellenorzo/V3/Sajat/BejelentettSzamonkeresek";
+  static const exams = "/ellenorzo/V3/Sajat/BejelentettSzamonkeresek";
   static const homeworks = "/ellenorzo/V3/Sajat/HaziFeladatok";
   static const homeworkDone = "/ellenorzo/V3/Sajat/HaziFeladatok/Megoldva";
   static const capabilities = "/ellenorzo/V3/Sajat/Intezmenyek";

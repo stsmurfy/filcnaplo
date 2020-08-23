@@ -10,11 +10,11 @@
     "homework": "házi feladatok",
     "notes": "feljegyzések",
     "messages": "üzenetek",
-    "tests": "számonkérések",
+    "exams": "számonkérések",
     "absences": "mulasztások",
     "settings": "beállítások"
   },
-  "test": {
+  "exam": {
     "": "Dolgozat",
     "title": "Számonkérések",
     "past": "Korábbi dolgozatok"
@@ -106,6 +106,7 @@
     "room": "terem",
     "teacher": "tanár",
     "class": "osztály",
+    "group": "csoport",
     "start": "óra kezdete",
     "end": "óra vége",
     "theme": "téma",
@@ -127,15 +128,7 @@
     "title": "Tervező",
     "timetable": "órarend",
     "homework": "Házik",
-    "tests": "Dolgozatok"
-  },
-  "choose": {
-    "subjectNotFound": "Nincs ilyen tantárgyú órád a következő/előző 7 napban.",
-    "loading": "Órák betöltése...",
-    "next": "a következő",
-    "previous": "a legutóbbi",
-    "forLesson": "órához",
-    "add": "hozzáadás"
+    "exams": "Dolgozatok"
   },
   "substitute": {
     "teacher": "Helyettesítő tanár"
@@ -188,7 +181,7 @@
     "all": "Összes hiányzás: {count} óra",
     "parental": "Szülői igazolás: {count} db",
     "delays": "késések",
-    "absences": "mulasztások",
+    "absences": "hiányzások",
     "misses": "hiányok",
     "justification": "igazolás módja"
   },
@@ -219,7 +212,7 @@
   "evaluations": {
     "": "Jegyeid",
     "midYear": "Évközi",
-    "qYear": "Negyedévi",
+    "qYear": "1. Negyedév",
     "2qYear": "2. Negyedév",
     "halfYear": "Félévi",
     "3qYear": "3. Negyedév",
@@ -229,17 +222,11 @@
     "statistics": "Statisztikák"
   },
   "student": {
-    "school": "iskola",
-    "birth": "születés",
-    "address": "lakcím",
-    "parents": "szülők",
-    "realName": "igazi név"
-  },
-  "summary": {
-    "firstQ": "Első negyedévi jegyek",
-    "halfYear": "Félévi jegyek",
-    "thirdQ": "Harmadik negyedévi jegyek",
-    "endYear": "Év végi jegyek"
+    "school": "Iskola",
+    "birth": "Születési dátum",
+    "address": "Lakcím",
+    "parents": "Szülők",
+    "realName": "Igazi név"
   },
   "lessonCard": {
     "previous": "Előző",
@@ -274,15 +261,6 @@
     "title": "Alkalmazás bezárása",
     "confirm": "Biztosan be akarod zárni az alkalmazást?"
   },
-  "info": {
-    "birthdate": "Születési dátum: ",
-    "kretaID": "Kréta azonosító: ",
-    "address": "Lakcím: ",
-    "teacher": "Osztályfőnök: ",
-    "school": "Iskola: ",
-    "parents": "Szülők: ",
-    "mother": "Anyja neve: "
-  },
   "color": {
     "": "szín",
     "green": "zöld",
@@ -301,7 +279,7 @@
     "appearance": {
       "title": "Kinézet",
       "theme": "téma",
-      "color": "app színe",
+      "color": "Másodlagos szín",
       "evalColors": "Jegyek színe",
       "pickColor": "Válassz egy színt"
     },
@@ -318,7 +296,7 @@
     },
     "behavior": {
       "title": "Működés",
-      "renderHTML": "Renderelés HTML-ben"
+      "renderHTML": "Tartalom renderelése HTML-ben"
     },
     "debug": {
       "title": "Fejlesztői beállítások",
@@ -340,7 +318,6 @@
     "messageSend": "Nem sikerült elküldeni az üzenetet",
     "evaluations": "Nem sikerült lekérni a jegyeket"
   },
-  "pcs": "db",
   "download": {
     "": "letöltés",
     "latest": "Töltsd le most a legújabb verziót"
@@ -358,9 +335,8 @@
     "event": "Események szinkronizálása...",
     "note": "Feljegyzések szinkronizálása...",
     "evaluation": "Jegyek szinkronizálása...",
-    "recipient": "Címzettek szinkronizálása...",
     "absence": "Hiányok szinkronizálása...",
-    "test": "Dolgozatok szinkronizálása...",
+    "exam": "Dolgozatok szinkronizálása...",
     "homework": "Házi feladatok szinkronizálása...",
     "timetable": "Órarend szinkronizálása..."
   },
@@ -372,17 +348,17 @@
     "supporters": "Támogatók"
   },
   "empty": {
-    "": "",
+    "": "Micsoda üresség!",
     "messages": "Nincsenek üzeneteid",
     "notes": "Nincsenek feljegyzéseid",
     "events": "Nincsenek eseményeid",
     "absences": "Nincsenek mulasztásaid",
     "delays": "Nincsenek késéseid",
-    "misses": "Nincsenek hiányaid",
+    "misses": "Még semmit sem felejtettél otthon, és a házikat is szorgalmasan elkészítetted.",
     "grades": "Nincsenek jegyeid",
     "subjectGrades": "Ebből a tantárgyból nincsenek jegyeid",
-    "tests": "Nincsenek dolgozatok",
-    "pastTests": "Nincsenek korábbi dolgozatok",
+    "exams": "Nincsenek dolgozatok",
+    "pastExams": "Nincsenek korábbi dolgozatok",
     "homework": "Nincsenek házik",
     "pastHomework": "Nincsenek korábbi házik"
   },
@@ -391,5 +367,9 @@
     "view": "Megtekintés",
     "edit": "Szerkesztés",
     "delete": "Törlés"
+  },
+  "supporters": {
+    "all": "Összes",
+    "top": "Kiemelt"
   }
 }

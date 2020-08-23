@@ -35,11 +35,9 @@ class EvaluationSync {
             });
           }
         });
-
-        return true;
-      } else {
-        return false;
       }
+      
+      return evaluations != null;
     } else {
       data[0] = Dummy.evaluations;
       return true;

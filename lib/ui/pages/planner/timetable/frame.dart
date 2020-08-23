@@ -36,8 +36,10 @@ class _TimetableFrameState extends State<TimetableFrame>
 
   @override
   void dispose() {
-    _tabController.dispose();
-    super.dispose();
+    if (mounted) {
+      _tabController.dispose();
+      super.dispose();
+    }
   }
 
   @override

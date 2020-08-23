@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/models/message.dart';
 import 'package:filcnaplo/data/models/recipient.dart';
@@ -33,41 +34,43 @@ class _MessageViewState extends State<MessageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        leading: BackButton(),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(FeatherIcons.archive),
-            onPressed: () {
-              widget.messages.forEach((msg) {
-                archiveMessage(msg);
-              });
-            },
-          ),
-          IconButton(
-            icon: Icon(FeatherIcons.trash2),
-            onPressed: () {
-              // magic
-            },
-          ),
-          IconButton(
-            icon: Icon(FeatherIcons.mail),
-            onPressed: () {
-              // magic
-            },
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   leading: BackButton(),
+      //   actions: <Widget>[
+      //     IconButton(
+      //       icon: Icon(FeatherIcons.archive),
+      //       onPressed: () {
+      //         widget.messages.forEach((msg) {
+      //           archiveMessage(msg);
+      //         });
+      //       },
+      //     ),
+      //     IconButton(
+      //       icon: Icon(FeatherIcons.trash2),
+      //       onPressed: () {
+      //         // magic
+      //       },
+      //     ),
+      //     IconButton(
+      //       icon: Icon(FeatherIcons.mail),
+      //       onPressed: () {
+      //         // magic
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: Container(
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(vertical: 12.0),
-          children: widget.messages
-              .map((message) => MessageViewTile(
-                  message,
-                  message == widget.messages.first,
-                  message == widget.messages.last))
-              .toList(),
+        child: CupertinoScrollbar(
+          child: ListView(
+            physics: BouncingScrollPhysics(),
+            padding: EdgeInsets.only(bottom: 12.0),
+            children: widget.messages
+                .map((message) => MessageViewTile(
+                    message,
+                    message == widget.messages.first,
+                    message == widget.messages.last))
+                .toList(),
+          ),
         ),
       ),
     );
@@ -126,13 +129,12 @@ class _MessageViewTileState extends State<MessageViewTile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           (widget.isFirst)
-              ? Container(
-                  padding: EdgeInsets.fromLTRB(14.0, 0, 14.0, 8.0),
-                  child: Text(
-                    widget.message.subject,
-                    softWrap: true,
-                    style: TextStyle(fontSize: 24.0),
-                  ),
+              ? AppBar(
+                  centerTitle: true,
+                  leading: BackButton(),
+                  title: Text(widget.message.subject),
+                  shadowColor: Colors.transparent,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 )
               : Container(),
           RawMaterialButton(
@@ -247,7 +249,9 @@ class _MessageViewTileState extends State<MessageViewTile> {
                     spacing: 12.0,
                     children: () {
                       return widget.message.recipients
-                          .map((r) => Chip(label: Text(r.name)))
+                          .map((r) => Chip(
+                              avatar: ProfileIcon(name: r.name, size: .7),
+                              label: Text(r.name)))
                           .toList();
                     }(),
                   ),

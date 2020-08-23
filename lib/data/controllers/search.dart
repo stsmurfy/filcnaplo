@@ -11,18 +11,16 @@ import 'package:filcnaplo/utils/format.dart';
 import 'package:flutter/material.dart';
 
 class SearchController {
-  static String specialChars(String s) {
-    return s
-        .replaceAll("é", "e")
-        .replaceAll("á", "a")
-        .replaceAll("ó", "o")
-        .replaceAll("ő", "o")
-        .replaceAll("ö", "o")
-        .replaceAll("ú", "u")
-        .replaceAll("ű", "u")
-        .replaceAll("ü", "u")
-        .replaceAll("í", "i");
-  }
+  static String specialChars(String s) => s
+      .replaceAll("é", "e")
+      .replaceAll("á", "a")
+      .replaceAll("ó", "o")
+      .replaceAll("ő", "o")
+      .replaceAll("ö", "o")
+      .replaceAll("ú", "u")
+      .replaceAll("ű", "u")
+      .replaceAll("ü", "u")
+      .replaceAll("í", "i");
 
   static List<School> schoolResults(List<School> all, String pattern) {
     pattern = specialChars(pattern.toLowerCase());
@@ -87,6 +85,7 @@ class SearchController {
 
       if (contains == pattern.split(" ").length) results.add(item);
     });
+    print(pattern);
 
     results.sort((a, b) => a.text.compareTo(b.text));
 

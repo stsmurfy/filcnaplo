@@ -1,7 +1,7 @@
 {
   "app": {
     "title": "Filc Napló",
-    "version": "Version"
+    "version": "Ausgabe"
   },
   "drawer": {
     "home": "hauptbildschirm",
@@ -10,15 +10,17 @@
     "homework": "hausaufgaben",
     "notes": "hinweise",
     "messages": "benachrichtigungen",
-    "tests": "prüfungen",
+    "exams": "prüfungen",
     "absences": "abwesenheiten",
     "settings": "einstellungen"
   },
-  "test": {
-    "title": "Prüfungen"
+  "exam": {
+    "": "Prüfung",
+    "title": "Prüfungen",
+    "past": "Vorherige Prüfungen"
   },
   "grade": {
-    "": "note",
+    "": "Note",
     "1": "1",
     "2": "2",
     "3": "3",
@@ -27,26 +29,33 @@
   },
   "account": {
     "title": "Konten",
-    "add": "Konte hochladen",
-    "delete": "Konte löschen",
-    "deleteConfirm": "Möchtest du {name} wirklich löschen?"
+    "add": "Konto hinzufügen",
+    "delete": "Konto löschen",
+    "deleteConfirm": "Möchtest du {name} wirklich löschen?",
+    "profileIconEdit": "Profilbild editieren"
+  },
+  "action": {
+    "delete": "löschen",
+    "change": "wechseln",
+    "edit": "Bearbeiten"
   },
   "dialog": {
     "ok": "OK",
     "yes": "JA",
     "no": "NEIN",
     "done": "FERTIG",
-    "undo": "Rückzug"
+    "undo": "Rückgängig",
+    "cancel": "ABBRECHEN"
   },
   "time": {
     "": "zeit",
-    "hour": "Stunde",
-    "minute": "Minute",
-    "later": " "
+    "hour": "Stunde(n)",
+    "minute": "Minute(n)",
+    "later": "später"
   },
   "date": {
     "": "Datum",
-    "tomorrow": "Morgen",
+    "tomorrow": "morgen",
     "yesterday": "gestern",
     "today": "heute",
     "monday": "Montag",
@@ -65,41 +74,45 @@
     "sundayShort": "So",
     "day": "Tag",
     "week": "Woche",
-    "month": "Monate",
-    "month2": "Zwei Monate",
-    "weekPrev": "vorige Woche",
+    "month": "Monat",
+    "month2": "Zwei Monaten",
+    "weekPrev": "letzte Woche",
     "weekNext": "nächste Woche"
   },
   "delay": {
-    "": "Verspätungen",
-    "amount": "verspetete Zeit",
-    "all": "Menge aller Verspätungen: {count} Minuten"
+    "": "Verspätung",
+    "amount": "Verspätungszeit",
+    "state": "Status",
+    "mode": "Verspätungsart",
+    "lesson": "Stunde",
+    "interval": "Vespätet von-bis"
   },
   "administration": {
-    "time": "Protokolliert"
+    "time": "Hochgeladen am"
   },
   "justification": {
-    "state": "Zustand",
-    "mode": "Modus",
-    "justified": "justified",
-    "unjustified": "unjustified",
-    "tojustify": "to be justified",
-    "mixed": "mixed"
+    "state": "Status",
+    "mode": "Art",
+    "justified": "anerkannt",
+    "unjustified": "unanerkannt",
+    "tojustify": "zu anerkennen",
+    "mixed": "gemischt"
   },
   "lesson": {
     "": "Stunde",
     "count": "{count} Stunde",
     "next": "Nächste Stunde",
     "have": "Stunden",
-    "room": "Raum",
-    "teacher": "Lehrer",
+    "room": "Ort",
+    "teacher": "Lehrer(in)",
     "class": "Klasse",
+    "group": "Gruppe",
     "start": "Stunde beginnt um",
     "end": "Stunde endet um",
     "theme": "Thema",
     "subject": "Fach",
     "tomorrow": "Morgen gibt es",
-    "tomorrowTitle": "Lessons tomorrow"
+    "tomorrowTitle": "Stunden morgen"
   },
   "homework": {
     "": "Hausaufgabe",
@@ -108,30 +121,32 @@
     "deadline": "bis",
     "subject": "Fach",
     "uploadUser": "Hochgeladen von",
-    "uploadTime": "Hochladezeit"
+    "uploadTime": "Hochladezeit",
+    "past": "Vorherige Hausaufgaben"
   },
-  "choose": {
-    "subjectNotFound": "Du hast keine Stunde mit diesem Fach in den volgenden/vorherige 7 Tagen.",
-    "loading": "Stunden werden geladen...",
-    "next": "für die nächste",
-    "previous": "für die letzte",
-    "forLesson": "Stunde",
-    "add": "hochladen"
+  "planner": {
+    "title": "Planer",
+    "timetable": "Stundenplan",
+    "homework": "Hausaufgaben",
+    "exams": "Prüfungen"
+  },
+  "substitute": {
+    "teacher": "Vertretung"
   },
   "substitution": {
     "": "vertretung",
     "missed": "verpasst"
   },
   "state": {
-    "": "Zustand"
+    "": "Status"
   },
   "note": {
-    "": "Hinweis",
-    "title": "Hisweise"
+    "": "Durchsage",
+    "title": "Durchsagen"
   },
   "event": {
-    "": "Veranstaltung",
-    "title": "Veranstaltungen"
+    "": "Ereignis",
+    "title": "Ereignisse"
   },
   "message": {
     "": "Benachrichtigung",
@@ -139,50 +154,79 @@
     "subject": "Gegenstand",
     "recipients": "Empfänger",
     "attachments": "Anhänge",
-    "send": "schicken"
+    "send": "schicken",
+    "reply": "antworten",
+    "share": "mitteilen",
+    "shareFooter": "{sender}, {date}",
+    "deleted": "Mitteilung archiviert",
+    "drawer": {
+      "inbox": "eingang",
+      "sent": "gesendet",
+      "drafts": "entwürfe",
+      "trash": "müllkorb"
+    },
+    "toMe": "an mich",
+    "to": "an: {name}",
+    "showQuoted": "Vollständigen Inhalt anzeigen",
+    "hideQuoted": "Maximierten Inhalt ausblenden"
   },
   "statistics": {
     "": "Statistik"
   },
   "absence": {
-    "": "Auslassung",
-    "title": "Auslassungen",
+    "": "Ausschreitung",
+    "title": "Ausschreitungen",
     "time": "Zeit der Abwesenheit",
     "mode": "Art der Abwesenheit",
-    "all": "Menge aller Verspätungen: {count} Stunde",
-    "parental": "Elterliche Rechtfertigung: {count}"
+    "all": "Menge aller Verspätungen: {count} Stunden",
+    "parental": "Bescheinigungen durch den Eltern: {count}",
+    "delays": "verspätung",
+    "absences": "abwesenheit",
+    "misses": "fehlendes",
+    "justification": "Art der Bescheinigung"
   },
   "timetable": {
     "": "stundenplan",
-    "empty": "Es sieht so aus, dass du dieser Woche kein Unterricht hast :)"
+    "empty": "Dieser Woche hast du keine Stunden",
+    "yearly": "Laufende Nummer im Jahr"
   },
   "sort": {
     "": "Sortiere nach",
-    "time": "Einführungsdatum",
-    "eval": "Notewert",
-    "timeReal": "Prüfungsdatum"
+    "time": "Hochladezeit",
+    "eval": "Notenwert",
+    "timeReal": "Prüfungszeit"
   },
   "evaluation": {
     "title": "Noten",
-    "navigation": {
-      "all": "Alles",
-      "statistics": "Statistik",
-      "results": "Ergebnisse"
-    },
-    "summaryPlaceholder": "Deine Jahresendnoten, Halbjahresnoten und Quartalnoten werden hier sein.",
-    "average": "Dschn",
-    "averageClass": "Klassendurchschnitt",
-    "mode": "Art",
-    "weight": "Gewicht",
-    "value": "Wert",
-    "range": "Typ",
-    "if": "Wenn ich eine ... bekommen würde"
+    "average": "durchschnitt",
+    "averageClass": "klassendurchschnitt",
+    "value": "Notenwert",
+    "subject": "fach",
+    "description": "bezeichnung",
+    "type": "typ",
+    "valueType": "art",
+    "form": "Skala",
+    "writeDate": "Prüfungszeit",
+    "date": "Hochladezeit"
   },
-  "summary": {
-    "firstQ": "Noten des ersten Quartal",
-    "halfYear": "Halbjahresnoten",
-    "thirdQ": "Noten des dritten Quartal",
-    "endYear": "Jahresendnoten"
+  "evaluations": {
+    "": "Deine Noten",
+    "midYear": "Noten",
+    "qYear": "1. Quartal",
+    "2qYear": "2. Quartal",
+    "halfYear": "Halbjährlich",
+    "3qYear": "3. Quartal",
+    "4qYear": "4. Quartal",
+    "endYear": "Zeugnis",
+    "subjects": "Fächer",
+    "statistics": "Statistiken"
+  },
+  "student": {
+    "school": "Schule",
+    "birth": "Geburtsdatum",
+    "address": "Anschrift",
+    "parents": "Eltern",
+    "realName": "Wirkliche Name"
   },
   "lessonCard": {
     "previous": "Letzte",
@@ -195,12 +239,12 @@
     "username": "Benutzername",
     "password": "Passwort",
     "usernameHint": "Studenten ID: 11-stelliger Nummer (beginnt mit 7)",
-    "passwordHint": "meistens deine Geburtsdatum (zB.: 2000-01-02)",
+    "passwordHint": "meistens deine Geburtsdatum (zB.: 1970-01-01)",
     "usernameError": "Bitte Benutzername eingeben!",
     "passwordError": "Bitte Passwort eingeben!",
-    "schoolError": "Bitte wähle deine Schule!",
+    "schoolError": "Bitte Schule wählen!",
     "school": "Schule",
-    "choose": "Schulwahl",
+    "choose": "wähle",
     "chooseSchool": "Wähle deine Schule",
     "wrongCredentials": "Falsches Passwort oder Benutzername",
     "error": "Login fehlgeschlagen"
@@ -216,15 +260,6 @@
   "close": {
     "title": "App schließen",
     "confirm": "Möchtest du den App wirklich schließen?"
-  },
-  "info": {
-    "birthdate": "Geburtdatum: ",
-    "kretaID": "KRÉTA Identifikationsnummer: ",
-    "address": "Wohnort: ",
-    "teacher": "Klassenlehrer: ",
-    "school": "Schule: ",
-    "parents": "Eltern: ",
-    "mother": "Name der Mutter: "
   },
   "color": {
     "": "Farbe",
@@ -242,54 +277,99 @@
   "settings": {
     "title": "Einstellungen",
     "appearance": {
-      "title": "Appearance",
-      "theme": "theme"
+      "title": "Aussehen",
+      "theme": "Thema",
+      "color": "Sekundäre Farbe",
+      "evalColors": "Notenfarben",
+      "pickColor": "Wähle eine Farbe"
     },
     "general": {
-      "title": "General",
+      "title": "Allgemein",
       "language": "Sprache"
     },
     "privacy": {
-      "title": "Privacy"
+      "title": "Datenschutz",
+      "seen": "Gesehenstatus melden"
     },
     "notifications": {
-      "title": "Push-Benachrichtigung"
+      "title": "Benachrichtigungen"
     },
-    "colorful": "Bunte Hauptbildschirm",
-    "useAgent": "Gefälschte KRÉTA Identität",
-    "evaluationColors": "Notefarben",
-    "nextLesson": "Nächster Stunde",
-    "syncFrequency": "Häufigkeit der Synchronisierung: Alle {n} Minuten",
-    "bugreport": "Problembericht"
-  },
-  "notification": {
-    "failed": "Benachrichtigungen konnten nich eingeschaltet werden"
-  },
-  "refresh": {
-    "limit": "Warte {mins} Minue Zeit bevor du neu lädst!"
+    "behavior": {
+      "title": "Optionen",
+      "renderHTML": "Inhalt ins HTML rendern"
+    },
+    "debug": {
+      "title": "Entwichlereinstellungen",
+      "delete": "Appdaten löschen",
+      "deleteSuccess": "Appdaten gelöscht"
+    }
   },
   "success": {
     "": "Erfolg",
     "homework": "Hausaufgabe ist hochgeladen worden",
-    "homeworkDelete": "Hausaufgaben erfolgreich gelöscht",
-    "homeworkCopy": "Hausaufgaben erfolgreich kopiert"
+    "homeworkDelete": "Hausaufgabe gelöscht",
+    "homeworkCopy": "Hausaufgabe kopiert"
   },
   "error": {
-    "": "Error",
-    "network": "Netzwerk fehler",
-    "readAccount": "Konto konnte nicht geladen worden",
-    "messages": "Nachrichten konnten nicht abgerufen werden"
+    "": "Fehler",
+    "network": "Netzwerkfehler",
+    "readAccount": "Konto konnte nicht abgerufen werden",
+    "messages": "Mitteilungen konnten nicht abgerufen werden",
+    "messageSend": "Mitteilung wurde nicht geschickt",
+    "evaluations": "Noten konnten nicht abgerufen werden"
   },
-  "pcs": "x",
   "download": {
-    "": "download",
-    "latest": "Download the latest version now"
+    "": "Herunterladen",
+    "latest": "Bitte die neueste Ausgabe jetzt herunterladen!"
   },
   "update": {
-    "available": "New version available!"
+    "available": "Neue Ausgabe steht zu verfügung!"
   },
   "rateLimit": {
-    "alert": "You can only refresh every {minutes} minute(s)!"
+    "alert": "Neue Daten können erst jede {minutes} Minuten abgerufen werden!"
   },
-  "search": "Suche"
+  "search": "Suchen",
+  "sync": {
+    "message": "Mitteilungen werden abgerufen...",
+    "student": "Konto wird abgerufen...",
+    "event": "Ereignisse werden abgerufen...",
+    "note": "Durchsagen werden abgerufen...",
+    "evaluation": "Noten werden abgerufen...",
+    "absence": "Ausschreitungen werden abgerufen...",
+    "exam": "Prüfungen werden abgerufen...",
+    "homework": "Hausaufgaben werden abgerufen...",
+    "timetable": "Stundenplan wird abgerufen..."
+  },
+  "about": {
+    "": "Info",
+    "title": "Info",
+    "privacy": "Datenschutz-Bestimmungen",
+    "licenses": "Lizenzen",
+    "supporters": "Spendern"
+  },
+  "empty": {
+    "": "Wow, so leer!",
+    "messages": "Du hast keine Mitteilungen",
+    "notes": "Du hast keine Durchsagen",
+    "events": "Du hast keine Ereignisse",
+    "absences": "Du hast keine Abwesenheiten",
+    "delays": "Du hast keine Verspätungen",
+    "misses": "Du hast noch nichts zu Hause vergessen und immer alle Hausaufgaben tüchtig gemacht.",
+    "grades": "Du hast keine Noten",
+    "subjectGrades": "Du hast keine Noten in dieser Fach",
+    "exams": "Du hast keine Prüfungen",
+    "pastExams": "Du hast keine vorherigen Prüfungen",
+    "homework": "Du hast keine Hausaufgaben",
+    "pastHomework": "Du hast keine vorherigen Hausaufgaben"
+  },
+  "notImplemented": "Diese Funktion ist noch nicht fertig. Komm wieder später!",
+  "menu": {
+    "view": "Sehen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen"
+  },
+  "supporters": {
+    "all": "Alle",
+    "top": "Top"
+  }
 }

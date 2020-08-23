@@ -73,7 +73,7 @@ class StorageController {
 
       if (users[userID] == null) users[userID] = await openDatabase(userPath);
     }
-    
+
     app.sync.addUser(userID);
     app.kretaApi.addUser(userID);
   }
@@ -114,7 +114,7 @@ class StorageController {
         await db.execute("create table kreta_notes (json TEXT)");
         await db.execute("create table kreta_events (json TEXT)");
         await db.execute("create table kreta_absences (json TEXT)");
-        await db.execute("create table kreta_tests (json TEXT)");
+        await db.execute("create table kreta_exams (json TEXT)");
         await db.execute("create table kreta_homeworks (json TEXT)");
         await db.execute("create table kreta_lessons (json TEXT)");
       },

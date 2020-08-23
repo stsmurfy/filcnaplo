@@ -1,5 +1,5 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
-import 'package:filcnaplo/helpers/accounts.dart';
+import 'package:filcnaplo/helpers/account.dart';
 import 'package:filcnaplo/utils/format.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/context/app.dart';
@@ -48,12 +48,13 @@ class _AccountViewState extends State<AccountView> {
         color: Colors.transparent,
         child: InkWell(
           radius: 100.0,
+          borderRadius: BorderRadius.circular(6.0),
           highlightColor: Colors.transparent,
           onTap: () {
             AccountHelper(user: widget.user).deleteAccount(context);
           },
           child: SizedBox(
-            width: 60,
+            width: 75,
             height: 60,
             child: Column(
               children: <Widget>[
@@ -74,6 +75,7 @@ class _AccountViewState extends State<AccountView> {
         color: Colors.transparent,
         child: InkWell(
           radius: 100.0,
+          borderRadius: BorderRadius.circular(6.0),
           highlightColor: Colors.transparent,
           onTap: () {
             setState(() {
@@ -84,7 +86,7 @@ class _AccountViewState extends State<AccountView> {
             });
           },
           child: SizedBox(
-            width: 60,
+            width: 75,
             height: 60,
             child: Column(
               children: <Widget>[
@@ -114,6 +116,7 @@ class _AccountViewState extends State<AccountView> {
         color: Colors.transparent,
         child: InkWell(
           radius: 100.0,
+          borderRadius: BorderRadius.circular(6.0),
           highlightColor: Colors.transparent,
           onTap: () {
             // Export Action
@@ -122,7 +125,7 @@ class _AccountViewState extends State<AccountView> {
             // ));
           },
           child: SizedBox(
-            width: 60,
+            width: 75,
             height: 60,
             child: Column(
               children: <Widget>[
@@ -164,37 +167,34 @@ class _AccountViewState extends State<AccountView> {
           !edit
               ? Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-                  child: Row(
-                    children: <Widget>[
-                      GestureDetector(
-                        child: ProfileIcon(
-                            name: widget.user.name,
-                            size: 1.2,
-                            image: widget.user.customProfileIcon),
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            child: Center(
-                              child: ProfileIcon(
-                                  name: widget.user.name,
-                                  size: 4.2,
-                                  image: widget.user.customProfileIcon),
-                            ),
-                          );
-                        },
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 16.0),
-                          child: Text(
-                            widget.user.name,
-                            style: TextStyle(fontSize: 18.0),
-                            overflow: TextOverflow.ellipsis,
+                      EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+                  child: ListTile(
+                    leading: GestureDetector(
+                      child: ProfileIcon(
+                          name: widget.user.name,
+                          size: 1.2,
+                          image: widget.user.customProfileIcon),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          child: Center(
+                            child: ProfileIcon(
+                                name: widget.user.name,
+                                size: 4.2,
+                                image: widget.user.customProfileIcon),
                           ),
-                        ),
-                      ),
-                    ],
+                        );
+                      },
+                    ),
+                    title: Text(
+                      widget.user.name,
+                      style: TextStyle(fontSize: 18.0),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Text(
+                      widget.user.username,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 )
               : Container(),
@@ -335,7 +335,8 @@ class _AccountViewState extends State<AccountView> {
                                                 user: widget.user,
                                                 callback: widget.callback)
                                             .updateName(
-                                                _userNameController.text);
+                                                _userNameController.text,
+                                                context);
                                         setState(() => editName = false);
                                       }),
                                 ],
@@ -418,7 +419,8 @@ class StudentDetail extends StatelessWidget {
       direction: Axis.horizontal,
       children: <Widget>[
         Text(
-          capital(title) + ":  ",
+          title +
+              ":  ", //Had to change it the have the second word capital for german grammar. Adjuster i18n files accordingly.
           style: TextStyle(
             fontSize: 16.0,
             fontWeight: FontWeight.bold,

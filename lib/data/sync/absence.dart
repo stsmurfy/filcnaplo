@@ -29,11 +29,9 @@ class AbsenceSync {
             });
           }
         });
-
-        return true;
-      } else {
-        return false;
       }
+      
+      return absences != null;
     } else {
       //data = Dummy.absences;
       return true;

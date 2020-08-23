@@ -30,11 +30,9 @@ class HomeworkSync {
             });
           }
         });
-
-        return true;
-      } else {
-        return false;
       }
+
+      return homeworks != null;
     } else {
       //data = Dummy.homeworks;
       return true;

@@ -2,7 +2,9 @@ import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/utils/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tinycolor/tinycolor.dart';
 
 class StatisticsPage extends StatelessWidget {
@@ -33,54 +35,56 @@ class StatisticsPage extends StatelessWidget {
         evaluations.map((e) => e.value.weight / 100).reduce((a, b) => a + b);
 
     return Container(
-      child: ListView(
-        physics: BouncingScrollPhysics(),
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(left: 14.0, bottom: 12.0),
-            child: Text(I18n.of(context).evaluations,
-                style: TextStyle(fontSize: 18.0)),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              EvaluationBlock(
-                title: "5",
-                value: count5,
-                color: app.theme.evalColors[4],
-              ),
-              EvaluationBlock(
-                title: "4",
-                value: count4,
-                color: app.theme.evalColors[3],
-              ),
-              EvaluationBlock(
-                title: "3",
-                value: count3,
-                color: app.theme.evalColors[2],
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              EvaluationBlock(
-                title: "2",
-                value: count2,
-                color: app.theme.evalColors[1],
-              ),
-              EvaluationBlock(
-                title: "1",
-                value: count1,
-                color: app.theme.evalColors[0],
-              ),
-              EvaluationBlock(
-                value: allAvg.toStringAsFixed(2),
-                color: app.theme.evalColors[allAvg.round().clamp(0, 4) - 1],
-              ),
-            ],
-          ),
-        ],
+      child: CupertinoScrollbar(
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(left: 14.0, bottom: 12.0),
+              child: Text(I18n.of(context).evaluations,
+                  style: TextStyle(fontSize: 18.0)),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                EvaluationBlock(
+                  title: "5",
+                  value: count5,
+                  color: app.theme.evalColors[4],
+                ),
+                EvaluationBlock(
+                  title: "4",
+                  value: count4,
+                  color: app.theme.evalColors[3],
+                ),
+                EvaluationBlock(
+                  title: "3",
+                  value: count3,
+                  color: app.theme.evalColors[2],
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                EvaluationBlock(
+                  title: "2",
+                  value: count2,
+                  color: app.theme.evalColors[1],
+                ),
+                EvaluationBlock(
+                  title: "1",
+                  value: count1,
+                  color: app.theme.evalColors[0],
+                ),
+                EvaluationBlock(
+                  value: allAvg.toStringAsFixed(2),
+                  color: app.theme.evalColors[allAvg.round().clamp(0, 4) - 1],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -101,6 +105,7 @@ class EvaluationBlock extends StatelessWidget {
       margin: EdgeInsets.all(8.0),
       padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
       width: 100.0,
+      height: 64.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
         color: title != null ? backgroundColor : color,
@@ -110,17 +115,22 @@ class EvaluationBlock extends StatelessWidget {
         children: <Widget>[
           title != null
               ? Container(
+                  width: 42.0,
+                  height: 42.0,
                   decoration: BoxDecoration(
                     color: color,
                     shape: BoxShape.circle,
                   ),
-                  padding: EdgeInsets.all(12.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
                   child: Text(
                     title,
-                    style: TextStyle(
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.quicksand(
                       color: textColor(color),
-                      fontSize: 26.0,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 28.0,
+                      height: 1.2,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 )
@@ -130,7 +140,7 @@ class EvaluationBlock extends StatelessWidget {
                 ? EdgeInsets.only(left: 4.0)
                 : EdgeInsets.all(14.0),
             child: Text(
-              value,
+              value.replaceAll(".", ","),
               style: TextStyle(
                   color: textColor(title != null ? backgroundColor : color),
                   fontSize: 24.0),

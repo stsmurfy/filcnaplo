@@ -13,6 +13,7 @@ class AbsenceTileGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     return absences.length > 0
         ? ExpansionTile(
+            backgroundColor: Colors.transparent,
             leading: Icon(
               absences.any((absence) =>
                       absence.state == "Igazolatlan" ||
@@ -21,7 +22,7 @@ class AbsenceTileGroup extends StatelessWidget {
                   : FeatherIcons.check,
               color: absences.any((absence) => absence.state == "Igazolatlan")
                   ? Colors.red
-                  : absences.any((absence) => absence.state == "Ingazolando")
+                  : absences.any((absence) => absence.state == "Igazolando")
                       ? Colors.yellow[600]
                       : Colors.green,
             ),

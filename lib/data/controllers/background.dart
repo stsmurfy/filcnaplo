@@ -17,7 +17,7 @@ class BackgroundController {
 
   Future test() async {
     await BackgroundFetch.scheduleTask(
-      TaskConfig(taskId: "testtask", delay: 5000),
+      TaskConfig(taskId: "task1", delay: 5000),
     );
   }
 }

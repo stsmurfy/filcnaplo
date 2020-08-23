@@ -4,6 +4,7 @@ import 'package:filcnaplo/utils/format.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/utils/colors.dart';
 import 'package:filcnaplo/data/context/app.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart' as path;
 import 'package:tinycolor/tinycolor.dart';
 
@@ -17,6 +18,13 @@ class ProfileIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color color = TinyColor(stringToColor(name))
+        .desaturate(12)
+        .brighten(5)
+        .lighten(10)
+        .spin(64)
+        .color;
+
     return image == "" || image == null
         ? name != null
             ? name.toLowerCase() != "rendszerüzenet"
@@ -24,12 +32,7 @@ class ProfileIcon extends StatelessWidget {
                     width: 44.0 * size,
                     height: 44.0 * size,
                     decoration: BoxDecoration(
-                      color: TinyColor(stringToColor(name))
-                          .desaturate(12)
-                          .brighten(5)
-                          .lighten(10)
-                          .spin(64)
-                          .color,
+                      color: color,
                       shape: BoxShape.circle,
                     ),
                     child: Container(
@@ -38,10 +41,11 @@ class ProfileIcon extends StatelessWidget {
                         capital(name[0]),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 24.0 * size,
-                            fontWeight: FontWeight.w900,
-                            color: textColor(stringToColor(name))),
+                          decoration: TextDecoration.none,
+                          fontSize: 24.0 * size,
+                          fontWeight: FontWeight.w900,
+                          color: textColor(color),
+                        ),
                       ),
                     ),
                   )
@@ -56,11 +60,11 @@ class ProfileIcon extends StatelessWidget {
                     child: Text(
                       "!",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: GoogleFonts.righteous(
+                        decoration: TextDecoration.none,
                         color: Colors.white,
                         fontSize: 32.0 * size,
-                        fontFamily: "sans",
-                        fontWeight: FontWeight.bold,
+                        height: 1.2,
                       ),
                     ),
                   )

@@ -5,6 +5,7 @@ import 'package:filcnaplo/ui/empty.dart';
 import 'package:filcnaplo/ui/pages/evaluations/grades/tile.dart';
 import 'package:filcnaplo/ui/pages/evaluations/subjects/graph.dart';
 import 'package:filcnaplo/utils/format.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/utils/colors.dart';
@@ -47,7 +48,8 @@ class _SubjectViewState extends State<SubjectView> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                color: app.theme.evalColors[(widget.studentAvg.round() - 1).clamp(0, 4)],
+                color: app.theme
+                    .evalColors[(widget.studentAvg.round() - 1).clamp(0, 4)],
               ),
               padding: EdgeInsets.all(8.0),
               child: Text(
@@ -56,6 +58,7 @@ class _SubjectViewState extends State<SubjectView> {
                     : widget.studentAvg.toStringAsFixed(2).split(".").join(","),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  height: 1.2,
                   color: textColor(
                     app.theme.evalColors[
                         (widget.studentAvg.round() - 1).clamp(0, 4)],
@@ -84,7 +87,10 @@ class _SubjectViewState extends State<SubjectView> {
                               .toStringAsFixed(2)
                               .split(".")
                               .join(","),
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        height: 1.2,
+                      ),
                     ),
                   ),
                 )
@@ -92,28 +98,30 @@ class _SubjectViewState extends State<SubjectView> {
         ],
       ),
       body: Container(
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          children: <Widget>[
-            Container(
-              height: 200.0,
-              padding: EdgeInsets.all(4.0),
-              margin: EdgeInsets.all(4.0),
-              child: SubjectGraph.fromData(
-                data: subjectEvals,
+        child: CupertinoScrollbar(
+          child: ListView(
+            physics: BouncingScrollPhysics(),
+            children: <Widget>[
+              Container(
+                height: 200.0,
+                padding: EdgeInsets.all(4.0),
+                margin: EdgeInsets.all(4.0),
+                child: SubjectGraph.fromData(
+                  data: subjectEvals,
+                ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(12.0),
-              child: Column(
-                children: evaluationTiles.length > 0
-                    ? evaluationTiles
-                    : <Widget>[
-                        Empty(title: I18n.of(context).emptySubjectGrades)
-                      ],
+              Container(
+                padding: EdgeInsets.all(12.0),
+                child: Column(
+                  children: evaluationTiles.length > 0
+                      ? evaluationTiles
+                      : <Widget>[
+                          Empty(title: I18n.of(context).emptySubjectGrades)
+                        ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

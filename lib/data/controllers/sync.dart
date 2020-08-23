@@ -1,11 +1,10 @@
 import 'package:filcnaplo/data/sync/evaluation.dart';
 import 'package:filcnaplo/data/sync/message.dart';
-import 'package:filcnaplo/data/sync/recipient.dart';
 import 'package:filcnaplo/data/sync/note.dart';
 import 'package:filcnaplo/data/sync/event.dart';
 import 'package:filcnaplo/data/sync/student.dart';
 import 'package:filcnaplo/data/sync/absence.dart';
-import 'package:filcnaplo/data/sync/test.dart';
+import 'package:filcnaplo/data/sync/exam.dart';
 import 'package:filcnaplo/data/sync/homework.dart';
 import 'package:filcnaplo/data/sync/timetable.dart';
 import 'package:filcnaplo/data/context/app.dart';
@@ -49,13 +48,8 @@ class SyncController {
     );
 
     createTask(
-      name: "test",
-      task: app.user.sync.test.sync(),
-    );
-
-    createTask(
-      name: "recipient",
-      task: app.user.sync.recipients.sync(),
+      name: "exam",
+      task: app.user.sync.exam.sync(),
     );
 
     for (var i = 0; i < 3; i++) {
@@ -126,13 +120,12 @@ class SyncController {
   void delete() {
     users.forEach((_, sync) {
       sync.messages.delete();
-      sync.recipients.delete();
       sync.note.delete();
       sync.event.delete();
       sync.student.delete();
       sync.evaluation.delete();
       sync.absence.delete();
-      sync.test.delete();
+      sync.exam.delete();
       sync.homework.delete();
       sync.timetable.delete();
     });
@@ -142,13 +135,12 @@ class SyncController {
 class SyncUser {
   // Syncers
   MessageSync messages = MessageSync();
-  RecipientSync recipients = RecipientSync();
   NoteSync note = NoteSync();
   EventSync event = EventSync();
   StudentSync student = StudentSync();
   EvaluationSync evaluation = EvaluationSync();
   AbsenceSync absence = AbsenceSync();
-  TestSync test = TestSync();
+  ExamSync exam = ExamSync();
   HomeworkSync homework = HomeworkSync();
   TimetableSync timetable = TimetableSync();
 }

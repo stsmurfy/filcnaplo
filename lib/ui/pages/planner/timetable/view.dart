@@ -2,20 +2,21 @@ import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/models/homework.dart';
 import 'package:filcnaplo/data/models/lesson.dart';
-import 'package:filcnaplo/data/models/test.dart';
+import 'package:filcnaplo/data/models/exam.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/pages/planner/homeworks/view.dart';
-import 'package:filcnaplo/ui/pages/planner/tests/view.dart';
+import 'package:filcnaplo/ui/pages/planner/exams/view.dart';
 import 'package:filcnaplo/ui/profile_icon.dart';
 import 'package:filcnaplo/utils/format.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TimetableView extends StatelessWidget {
   final Lesson lesson;
   final Homework homework;
-  final List<Test> tests;
+  final List<Exam> exams;
 
-  TimetableView(this.lesson, this.homework, this.tests);
+  TimetableView(this.lesson, this.homework, this.exams);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,9 @@ class TimetableView extends StatelessWidget {
                     ? lesson.substituteTeacher
                     : lesson.teacher)),
               ),
-              Text(formatDate(context, lesson.date)),
+              Text(DateFormat("HH:mm").format(lesson.start) +
+                  " - " +
+                  DateFormat("HH:mm").format(lesson.end)),
             ]),
             subtitle: Text(
               lesson.subject != null ? capital(lesson.subject.name) : "?",
@@ -56,6 +59,13 @@ class TimetableView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                lesson.room != ""
+                    ? TimetableDetail(I18n.of(context).lessonRoom, lesson.room)
+                    : Container(),
+                lesson.groupName != null
+                    ? TimetableDetail(
+                        I18n.of(context).lessonGroup, lesson.groupName)
+                    : Container(),
                 lesson.description != ""
                     ? TimetableDetail(
                         I18n.of(context).evaluationDescription,
@@ -81,10 +91,10 @@ class TimetableView extends StatelessWidget {
                       )
                     : Container(),
                 homework != null ? homeworkButton(context) : Container(),
-                tests.length > 0
+                exams.length > 0
                     ? Column(
-                        children: tests
-                            .map((test) => testButton(context, test))
+                        children: exams
+                            .map((exam) => examButton(context, exam))
                             .toList(),
                       )
                     : Container(),
@@ -103,16 +113,17 @@ class TimetableView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         builder: (context) => HomeworkView(homework, onSolved),
       ),
-      padding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+      padding: EdgeInsets.symmetric(horizontal: 6.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Icon(FeatherIcons.home),
+          Icon(FeatherIcons.home, color: app.settings.appColor),
           Padding(
             padding: EdgeInsets.only(left: 8.0),
             child: Text(
               capital(I18n.of(context).homework),
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(fontSize: 18.0, color: app.settings.appColor),
             ),
           ),
         ],
@@ -120,23 +131,24 @@ class TimetableView extends StatelessWidget {
     );
   }
 
-  Widget testButton(BuildContext context, Test test) {
+  Widget examButton(BuildContext context, Exam exam) {
     return FlatButton(
       onPressed: () => showModalBottomSheet(
         context: context,
         backgroundColor: Colors.transparent,
-        builder: (context) => TestView(test),
+        builder: (context) => ExamView(exam),
       ),
-      padding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+      padding: EdgeInsets.symmetric(horizontal: 6.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Icon(FeatherIcons.edit),
+          Icon(FeatherIcons.edit, color: app.settings.appColor),
           Padding(
             padding: EdgeInsets.only(left: 8.0),
             child: Text(
-              I18n.of(context).test,
-              style: TextStyle(fontSize: 18.0),
+              I18n.of(context).exam,
+              style: TextStyle(fontSize: 18.0, color: app.settings.appColor),
             ),
           ),
         ],

@@ -1,4 +1,3 @@
-import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:filcnaplo/data/context/message.dart';
 import 'package:filcnaplo/data/state/sync.dart';
 import 'package:filcnaplo/data/sync/ui/indicator.dart';
@@ -7,7 +6,7 @@ import 'package:filcnaplo/ui/pages/absences/page.dart';
 import 'package:filcnaplo/ui/pages/messages/compose.dart';
 import 'package:filcnaplo/ui/pages/evaluations/dial.dart';
 import 'package:filcnaplo/ui/pages/evaluations/page.dart';
-import 'package:filcnaplo/ui/pages/home.dart';
+import 'package:filcnaplo/ui/pages/home/page.dart';
 import 'package:filcnaplo/ui/pages/messages/page.dart';
 import 'package:filcnaplo/ui/pages/planner/page.dart';
 import 'package:flutter/material.dart';
@@ -52,11 +51,10 @@ class _PageFrameState extends State<PageFrame> {
           "event": I18n.of(context).syncEvent,
           "note": I18n.of(context).syncNote,
           "evaluation": I18n.of(context).syncEvaluation,
-          "recipient": I18n.of(context).syncRecipient,
           "absence": I18n.of(context).syncAbsence,
           "timetable": I18n.of(context).syncTimetable,
           "homework": I18n.of(context).syncHomework,
-          "test": I18n.of(context).syncTest,
+          "exam": I18n.of(context).syncExam,
         };
 
         setState(() {
@@ -121,9 +119,11 @@ class _PageFrameState extends State<PageFrame> {
           ],
         ),
       ),
-      floatingActionButton: (app.selectedPage == 3 && app.tabState.messages.index == 0)
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: (app.selectedPage == 3 &&
+              app.tabState.messages.index == 0)
           ? FloatingActionButton(
-              child: Icon(FeatherIcons.edit2, color: app.settings.appColor),
+              child: Icon(Icons.edit, color: app.settings.appColor),
               backgroundColor: app.settings.theme.backgroundColor,
               onPressed: () {
                 messageContext = MessageContext();

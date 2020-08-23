@@ -1,6 +1,7 @@
 import 'package:filcnaplo/data/controllers/search.dart';
 import 'package:filcnaplo/data/models/searchable.dart';
 import 'package:filcnaplo/data/context/app.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 
@@ -21,22 +22,24 @@ class _SearchPageState extends State<SearchPage> {
       body: Stack(
         children: <Widget>[
           // Results
-          ListView.builder(
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.fromLTRB(12.0, 100.0, 12.0, 0),
-            itemCount: results.length,
-            // results.length == 0 ? search history
-            itemBuilder: (BuildContext context, int i) {
-              Searchable item = results[i];
-              return item.child;
-            },
+          CupertinoScrollbar(
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.fromLTRB(12.0, 100.0, 12.0, 0),
+              itemCount: results.length,
+              // results.length == 0 ? search history
+              itemBuilder: (BuildContext context, int i) {
+                Searchable item = results[i];
+                return item.child;
+              },
+            ),
           ),
 
           // Search Bar
           Container(
             margin: EdgeInsets.fromLTRB(18.0, 40.0, 18.0, 0),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(12.0),
               color: app.settings.theme.backgroundColor,
               boxShadow: [
                 BoxShadow(
@@ -84,7 +87,7 @@ class _SearchPageState extends State<SearchPage> {
                       if (_searchController.text != "")
                         setState(() => _searchController.text = "");
                       else
-                        Navigator.of(context).pop();
+                        Navigator.pop(context);
                     },
                   ),
                 )
