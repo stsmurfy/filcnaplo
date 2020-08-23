@@ -2,7 +2,7 @@
 
 [![discord](https://img.shields.io/discord/712698455193157643?label=Discord)](http://filcnaplo.hu/discord)
 
-> ### Nem hivatalos e-napló alkalmazás az e-Kréta rendszerhez
+### Nem hivatalos e-napló alkalmazás az e-Kréta rendszerhez
 
 <br>
 
