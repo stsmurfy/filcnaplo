@@ -29,7 +29,7 @@ class StorageController {
 
         // Create Settings
         await db.execute(
-            "create table settings (language TEXT, app_color TEXT, theme TEXT, background_color INTIGER, notifications INTIGER, selected_user INTIGER, render_html INTIGER)");
+            "create table settings (language TEXT, app_color TEXT, theme TEXT, background_color INTIGER, notifications INTIGER, selected_user INTIGER, render_html INTIGER, debug_mode INTIGER)");
         await db.insert("settings", {
           "language": "auto",
           "app_color": "default",
@@ -38,6 +38,7 @@ class StorageController {
           "notifications": 1,
           "selected_user": 0,
           "render_html": 1,
+          "debug_mode": 0,
         });
 
         // Create Eval Colors
@@ -47,8 +48,8 @@ class StorageController {
           "color1": "#f44336",
           "color2": "#ffa000",
           "color3": "#fdd835",
-          "color4": "#c0ca33",
-          "color5": "#4caf50",
+          "color4": "#8bc34a",
+          "color5": "#43a047",
         });
 
         // Tab States

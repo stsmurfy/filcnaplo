@@ -26,34 +26,59 @@ class _DebugSettingsState extends State<DebugSettings> {
               I18n.of(context).settingsDebugTitle,
               style: TextStyle(fontSize: 18.0),
             ),
+            actions: [
+              Padding(
+                padding: EdgeInsets.only(right: 8.0),
+                child: Switch(
+                  value: app.debugVersion,
+                  onChanged: (value) => setState(() {
+                    app.debugVersion = value;
+
+                    app.storage.storage.update("settings", {
+                      "debug_mode": value ? 1 : 0,
+                    });
+                  }),
+                ),
+              ),
+            ],
             shadowColor: Colors.transparent,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           ),
           ListTile(
             leading: Icon(FeatherIcons.trash2),
-            title: Text(I18n.of(context).settingsDebugDelete),
-            onTap: () {
-              _scaffoldKey.currentState.showSnackBar(SnackBar(
-                content: Text(
-                  I18n.of(context).settingsDebugDeleteSuccess,
-                  style: TextStyle(color: Colors.white),
-                ),
-                backgroundColor: Colors.red,
-              ));
+            title: Text(
+              I18n.of(context).settingsDebugDelete,
+              style: TextStyle(
+                color: app.debugVersion ? null : Colors.grey,
+              ),
+            ),
+            onTap: app.debugVersion
+                ? () {
+                    _scaffoldKey.currentState.showSnackBar(SnackBar(
+                      content: Text(
+                        I18n.of(context).settingsDebugDeleteSuccess,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      backgroundColor: Colors.red,
+                    ));
 
-              DebugHelper().eraseData().then((_) {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                  (_) => false,
-                );
-              });
-            },
+                    DebugHelper().eraseData(context).then((_) {
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        (_) => false,
+                      );
+                    });
+                  }
+                : null,
           ),
           ListTile(
             leading: Icon(FeatherIcons.code),
-            title: Text(I18n.of(context).settingsBehaviorRenderHTML),
+            title: Text(I18n.of(context).settingsBehaviorRenderHTML,
+                style: TextStyle(
+                  color: app.debugVersion ? null : Colors.grey,
+                )),
             trailing: Switch(
-              value: app.settings.renderHtml,
+              value: app.debugVersion && app.settings.renderHtml,
               onChanged: (bool value) {
                 setState(() => app.settings.renderHtml = value);
 

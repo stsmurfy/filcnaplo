@@ -15,6 +15,7 @@ class AppContext {
   // Change this to enable debug mode
   bool debugVersion = false;
   bool debugUser = false;
+  bool firstStart = false;
 
   String appDataPath;
 

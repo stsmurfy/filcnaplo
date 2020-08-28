@@ -1,4 +1,5 @@
 import 'package:filcnaplo/data/context/theme.dart';
+import 'package:filcnaplo/ui/pages/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -24,6 +25,7 @@ void main() async {
     await app.storage.storage.query("settings");
   } catch (_) {
     await app.storage.create();
+    app.firstStart = true;
   }
 
   await app.settings.update(login: false);
@@ -121,7 +123,9 @@ class _AppState extends State<App> {
           onGenerateTitle: (BuildContext context) => I18n.of(context).appTitle,
           title: 'Filc Napló',
           theme: theme,
-          home: app.users.length > 0 ? PageFrame() : LoginPage(),
+          home: app.firstStart
+              ? WelcomePage()
+              : app.users.length > 0 ? PageFrame() : LoginPage(),
         );
       },
     );

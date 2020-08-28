@@ -36,24 +36,24 @@ class I18n implements WidgetsLocalizations {
   String get appTitle => "Filc Napló";
   /// "verzió"
   String get appVersion => "verzió";
-  /// "főoldal"
-  String get drawerHome => "főoldal";
-  /// "jegyek"
-  String get drawerEvaluations => "jegyek";
-  /// "órarend"
-  String get drawerTimetable => "órarend";
-  /// "házi feladatok"
-  String get drawerHomework => "házi feladatok";
-  /// "feljegyzések"
-  String get drawerNotes => "feljegyzések";
-  /// "üzenetek"
-  String get drawerMessages => "üzenetek";
-  /// "számonkérések"
-  String get drawerExams => "számonkérések";
-  /// "mulasztások"
-  String get drawerAbsences => "mulasztások";
-  /// "beállítások"
-  String get drawerSettings => "beállítások";
+  /// "Főoldal"
+  String get drawerHome => "Főoldal";
+  /// "Jegyek"
+  String get drawerEvaluations => "Jegyek";
+  /// "Órarend"
+  String get drawerTimetable => "Órarend";
+  /// "Házi feladatok"
+  String get drawerHomework => "Házi feladatok";
+  /// "Feljegyzések"
+  String get drawerNotes => "Feljegyzések";
+  /// "Üzenetek"
+  String get drawerMessages => "Üzenetek";
+  /// "Számonkérések"
+  String get drawerExams => "Számonkérések";
+  /// "Mulasztások"
+  String get drawerAbsences => "Mulasztások";
+  /// "Beállítások"
+  String get drawerSettings => "Beállítások";
   /// "Dolgozat"
   String get exam => "Dolgozat";
   /// "Számonkérések"
@@ -100,6 +100,10 @@ class I18n implements WidgetsLocalizations {
   String get dialogUndo => "visszavonás";
   /// "MÉGSEM"
   String get dialogCancel => "MÉGSEM";
+  /// "ÁTUGRÁS"
+  String get dialogSkip => "ÁTUGRÁS";
+  /// "TOVÁBB"
+  String get dialogNext => "TOVÁBB";
   /// "idő"
   String get time => "idő";
   /// "óra"
@@ -536,6 +540,8 @@ class I18n implements WidgetsLocalizations {
   String get aboutLicenses => "Licenszek";
   /// "Támogatók"
   String get aboutSupporters => "Támogatók";
+  /// "Linkek"
+  String get aboutLinks => "Linkek";
   /// "Micsoda üresség!"
   String get empty => "Micsoda üresség!";
   /// "Nincsenek üzeneteid"
@@ -574,6 +580,32 @@ class I18n implements WidgetsLocalizations {
   String get supportersAll => "Összes";
   /// "Kiemelt"
   String get supportersTop => "Kiemelt";
+  /// "Üdvözöl az új"
+  String get welcome => "Üdvözöl az új";
+  /// "Kezdés"
+  String get begin => "Kezdés";
+  /// "Modern, könnyen kezelhető felület"
+  String get features1 => "Modern, könnyen kezelhető felület";
+  /// "Tervezd meg a napod"
+  String get features2 => "Tervezd meg a napod";
+  /// "Értesülj mindenről gyorsan"
+  String get features3 => "Értesülj mindenről gyorsan";
+  /// "Maximálisan testreszabható"
+  String get features4 => "Maximálisan testreszabható";
+  /// "A főoldalon minden egyéb oldal adatait egy helyre összegyűjtve láthatod.\nA felső sávba gépelve minden adat között kereshetsz, legyen az akár egy jegy címe, vagy a nevelőtestületi megrovás szövege."
+  String get tutorial1 => "A főoldalon minden egyéb oldal adatait egy helyre összegyűjtve láthatod.\nA felső sávba gépelve minden adat között kereshetsz, legyen az akár egy jegy címe, vagy a nevelőtestületi megrovás szövege.";
+  /// "Itt találod az összes jegyet.\nTöbb szempont alapján rendezheted őket a bal alsó sarokban.\nFelül válthatsz az évközi jegyek és lezárt eredmények között,\nvalamint megnézheted a tárgyi átlagokat, és a hozzájuk tartozó jegyeket."
+  String get tutorial2 => "Itt találod az összes jegyet.\nTöbb szempont alapján rendezheted őket a bal alsó sarokban.\nFelül válthatsz az évközi jegyek és lezárt eredmények között,\nvalamint megnézheted a tárgyi átlagokat, és a hozzájuk tartozó jegyeket.";
+  /// "A tervezőben találod az órarendet, ami egyben a naptár is.\nItt vannak a házik és a dolgozatok, számon tarthatod, mennyi mindenre nem lesz idő készülni."
+  String get tutorial3 => "A tervezőben találod az órarendet, ami egyben a naptár is.\nItt vannak a házik és a dolgozatok, számon tarthatod, mennyi mindenre nem lesz idő készülni.";
+  /// "Ezen az oldalon találod a személyes üzeneteidet, jobb alul tudsz új üzenetet írni, bal felül pedig a mappák között váltani.\nA következő fülön a feljegyzéseket, faliújságot, rendszerüzeneteket,\naz utolsón pedig az eseményeket láthatod. Ezt a funkciót még sosem láttuk működés közben, de a hivatalos appban is benne van ¯\\_(ツ)_/¯"
+  String get tutorial4 => "Ezen az oldalon találod a személyes üzeneteidet, jobb alul tudsz új üzenetet írni, bal felül pedig a mappák között váltani.\nA következő fülön a feljegyzéseket, faliújságot, rendszerüzeneteket,\naz utolsón pedig az eseményeket láthatod. Ezt a funkciót még sosem láttuk működés közben, de a hivatalos appban is benne van ¯\\_(ツ)_/¯";
+  /// "Itt láthatod minden huncutság eredményét.\nFigyelheted, mikor vonják meg tőletek a családi pótlékot a hiányzások miatt,\nláthatod a késéseket, el nem készített házi feladatokat és felszereléshiányokat.\nHa nem látsz itt semmit, kiérdemelsz egy vállveregetést."
+  String get tutorial5 => "Itt láthatod minden huncutság eredményét.\nFigyelheted, mikor vonják meg tőletek a családi pótlékot a hiányzások miatt,\nláthatod a késéseket, el nem készített házi feladatokat és felszereléshiányokat.\nHa nem látsz itt semmit, kiérdemelsz egy vállveregetést.";
+  /// "Itt válthatsz bejelentkezett fiókok között.\nEgy fióknak beállíthatsz egyéni nevet, és profilképet.\nFelvehetsz és törölhetsz fiókokat.\nItt találod az app beállításait és néhány további információt is."
+  String get tutorial6 => "Itt válthatsz bejelentkezett fiókok között.\nEgy fióknak beállíthatsz egyéni nevet, és profilképet.\nFelvehetsz és törölhetsz fiókokat.\nItt találod az app beállításait és néhány további információt is.";
+  /// "Reméljük, elégedett leszel az új appal!\nNem találod a kedvenc régi funkciódat?\nNe aggódj, az app még kezdeti fázisban van, sok funkcióval fog gyarapodni."
+  String get tutorial7 => "Reméljük, elégedett leszel az új appal!\nNem találod a kedvenc régi funkciódat?\nNe aggódj, az app még kezdeti fázisban van, sok funkcióval fog gyarapodni.";
 }
 
 class _I18n_hu_HU extends I18n {
@@ -592,33 +624,33 @@ class _I18n_en_US extends I18n {
   /// "version"
   @override
   String get appVersion => "version";
-  /// "home"
+  /// "Home"
   @override
-  String get drawerHome => "home";
-  /// "evaluations"
+  String get drawerHome => "Home";
+  /// "Evaluations"
   @override
-  String get drawerEvaluations => "evaluations";
-  /// "timetable"
+  String get drawerEvaluations => "Evaluations";
+  /// "Timetable"
   @override
-  String get drawerTimetable => "timetable";
-  /// "homework"
+  String get drawerTimetable => "Timetable";
+  /// "Homework"
   @override
-  String get drawerHomework => "homework";
-  /// "notes"
+  String get drawerHomework => "Homework";
+  /// "Notes"
   @override
-  String get drawerNotes => "notes";
-  /// "messages"
+  String get drawerNotes => "Notes";
+  /// "Messages"
   @override
-  String get drawerMessages => "messages";
-  /// "exams"
+  String get drawerMessages => "Messages";
+  /// "Exams"
   @override
-  String get drawerExams => "exams";
-  /// "absences"
+  String get drawerExams => "Exams";
+  /// "Absences"
   @override
-  String get drawerAbsences => "absences";
-  /// "settings"
+  String get drawerAbsences => "Absences";
+  /// "Settings"
   @override
-  String get drawerSettings => "settings";
+  String get drawerSettings => "Settings";
   /// "Exam"
   @override
   String get exam => "Exam";
@@ -688,6 +720,12 @@ class _I18n_en_US extends I18n {
   /// "CANCEL"
   @override
   String get dialogCancel => "CANCEL";
+  /// "SKIP"
+  @override
+  String get dialogSkip => "SKIP";
+  /// "NEXT"
+  @override
+  String get dialogNext => "NEXT";
   /// "time"
   @override
   String get time => "time";
@@ -1342,6 +1380,9 @@ class _I18n_en_US extends I18n {
   /// "Supporters"
   @override
   String get aboutSupporters => "Supporters";
+  /// "Links"
+  @override
+  String get aboutLinks => "Links";
   /// "Wow, such empty!"
   @override
   String get empty => "Wow, such empty!";
@@ -1399,6 +1440,45 @@ class _I18n_en_US extends I18n {
   /// "Top"
   @override
   String get supportersTop => "Top";
+  /// "Welcome to the new"
+  @override
+  String get welcome => "Welcome to the new";
+  /// "Begin"
+  @override
+  String get begin => "Begin";
+  /// "Modern, user-friendly interface"
+  @override
+  String get features1 => "Modern, user-friendly interface";
+  /// "Plan your day"
+  @override
+  String get features2 => "Plan your day";
+  /// "Get notified quickly"
+  @override
+  String get features3 => "Get notified quickly";
+  /// "Fully customizable"
+  @override
+  String get features4 => "Fully customizable";
+  /// "On the main page you'll see all the data from the other ones.\nYou can search with the searchbar at the top, you can find anything from any associated data. Almost."
+  @override
+  String get tutorial1 => "On the main page you'll see all the data from the other ones.\nYou can search with the searchbar at the top, you can find anything from any associated data. Almost.";
+  /// "On the evaluations page you can order the evaluations according to multiple aspects,\nat the top you can switch between the every-day evaluations, and your final grades.\nYou can also see the averages for each subject, and the corresponding evaluations (ghosh, how many times do I have to type that word?)"
+  @override
+  String get tutorial2 => "On the evaluations page you can order the evaluations according to multiple aspects,\nat the top you can switch between the every-day evaluations, and your final grades.\nYou can also see the averages for each subject, and the corresponding evaluations (ghosh, how many times do I have to type that word?)";
+  /// "The planner page is the page of pages. You can see all the stuff you'll never have time for.\nYou have the timetable/calendar here, as well as the homeworks, and scheduled exams."
+  @override
+  String get tutorial3 => "The planner page is the page of pages. You can see all the stuff you'll never have time for.\nYou have the timetable/calendar here, as well as the homeworks, and scheduled exams.";
+  /// "This is the page of text. You get your personal messages here, and you can write a new one on the bottom-right. You can switch between folders on the top-left.\nOn the second tab are notices, and system messages.\nOn the third one, you have the events - although we have never seen that feature in use either. ¯\\_(ツ)_/¯"
+  @override
+  String get tutorial4 => "This is the page of text. You get your personal messages here, and you can write a new one on the bottom-right. You can switch between folders on the top-left.\nOn the second tab are notices, and system messages.\nOn the third one, you have the events - although we have never seen that feature in use either. ¯\\_(ツ)_/¯";
+  /// "Someone's been a bad boy. That is, if this page is not empty.\nYou can see all your class-misses, delays, when the homework wasn't done or when you didn't have all the equipment for class."
+  @override
+  String get tutorial5 => "Someone's been a bad boy. That is, if this page is not empty.\nYou can see all your class-misses, delays, when the homework wasn't done or when you didn't have all the equipment for class.";
+  /// "Here you can switch between accounts. What, you only have one? You can fix that here too. And you can remove them after. Nifty, right? No. This is what's nifty: You can set a custom display name and profile picture for each account. Not impressed? Too bad.\nAlmost forgot, you can find the settings, and some more info about the app here as well."
+  @override
+  String get tutorial6 => "Here you can switch between accounts. What, you only have one? You can fix that here too. And you can remove them after. Nifty, right? No. This is what's nifty: You can set a custom display name and profile picture for each account. Not impressed? Too bad.\nAlmost forgot, you can find the settings, and some more info about the app here as well.";
+  /// "Hope, you'll enjoy the new app!\nAre you missing your favourite feature from the new version?\nFear not, this will change soon, as we have just begin the developement."
+  @override
+  String get tutorial7 => "Hope, you'll enjoy the new app!\nAre you missing your favourite feature from the new version?\nFear not, this will change soon, as we have just begin the developement.";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
@@ -1413,33 +1493,33 @@ class _I18n_de_DE extends I18n {
   /// "Ausgabe"
   @override
   String get appVersion => "Ausgabe";
-  /// "hauptbildschirm"
+  /// "Hauptbildschirm"
   @override
-  String get drawerHome => "hauptbildschirm";
-  /// "noten"
+  String get drawerHome => "Hauptbildschirm";
+  /// "Noten"
   @override
-  String get drawerEvaluations => "noten";
-  /// "stundenplan"
+  String get drawerEvaluations => "Noten";
+  /// "Stundenplan"
   @override
-  String get drawerTimetable => "stundenplan";
-  /// "hausaufgaben"
+  String get drawerTimetable => "Stundenplan";
+  /// "Hausaufgaben"
   @override
-  String get drawerHomework => "hausaufgaben";
-  /// "hinweise"
+  String get drawerHomework => "Hausaufgaben";
+  /// "Hinweise"
   @override
-  String get drawerNotes => "hinweise";
-  /// "benachrichtigungen"
+  String get drawerNotes => "Hinweise";
+  /// "Benachrichtigungen"
   @override
-  String get drawerMessages => "benachrichtigungen";
-  /// "prüfungen"
+  String get drawerMessages => "Benachrichtigungen";
+  /// "Prüfungen"
   @override
-  String get drawerExams => "prüfungen";
-  /// "abwesenheiten"
+  String get drawerExams => "Prüfungen";
+  /// "Abwesenheiten"
   @override
-  String get drawerAbsences => "abwesenheiten";
-  /// "einstellungen"
+  String get drawerAbsences => "Abwesenheiten";
+  /// "Einstellungen"
   @override
-  String get drawerSettings => "einstellungen";
+  String get drawerSettings => "Einstellungen";
   /// "Prüfung"
   @override
   String get exam => "Prüfung";
@@ -1509,6 +1589,12 @@ class _I18n_de_DE extends I18n {
   /// "ABBRECHEN"
   @override
   String get dialogCancel => "ABBRECHEN";
+  /// "SKIP"
+  @override
+  String get dialogSkip => "SKIP";
+  /// "NEXT"
+  @override
+  String get dialogNext => "NEXT";
   /// "zeit"
   @override
   String get time => "zeit";
@@ -2163,6 +2249,9 @@ class _I18n_de_DE extends I18n {
   /// "Spendern"
   @override
   String get aboutSupporters => "Spendern";
+  /// "Linken"
+  @override
+  String get aboutLinks => "Linken";
   /// "Wow, so leer!"
   @override
   String get empty => "Wow, so leer!";
@@ -2220,6 +2309,45 @@ class _I18n_de_DE extends I18n {
   /// "Top"
   @override
   String get supportersTop => "Top";
+  /// "Welcome to the new"
+  @override
+  String get welcome => "Welcome to the new";
+  /// "Beginnen"
+  @override
+  String get begin => "Beginnen";
+  /// "Modern, user-friendly interface"
+  @override
+  String get features1 => "Modern, user-friendly interface";
+  /// "Plan your day"
+  @override
+  String get features2 => "Plan your day";
+  /// "Get notified quickly"
+  @override
+  String get features3 => "Get notified quickly";
+  /// "Fully customizable"
+  @override
+  String get features4 => "Fully customizable";
+  /// "Hier kannst du alles sehen und oben kannst du nach allem suchen."
+  @override
+  String get tutorial1 => "Hier kannst du alles sehen und oben kannst du nach allem suchen.";
+  /// "Hier kannst du die Noten sortieren, und die durchschnitte und Noten für einem Fach sehen. Du bekommst deine Halbjahres und Jahresende Noten auch hier."
+  @override
+  String get tutorial2 => "Hier kannst du die Noten sortieren, und die durchschnitte und Noten für einem Fach sehen. Du bekommst deine Halbjahres und Jahresende Noten auch hier.";
+  /// "Hier siehst du die Stundenplan/Kalender, die Hausaufgaben und Klassenarbeiten."
+  @override
+  String get tutorial3 => "Hier siehst du die Stundenplan/Kalender, die Hausaufgaben und Klassenarbeiten.";
+  /// "Hier siehst du deine personalle Mitteilungen, und Hinweise die alle empfängt. Es gibt hier auch die Ereignisse, aber wir wissen auch nicht, was das sein soll ¯\\_(ツ)_/¯"
+  @override
+  String get tutorial4 => "Hier siehst du deine personalle Mitteilungen, und Hinweise die alle empfängt. Es gibt hier auch die Ereignisse, aber wir wissen auch nicht, was das sein soll ¯\\_(ツ)_/¯";
+  /// "Hier siehst du alle Auslassungen, so die Abwesenheiten, Verspätungen und wenn du keine Hausaufgabe gemacht hast oder wenn du etwas nicht zum Stunde gebracht hast."
+  @override
+  String get tutorial5 => "Hier siehst du alle Auslassungen, so die Abwesenheiten, Verspätungen und wenn du keine Hausaufgabe gemacht hast oder wenn du etwas nicht zum Stunde gebracht hast.";
+  /// "Hier kannst du die Konten bearbeiten, neue Konten hinzufügen oder anderen löschen. Es gibt auch die Einstellungen und ein Bisschen Info über den app hier."
+  @override
+  String get tutorial6 => "Hier kannst du die Konten bearbeiten, neue Konten hinzufügen oder anderen löschen. Es gibt auch die Einstellungen und ein Bisschen Info über den app hier.";
+  /// "Wir hoffen, dass dir die neuem App gefallen wird!\nBitte sei nicht stört, wenn du deine Lieblingsfunktion nicht findest. Wir werden viele Funktionen noch addieren."
+  @override
+  String get tutorial7 => "Wir hoffen, dass dir die neuem App gefallen wird!\nBitte sei nicht stört, wenn du deine Lieblingsfunktion nicht findest. Wir werden viele Funktionen noch addieren.";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;

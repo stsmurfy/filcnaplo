@@ -37,7 +37,7 @@ class Evaluation {
 
   factory Evaluation.fromJson(Map json) {
     String id = json["Uid"];
-    DateTime date = json["RogzitesDatuma"] != null
+    DateTime writeDate = json["RogzitesDatuma"] != null
         ? DateTime.parse(json["RogzitesDatuma"]).toLocal()
         : null;
     EvaluationValue value = EvaluationValue(
@@ -55,7 +55,7 @@ class Evaluation {
     Type evaluationType =
         json["ErtekFajta"] != null ? Type.fromJson(json["ErtekFajta"]) : null;
     Type mode = json["Mod"] != null ? Type.fromJson(json["Mod"]) : null;
-    DateTime writeDate = json["KeszitesDatuma"] != null
+    DateTime date = json["KeszitesDatuma"] != null
         ? DateTime.parse(json["KeszitesDatuma"]).toLocal()
         : null;
     DateTime seenDate = json["LattamozasDatuma"] != null

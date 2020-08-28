@@ -41,6 +41,17 @@ class _NotificationSettingsState extends State<NotificationSettings> {
               ),
             ),
 
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                I18n.of(context).notImplemented,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.red[300],
+                ),
+              ),
+            ),
+
             // todo: Notification categories
           ],
         ),

@@ -53,6 +53,7 @@ class SettingsController {
       "dark": ThemeContext()
           .dark(app.settings.appColor, app.settings.backgroundColor)
     }[settingsInstance[0]["theme"]];
+    app.debugVersion = settingsInstance[0]["debug_mode"] == 1;
 
     List evalColorsI = await app.storage.storage.query("eval_colors");
 

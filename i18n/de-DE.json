@@ -4,15 +4,15 @@
     "version": "Ausgabe"
   },
   "drawer": {
-    "home": "hauptbildschirm",
-    "evaluations": "noten",
-    "timetable": "stundenplan",
-    "homework": "hausaufgaben",
-    "notes": "hinweise",
-    "messages": "benachrichtigungen",
-    "exams": "prüfungen",
-    "absences": "abwesenheiten",
-    "settings": "einstellungen"
+    "home": "Hauptbildschirm",
+    "evaluations": "Noten",
+    "timetable": "Stundenplan",
+    "homework": "Hausaufgaben",
+    "notes": "Hinweise",
+    "messages": "Benachrichtigungen",
+    "exams": "Prüfungen",
+    "absences": "Abwesenheiten",
+    "settings": "Einstellungen"
   },
   "exam": {
     "": "Prüfung",
@@ -45,7 +45,9 @@
     "no": "NEIN",
     "done": "FERTIG",
     "undo": "Rückgängig",
-    "cancel": "ABBRECHEN"
+    "cancel": "ABBRECHEN",
+    "skip": "SKIP",
+    "next": "NEXT"
   },
   "time": {
     "": "zeit",
@@ -345,7 +347,8 @@
     "title": "Info",
     "privacy": "Datenschutz-Bestimmungen",
     "licenses": "Lizenzen",
-    "supporters": "Spendern"
+    "supporters": "Spendern",
+    "links": "Linken"
   },
   "empty": {
     "": "Wow, so leer!",
@@ -371,5 +374,22 @@
   "supporters": {
     "all": "Alle",
     "top": "Top"
+  },
+  "welcome": "Welcome to the new",
+  "begin": "Beginnen",
+  "features": {
+    "1": "Modern, user-friendly interface",
+    "2": "Plan your day",
+    "3": "Get notified quickly",
+    "4": "Fully customizable"
+  },
+  "tutorial": {
+    "1": "Hier kannst du alles sehen und oben kannst du nach allem suchen.",
+    "2": "Hier kannst du die Noten sortieren, und die durchschnitte und Noten für einem Fach sehen. Du bekommst deine Halbjahres und Jahresende Noten auch hier.",
+    "3": "Hier siehst du die Stundenplan/Kalender, die Hausaufgaben und Klassenarbeiten.",
+    "4": "Hier siehst du deine personalle Mitteilungen, und Hinweise die alle empfängt. Es gibt hier auch die Ereignisse, aber wir wissen auch nicht, was das sein soll ¯\\\\_(ツ)_/¯",
+    "5": "Hier siehst du alle Auslassungen, so die Abwesenheiten, Verspätungen und wenn du keine Hausaufgabe gemacht hast oder wenn du etwas nicht zum Stunde gebracht hast.",
+    "6": "Hier kannst du die Konten bearbeiten, neue Konten hinzufügen oder anderen löschen. Es gibt auch die Einstellungen und ein Bisschen Info über den app hier.",
+    "7": "Wir hoffen, dass dir die neuem App gefallen wird!\nBitte sei nicht stört, wenn du deine Lieblingsfunktion nicht findest. Wir werden viele Funktionen noch addieren."
   }
 }

@@ -47,15 +47,23 @@ class _AccountPageState extends State<AccountPage> {
       body: Container(
         child: Column(
           children: <Widget>[
-            Container(
-              alignment: Alignment.topRight,
-              padding: EdgeInsets.only(top: 32.0, right: 12.0),
-              child: IconButton(
-                icon: Icon(FeatherIcons.x),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
+            AppBar(
+              leading: Container(),
+              title: Text(I18n.of(context).accountTitle),
+              centerTitle: true,
+              actions: [
+                Padding(
+                  padding: EdgeInsets.only(right: 12.0),
+                  child: IconButton(
+                    icon: Icon(FeatherIcons.x),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ],
+              shadowColor: Colors.transparent,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             ),
 
             // Users

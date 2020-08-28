@@ -1,3 +1,4 @@
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:filcnaplo/data/models/school.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,21 +44,31 @@ class _SchoolSelectState extends State<SchoolSelect> {
           // Search Field
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: TextField(
-              autofocus: true,
-              decoration: InputDecoration(
-                hintText: capital(I18n.of(context).search),
-              ),
-              onChanged: (pattern) {
-                List<School> results = SearchController.schoolResults(
-                  loginContext.schools,
-                  pattern,
-                );
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: capital(I18n.of(context).search),
+                    ),
+                    onChanged: (pattern) {
+                      List<School> results = SearchController.schoolResults(
+                        loginContext.schools,
+                        pattern,
+                      );
 
-                setState(() {
-                  schoolList = results;
-                });
-              },
+                      setState(() {
+                        schoolList = results;
+                      });
+                    },
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(FeatherIcons.x),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
             ),
           ),
 

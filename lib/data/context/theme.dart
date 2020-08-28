@@ -3,23 +3,23 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ThemeContext {
   static final Map<String, Color> colors = {
-    "blue": Colors.blue[700],
-    "default": Colors.teal[600],
-    "green": Colors.green[700],
-    "lime": Colors.lightGreen,
-    "yellow": Colors.yellow[700],
-    "orange": Colors.orange[700],
-    "red": Colors.red[700],
-    "pink": Colors.pink[700],
-    "purple": Colors.purple[700],
+    "blue": Color(0xFF44c0f0),
+    "default": Color(0xFF00bc9d),
+    "green": Color(0xFF4aad0f),
+    "lime": Color(0xFF7fd21e),
+    "yellow": Color(0xFFffe934),
+    "orange": Color(0xFFffa400),
+    "red": Color(0xFFf45937),
+    "pink": Color(0xFFff34a8),
+    "purple": Color(0xFFd163ff),
   };
 
   List<Color> evalColors = [
     Colors.red,
     Colors.amber[700],
     Colors.yellow[600],
-    Colors.lime[600],
-    Colors.green,
+    Colors.lightGreen,
+    Colors.green[600],
   ];
 
   static Color lightTextColor = Colors.grey[700];

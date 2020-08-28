@@ -9,6 +9,7 @@ import 'package:filcnaplo/ui/pages/evaluations/page.dart';
 import 'package:filcnaplo/ui/pages/home/page.dart';
 import 'package:filcnaplo/ui/pages/messages/page.dart';
 import 'package:filcnaplo/ui/pages/planner/page.dart';
+import 'package:filcnaplo/ui/pages/tutorial.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/ui/bottom_navbar.dart';
@@ -63,7 +64,49 @@ class _PageFrameState extends State<PageFrame> {
                 SyncState(text: tasks[task] ?? "", current: current, max: max);
         });
       };
+
+      if (app.firstStart) {
+        app.firstStart = false;
+        showDialog(
+          barrierDismissible: false,
+          useSafeArea: false,
+          context: context,
+          builder: (context) => Material(
+            type: MaterialType.transparency,
+            child: Container(
+              child: TutorialView(callback: _navItemSelected),
+              padding: EdgeInsets.only(top: 24.0),
+              color: Colors.black45,
+            ),
+          ),
+        );
+      }
     });
+
+    Widget pageContent;
+
+    switch (app.selectedPage) {
+      case 0:
+        pageContent = HomePage();
+        break;
+      case 1:
+        pageContent = EvaluationsPage(_homeKey);
+        break;
+      case 2:
+        pageContent = PlannerPage(_homeKey);
+        break;
+      case 3:
+        pageContent = MessagesPage(_homeKey);
+        break;
+      case 4:
+        pageContent = AbsencesPage(_homeKey);
+        break;
+      default:
+        pageContent = HomePage();
+        break;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
 
     return Scaffold(
       key: _homeKey,
@@ -71,22 +114,7 @@ class _PageFrameState extends State<PageFrame> {
         child: Stack(
           children: <Widget>[
             // Page content
-            () {
-              switch (app.selectedPage) {
-                case 0:
-                  return HomePage();
-                case 1:
-                  return EvaluationsPage(_homeKey);
-                case 2:
-                  return PlannerPage(_homeKey);
-                case 3:
-                  return MessagesPage(_homeKey);
-                case 4:
-                  return AbsencesPage(_homeKey);
-                default:
-                  return HomePage();
-              }
-            }(),
+            pageContent,
 
             // Sync Progress Indicator
             (syncState.current != null && app.sync.tasks.length > 0)

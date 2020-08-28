@@ -175,6 +175,13 @@ class AccountHelper {
         actions: <Widget>[
           FlatButton(
             textColor: app.settings.appColor,
+            child: Text(I18n.of(context).dialogNo),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+          ),
+          FlatButton(
+            textColor: app.settings.appColor,
             child: Text(I18n.of(context).dialogYes),
             onPressed: () {
               app.users.removeWhere((search) => search.id == user.id);
@@ -182,7 +189,7 @@ class AccountHelper {
 
               app.storage.deleteUser(user.id).then((_) {
                 if (app.users.length == 0) {
-                  DebugHelper().eraseData().then((_) {
+                  DebugHelper().eraseData(context).then((_) {
                     Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) => LoginPage()),
                       (_) => false,
@@ -196,13 +203,6 @@ class AccountHelper {
                   Navigator.of(context).pop(true);
                 }
               });
-            },
-          ),
-          FlatButton(
-            textColor: app.settings.appColor,
-            child: Text(I18n.of(context).dialogNo),
-            onPressed: () {
-              Navigator.of(context).pop(false);
             },
           ),
         ],

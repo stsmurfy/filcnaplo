@@ -1,6 +1,6 @@
 name: filcnaplo
 description: 'Nem hivatalos e-napló alkalmazás az e-Kréta rendszerhez'
-version: 2.0.0-pre6+32
+version: 2.0.0+34
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -34,6 +34,8 @@ dependencies:
   image_cropper: ^1.2.3
   charts_flutter: ^0.9.0
   flutter_material_color_picker: ^1.0.5
+  flutter_swiper: ^1.1.6
+  in_app_review: ^0.2.0+3
 
 dev_dependencies:
   flutter_test:
@@ -43,3 +45,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icon.png
+    - assets/logo.png
+    - assets/page1.png
+    - assets/page2.png
+    - assets/page3.png
+    - assets/page4.png
+    - assets/wave1.png
+    - assets/wave2.png
+    - assets/wave3.png
+    - assets/wave4.png

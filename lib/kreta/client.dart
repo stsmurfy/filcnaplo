@@ -57,8 +57,7 @@ class KretaClient {
 
     try {
       var response = await http.get(
-        (FilcEndpoints.FILC_DEBUG ? BaseURL.FILC_DEBUG : BaseURL.FILC) +
-            FilcEndpoints.schoolList2,
+        BaseURL.FILC + FilcEndpoints.schoolList2,
         headers: {"Content-Type": "application/json"},
       );
 
@@ -88,7 +87,7 @@ class KretaClient {
   Future<List<List<Supporter>>> getSupporters() async {
     try {
       var response = await http.get(
-        (FilcEndpoints.FILC_DEBUG ? BaseURL.FILC_DEBUG : BaseURL.FILC) + FilcEndpoints.supporters,
+        BaseURL.FILC + FilcEndpoints.supporters,
         headers: {"Content-Type": "application/json"},
       );
 

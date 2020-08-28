@@ -85,7 +85,6 @@ class SearchController {
 
       if (contains == pattern.split(" ").length) results.add(item);
     });
-    print(pattern);
 
     results.sort((a, b) => a.text.compareTo(b.text));
 

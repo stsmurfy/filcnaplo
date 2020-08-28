@@ -2,7 +2,6 @@ import 'package:filcnaplo/data/context/app.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/utils/format.dart';
-import 'package:filcnaplo/utils/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EvaluationTile extends StatelessWidget {
@@ -17,11 +16,6 @@ class EvaluationTile extends StatelessWidget {
       leading: Container(
         width: 46.0,
         height: 46.0,
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: evaluation.value.value != 0
-                ? app.theme.evalColors[(evaluation.value.value - 1).clamp(0, 4)]
-                : null),
         child: Container(
           alignment: Alignment.center,
           child: Text(
@@ -30,12 +24,12 @@ class EvaluationTile extends StatelessWidget {
                 : "?",
             textAlign: TextAlign.center,
             style: GoogleFonts.quicksand(
-              fontSize: 32.0,
+              fontSize: 38.0,
               height: 1.2,
               fontWeight: FontWeight.w500,
               color: evaluation.value.value != 0
-                  ? textColor(app.theme
-                      .evalColors[(evaluation.value.value - 1).clamp(0, 4)])
+                  ? app.theme
+                      .evalColors[(evaluation.value.value - 1).clamp(0, 4)]
                   : null,
             ),
           ),

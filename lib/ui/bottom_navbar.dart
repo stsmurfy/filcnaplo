@@ -1,4 +1,5 @@
 import 'package:filcnaplo/data/context/theme.dart';
+import 'package:filcnaplo/generated/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:filcnaplo/data/context/app.dart';
@@ -19,7 +20,7 @@ class BottomNavbar extends StatelessWidget {
               FeatherIcons.search,
             ),
           ),
-          label: "",
+          label: I18n.of(context).drawerHome,
         ),
 
         // Evaluations Page
@@ -30,7 +31,7 @@ class BottomNavbar extends StatelessWidget {
               FeatherIcons.bookmark,
             ),
           ),
-          label: "",
+          label: I18n.of(context).evaluationTitle,
         ),
 
         // Timetable Page
@@ -41,7 +42,7 @@ class BottomNavbar extends StatelessWidget {
               FeatherIcons.calendar,
             ),
           ),
-          label: "",
+          label: I18n.of(context).plannerTitle,
         ),
         // Messages Page
         BottomNavigationBarItem(
@@ -51,7 +52,7 @@ class BottomNavbar extends StatelessWidget {
               FeatherIcons.messageSquare,
             ),
           ),
-          label: "",
+          label: I18n.of(context).messageTitle,
         ),
         // Absences Page
         BottomNavigationBarItem(
@@ -61,7 +62,7 @@ class BottomNavbar extends StatelessWidget {
               FeatherIcons.slash,
             ),
           ),
-          label: "",
+          label: I18n.of(context).absenceTitle,
         ),
       ],
       currentIndex: app.selectedPage,

@@ -23,8 +23,8 @@ class SubjectGraph extends StatefulWidget {
 
     data.forEach((element) {
       if (sortedData.last.length != 0 &&
-          (sortedData.last.last.date ?? sortedData.last.last.writeDate)
-                  .difference(element.date ?? element.writeDate)
+          (sortedData.last.last.date ?? sortedData.last.last.date)
+                  .difference(element.date ?? element.date)
                   .inDays >
               14) sortedData.add([]);
       sortedData.forEach((dataList) {
@@ -45,7 +45,7 @@ class SubjectGraph extends StatefulWidget {
           dataList.map((e) => e.value.weight / 100).reduce((a, b) => a + b);
 
       series
-          .add(TimeSeries(dataList[0].writeDate ?? dataList[0].date, average));
+          .add(TimeSeries(dataList[0].date ?? dataList[0].date, average));
     });
 
     Color c = app.settings.appColor;

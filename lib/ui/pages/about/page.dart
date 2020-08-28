@@ -12,8 +12,8 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF236A5B),
       body: Container(
-        child: Column(
-          children: <Widget>[
+        child: Stack(
+          children: [
             Container(
               alignment: Alignment.topRight,
               padding: EdgeInsets.only(top: 32.0, right: 12.0),
@@ -22,83 +22,117 @@ class AboutPage extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
               ),
             ),
-            Spacer(),
-            // Hero Logo
-            Container(
-              padding: EdgeInsets.only(bottom: 12.0),
-              child: Image.asset("assets/icon.png"),
-              width: 164,
-            ),
-            Row(
+            Column(
+              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text("Filc Napló",
-                    style: TextStyle(fontSize: 32.0, color: Colors.white)),
-                Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    app.currentAppVersion,
-                    style: TextStyle(
-                      color: Colors.grey[300],
-                      fontSize: 20.0,
+              children: [
+                // Hero Logo
+                Container(
+                  padding: EdgeInsets.only(bottom: 12.0),
+                  child: Image.asset("assets/icon.png"),
+                  width: 164,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text("Filc Napló",
+                        style: TextStyle(fontSize: 32.0, color: Colors.white)),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        app.currentAppVersion,
+                        style: TextStyle(
+                          color: Colors.grey[300],
+                          fontSize: 20.0,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
+                ),
+
+                SizedBox(height: 32.0),
+
+                AboutButton(
+                  icon: FeatherIcons.lock,
+                  text: I18n.of(context).aboutPrivacy,
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AboutPrivacy());
+                  },
+                ),
+                AboutButton(
+                  icon: FeatherIcons.award,
+                  text: I18n.of(context).aboutLicenses,
+                  onPressed: () {
+                    showLicensePage(
+                      context: context,
+                      applicationName: "Filc Napló",
+                      applicationVersion: app.currentAppVersion,
+                      applicationIcon: SizedBox(
+                          width: 100.0,
+                          height: 100.0,
+                          child: Image.asset("assets/icon.png")),
+                    );
+                  },
+                ),
+                AboutButton(
+                  icon: FeatherIcons.dollarSign,
+                  text: I18n.of(context).aboutSupporters,
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => AboutSupporters()),
+                    );
+                  },
+                ),
+
+                SizedBox(height: 32.0),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SocialButton(
+                      icon: Icon(
+                        FeatherIcons.github,
+                        color: Colors.white,
+                        size: 32.0,
+                      ),
+                      color: Color(0xFF24292E),
+                      label: "Github",
+                      onPressed: () {
+                        launch("https://github.com/filcnaplo/filcnaplo");
+                      },
+                    ),
+                    SocialButton(
+                      icon: Icon(
+                        FeatherIcons.globe,
+                        color: Colors.white,
+                        size: 32.0,
+                      ),
+                      color: Color(0xFF1A4742),
+                      label: "www.filcnaplo.hu",
+                      onPressed: () {
+                        launch("https://www.filcnaplo.hu/");
+                      },
+                    ),
+                    SocialButton(
+                      icon: Icon(
+                        FeatherIcons.messageSquare,
+                        color: Colors.white,
+                        size: 32.0,
+                      ),
+                      color: Color(0xFF7289DA),
+                      label: "Discord",
+                      onPressed: () {
+                        launch("https://filcnaplo.hu/discord");
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
-
-            SizedBox(height: 32.0),
-
-            AboutButton(
-              icon: FeatherIcons.lock,
-              text: I18n.of(context).aboutPrivacy,
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AboutPrivacy());
-              },
-            ),
-            AboutButton(
-              icon: FeatherIcons.award,
-              text: I18n.of(context).aboutLicenses,
-              onPressed: () {
-                showLicensePage(
-                  context: context,
-                  applicationName: "Filc Napló",
-                  applicationVersion: app.currentAppVersion,
-                  applicationIcon: Container(
-                      width: 100.0,
-                      height: 100.0,
-                      child: Image.asset("assets/icon.png")),
-                );
-              },
-            ),
-            AboutButton(
-              icon: FeatherIcons.dollarSign,
-              text: I18n.of(context).aboutSupporters,
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => AboutSupporters()),
-                );
-              },
-            ),
-            AboutButton(
-              icon: FeatherIcons.github,
-              text: "Github",
-              onPressed: () {
-                launch("https://github.com/filcnaplo/filcnaplo");
-              },
-            ),
-            AboutButton(
-              icon: FeatherIcons.globe,
-              text: "filcnaplo.hu",
-              onPressed: () {
-                launch("https://www.filcnaplo.hu/");
-              },
-            ),
-            Spacer(),
           ],
         ),
       ),
@@ -115,7 +149,7 @@ class AboutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 250.0,
       child: FlatButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
@@ -128,6 +162,32 @@ class AboutButton extends StatelessWidget {
             title: Text(text,
                 style: TextStyle(fontSize: 18.0, color: Colors.white))),
         onPressed: onPressed,
+      ),
+    );
+  }
+}
+
+class SocialButton extends StatelessWidget {
+  final Color color;
+  final Widget icon;
+  final Function onPressed;
+  final String label;
+
+  SocialButton({this.color, this.icon, this.onPressed, this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: label,
+      child: SizedBox(
+        width: 100.0,
+        height: 64.0,
+        child: FlatButton(
+          shape: CircleBorder(),
+          child: icon,
+          color: color,
+          onPressed: onPressed,
+        ),
       ),
     );
   }
