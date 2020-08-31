@@ -1,6 +1,5 @@
 <img src=".github/assets/banner.png" width="100%">
 
-[![workflow](https://github.com/filcnaplo/filcnaplo-rewrite/workflows/flutter/badge.svg)](https://github.com/filcnaplo/filcnaplo-rewrite/actions?query=workflow%3A%22flutter%22) 
 [![discord](https://img.shields.io/discord/712698455193157643?label=Discord)](http://filcnaplo.hu/discord)
 
 
@@ -15,7 +14,7 @@ Két oka is van. Az egyik az, hogy hogy a régi Filc a Szivacs kódjára épült
 
 [Google playen](https://play.google.com/store/apps/details?id=hu.filcnaplo.ellenorzo) fent vagyunk, így onnan egy kattintással letöltheted. Ha a Google-t minden gonosz forrásának tartod, akkor GitHub-ról apk formátumban is elérhető az app.
 
-A Filc IOS-en is működik, azonban az AppStore-ba való kikerüléshez évente 100 $-t kell befizetni. Ha szeretnéd ezt a folyamatot meggyorsítani, kérjük, adományozz [patreonon](https://patreon.com/filcnaplo).
+A Filc IOS-en is működik, azonban az AppStore-ba való kikerüléshez évente $100-t kell befizetni. Ha szeretnéd ezt a folyamatot meggyorsítani, kérjük, adományozz [patreonon](https://patreon.com/filcnaplo).
 
 ### Hol léphetek veletek kapcsolatba?
 
