@@ -555,7 +555,7 @@ class KretaClient {
 
       return uid;
     } catch (error) {
-      print("ERROR: KertaAPI.getGroups: " + error.toString());
+      print("ERROR: KretaAPI.getGroups: " + error.toString());
       return null;
     }
   }
