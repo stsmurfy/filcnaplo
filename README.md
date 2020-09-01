@@ -27,7 +27,7 @@ A Filc IOS-en is működik, azonban az AppStore-ba való kikerüléshez évente 
 Nem, a saját szerverünkre semmilyen adatot nem küldünk. Részletesebben a https://filcnaplo.hu/privacy oldalon olvashatsz erről.
 
 ### Mit segíthetek?
-* Először is programozással. Forkold a repót, javíts ki egy hibát, vagy valósíts meg egy új funkciót, és küldj egy pull requestet.
+* Először is programozással. Forkold a repót, javíts ki egy hibát, vagy valósíts meg egy új funkciót, és küldj egy pull requestet. Kérjük, mindezt ne a master, hanem a legfrissebb állapotot tükröző dev branchen tedd.
 * Csatlakozhatsz a bétaprogramhoz, így a szokásosnál előbb kapod meg az új funkciókat. Az esetlegesen felmerülő hibákat GitHub-on vagy Discordon jelentheted.
 * A Filc terjesztésével. Oszd meg az osztálytársaiddal, barátaiddal. Ezzel jót teszel nekik és nekünk is.
 * Új ötletekkel. Ha eszedbe jut valami, amitől a Filc jobb lesz, ne habozz megosztani velünk Discordon.
