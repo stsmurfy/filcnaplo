@@ -29,9 +29,9 @@ void main() async {
   }
 
   await app.settings.update(login: false);
-
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) => runApp(App()));
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  
+  runApp(App());
 }
 
 class App extends StatefulWidget {
