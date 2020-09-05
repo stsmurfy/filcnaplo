@@ -24,7 +24,7 @@ A Filc IOS-en is működni fog, azonban az AppStore-ba való kikerüléshez éve
 
 ### Loptok adatot?
 
-Nem, a saját szerverünkre semmilyen adatot nem küldünk. Részletesebben a https://filcnaplo.hu/privacy oldalon olvashatsz erről.
+Nem, a Filc Napló nem gyűjt se bejelentkezési, se egyéb (például statisztikai) adatokat. Részletesebben a https://filcnaplo.hu/privacy oldalon olvashatsz erről.
 
 ### Hogyan segíthetek?
 * Először is a Filc terjesztésével. Oszd meg az osztálytársaiddal, barátaiddal. Ezzel jót teszel nekik és nekünk is.
