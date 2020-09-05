@@ -13,7 +13,7 @@ AppContext app = AppContext();
 
 class AppContext {
   // Change this to enable debug mode
-  bool debugVersion = false;
+  bool debugMode = false;
   bool debugUser = false;
   bool firstStart = false;
 

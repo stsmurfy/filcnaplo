@@ -64,11 +64,16 @@ class _TimetableFrameState extends State<TimetableFrame>
         int dayIndex = 0;
 
         dayIndex = currentDay != null
-            ? currentDay.weekday - (5 - _timetableBuilder.week.days.length)
+            ? currentDay.weekday - (6 - _timetableBuilder.week.days.length)
             : 0;
 
-        _tabController.index =
-            dayIndex.clamp(0, _timetableBuilder.week.days.length);
+        if (_timetableBuilder.week.days.length > 1) {
+          dayIndex = dayIndex.clamp(0, _timetableBuilder.week.days.length - 1);
+        }
+
+        _tabController.index = dayIndex;
+
+        print(dayIndex);
 
         bool ready = snapshot.hasData || snapshot.hasError;
 
@@ -106,7 +111,6 @@ class _TimetableFrameState extends State<TimetableFrame>
                       icon: Icon(FeatherIcons.chevronRight),
                       onPressed: () {
                         if (selectedWeek < 51) setState(() => selectedWeek++);
-                        
                       },
                     ),
                   ],

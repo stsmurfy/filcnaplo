@@ -78,7 +78,7 @@ class SyncController {
     await Future.forEach(tasks, (task) async {
       try {
         await finishTask(task);
-        if (app.debugVersion)
+        if (app.debugMode)
           print("DEBUG: Task completed: " +
               task["name"] +
               " (" +

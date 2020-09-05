@@ -26,6 +26,8 @@ class SettingsController {
   bool enableNotifications;
   bool renderHtml;
 
+  int defaultPage;
+
   get locale {
     List<String> lang = (language == "auto"
             ? deviceLanguage != null ? deviceLanguage : "hu_HU"
@@ -42,18 +44,20 @@ class SettingsController {
     return Color(int.parse(hexColor, radix: 16));
   }
 
-  Future update({bool login = true}) async {
-    List settingsInstance = await app.storage.storage.query("settings");
+  Future update({bool login = true, List settings}) async {
+    List settingsInstance = settings ?? await app.storage.storage.query("settings");
     language = settingsInstance[0]["language"];
     appColor = ThemeContext.colors[settingsInstance[0]["app_color"]];
     backgroundColor = settingsInstance[0]["background_color"];
+
+    defaultPage = settingsInstance[0]["default_page"];
     theme = {
       "light": ThemeContext().light(app.settings.appColor),
       "tinted": ThemeContext().tinted(),
       "dark": ThemeContext()
           .dark(app.settings.appColor, app.settings.backgroundColor)
     }[settingsInstance[0]["theme"]];
-    app.debugVersion = settingsInstance[0]["debug_mode"] == 1;
+    app.debugMode = settingsInstance[0]["debug_mode"] == 1;
 
     List evalColorsI = await app.storage.storage.query("eval_colors");
 
@@ -68,7 +72,7 @@ class SettingsController {
 
     List usersInstance = await app.storage.storage.query("users");
 
-    if (app.debugVersion)
+    if (app.debugMode)
       print("Loading " + usersInstance.length.toString() + " users");
 
     for (int i = 0; i < usersInstance.length; i++) {
@@ -104,7 +108,7 @@ class SettingsController {
 
         await loadData(user);
 
-        if (app.debugVersion)
+        if (app.debugMode)
           print("DEBUG: User loaded " + user.name + "<" + user.id + ">");
       }
     }
@@ -147,7 +151,7 @@ Future loadData(User user) async {
   globalUser.customProfileIcon = settings[0]["custom_profile_icon"];
   if (globalUser.customProfileIcon != null &&
       globalUser.customProfileIcon != "") {
-    if (app.debugVersion)
+    if (app.debugMode)
       print("DEBUG: User profileIcon: " + globalUser.customProfileIcon);
 
     globalUser.profileIcon = ProfileIcon(
@@ -230,14 +234,14 @@ Future loadData(User user) async {
 
   List exams = await userStorage.query("kreta_exams");
 
-  globalSync.absence.data = [];
+  globalSync.exam.data = [];
   exams.forEach((exam) {
     globalSync.exam.data.add(Exam.fromJson(jsonDecode(exam["json"])));
   });
 
   List homeworks = await userStorage.query("kreta_homeworks");
 
-  globalSync.absence.data = [];
+  globalSync.homework.data = [];
   homeworks.forEach((homework) {
     globalSync.homework.data
         .add(Homework.fromJson(jsonDecode(homework["json"])));
@@ -245,7 +249,7 @@ Future loadData(User user) async {
 
   List lessons = await userStorage.query("kreta_lessons");
 
-  globalSync.absence.data = [];
+  globalSync.timetable.data = [];
   lessons.forEach((lesson) {
     globalSync.timetable.data.add(Lesson.fromJson(jsonDecode(lesson["json"])));
   });

@@ -408,8 +408,8 @@ class I18n implements WidgetsLocalizations {
   String get loginChoose => "választás";
   /// "Válassz iskolát"
   String get loginChooseSchool => "Válassz iskolát";
-  /// "Helytelen jelszó vagy felhasználónév"
-  String get loginWrongCredentials => "Helytelen jelszó vagy felhasználónév";
+  /// "Helytelen felhasználónév vagy jelszó"
+  String get loginWrongCredentials => "Helytelen felhasználónév vagy jelszó";
   /// "Sikertelen bejelentkezés"
   String get loginError => "Sikertelen bejelentkezés";
   /// "Exportálás"
@@ -466,6 +466,8 @@ class I18n implements WidgetsLocalizations {
   String get settingsGeneralTitle => "Általános";
   /// "Nyelv"
   String get settingsGeneralLanguage => "Nyelv";
+  /// "Kezdőoldal"
+  String get settingsGeneralStartPage => "Kezdőoldal";
   /// "Adatvédelem"
   String get settingsPrivacyTitle => "Adatvédelem";
   /// "\"Láttam\" küldése"
@@ -1182,9 +1184,9 @@ class _I18n_en_US extends I18n {
   /// "Select a school"
   @override
   String get loginChooseSchool => "Select a school";
-  /// "Wrong password or username"
+  /// "Wrong username or password"
   @override
-  String get loginWrongCredentials => "Wrong password or username";
+  String get loginWrongCredentials => "Wrong username or password";
   /// "Failed to log in"
   @override
   String get loginError => "Failed to log in";
@@ -1269,6 +1271,9 @@ class _I18n_en_US extends I18n {
   /// "Language"
   @override
   String get settingsGeneralLanguage => "Language";
+  /// "Start page"
+  @override
+  String get settingsGeneralStartPage => "Start page";
   /// "Privacy"
   @override
   String get settingsPrivacyTitle => "Privacy";
@@ -2051,9 +2056,9 @@ class _I18n_de_DE extends I18n {
   /// "Wähle deine Schule"
   @override
   String get loginChooseSchool => "Wähle deine Schule";
-  /// "Falsches Passwort oder Benutzername"
+  /// "Falsches Benutzername oder Passwort"
   @override
-  String get loginWrongCredentials => "Falsches Passwort oder Benutzername";
+  String get loginWrongCredentials => "Falsches Benutzername oder Passwort";
   /// "Login fehlgeschlagen"
   @override
   String get loginError => "Login fehlgeschlagen";
@@ -2138,6 +2143,9 @@ class _I18n_de_DE extends I18n {
   /// "Sprache"
   @override
   String get settingsGeneralLanguage => "Sprache";
+  /// "Startseite"
+  @override
+  String get settingsGeneralStartPage => "Startseite";
   /// "Datenschutz"
   @override
   String get settingsPrivacyTitle => "Datenschutz";

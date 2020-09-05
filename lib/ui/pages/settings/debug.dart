@@ -30,9 +30,9 @@ class _DebugSettingsState extends State<DebugSettings> {
               Padding(
                 padding: EdgeInsets.only(right: 8.0),
                 child: Switch(
-                  value: app.debugVersion,
+                  value: app.debugMode,
                   onChanged: (value) => setState(() {
-                    app.debugVersion = value;
+                    app.debugMode = value;
 
                     app.storage.storage.update("settings", {
                       "debug_mode": value ? 1 : 0,
@@ -49,10 +49,10 @@ class _DebugSettingsState extends State<DebugSettings> {
             title: Text(
               I18n.of(context).settingsDebugDelete,
               style: TextStyle(
-                color: app.debugVersion ? null : Colors.grey,
+                color: app.debugMode ? null : Colors.grey,
               ),
             ),
-            onTap: app.debugVersion
+            onTap: app.debugMode
                 ? () {
                     _scaffoldKey.currentState.showSnackBar(SnackBar(
                       content: Text(
@@ -75,10 +75,10 @@ class _DebugSettingsState extends State<DebugSettings> {
             leading: Icon(FeatherIcons.code),
             title: Text(I18n.of(context).settingsBehaviorRenderHTML,
                 style: TextStyle(
-                  color: app.debugVersion ? null : Colors.grey,
+                  color: app.debugMode ? null : Colors.grey,
                 )),
             trailing: Switch(
-              value: app.debugVersion && app.settings.renderHtml,
+              value: app.debugMode && app.settings.renderHtml,
               onChanged: (bool value) {
                 setState(() => app.settings.renderHtml = value);
 

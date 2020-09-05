@@ -111,7 +111,7 @@ class _AccountViewState extends State<AccountView> {
       ),
     ];
 
-    if (app.debugVersion)
+    if (app.debugMode)
       actionButtons.add(Material(
         color: Colors.transparent,
         child: InkWell(
@@ -236,7 +236,7 @@ class _AccountViewState extends State<AccountView> {
                                 : Container(),
                           ],
                         )
-                      : app.debugVersion
+                      : app.debugMode
                           ? StudentDetail("UserID", widget.user.id)
                           : Container(),
                 )

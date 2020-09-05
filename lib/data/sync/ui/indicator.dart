@@ -36,7 +36,7 @@ class SyncProgressIndicator extends StatelessWidget {
               child: Row(children: <Widget>[
                 Text(text),
                 Spacer(),
-                app.debugVersion ? Text("$current/$max") : Container(),
+                app.debugMode ? Text("$current/$max") : Container(),
               ]),
             ),
           )

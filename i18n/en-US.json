@@ -248,7 +248,7 @@
     "school": "School",
     "choose": "choose",
     "chooseSchool": "Select a school",
-    "wrongCredentials": "Wrong password or username",
+    "wrongCredentials": "Wrong username or password",
     "error": "Failed to log in"
   },
   "export": {
@@ -287,7 +287,8 @@
     },
     "general": {
       "title": "General",
-      "language": "Language"
+      "language": "Language",
+      "startPage": "Start page"
     },
     "privacy": {
       "title": "Privacy",

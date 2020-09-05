@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:http/http.dart' as http;
+import 'package:filcnaplo/kreta/api.dart';
+import 'package:filcnaplo/utils/parse_jwt.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/context/message.dart';
 import 'package:filcnaplo/data/models/attachment.dart';
@@ -8,7 +11,6 @@ import 'package:filcnaplo/data/models/supporter.dart';
 import 'package:filcnaplo/data/models/exam.dart';
 import 'package:filcnaplo/data/models/homework.dart';
 import 'package:filcnaplo/data/models/lesson.dart';
-import 'package:http/http.dart' as http;
 import 'package:filcnaplo/data/context/login.dart';
 import 'package:filcnaplo/data/models/message.dart';
 import 'package:filcnaplo/data/models/recipient.dart';
@@ -19,8 +21,6 @@ import 'package:filcnaplo/data/models/student.dart';
 import 'package:filcnaplo/data/models/user.dart';
 import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/data/models/absence.dart';
-import 'package:filcnaplo/utils/parse_jwt.dart';
-import 'package:filcnaplo/kreta/api.dart';
 
 class KretaClient {
   var client = http.Client();
@@ -133,7 +133,7 @@ class KretaClient {
         },
       );
 
-      if (app.debugVersion) {
+      if (app.debugMode) {
         print("DEBUG: KretaAPI.login: " +
             "\n       InstituteCode: " +
             user.instituteCode.toString().substring(0, 5) +
@@ -144,7 +144,8 @@ class KretaClient {
             "\n       Password: ********");
       }
 
-      await checkResponse(response, retry: false);
+      // Do not uncomment this
+      // await checkResponse(response, retry: false);
 
       loginContext.error = null;
 

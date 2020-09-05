@@ -104,10 +104,23 @@ class _LoginPageState extends State<LoginPage> {
                 Spacer(),
 
                 // Hero Logo
-                Container(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: Image.asset("assets/icon.png"),
-                  width: 164,
+                GestureDetector(
+                  onDoubleTap: () {
+                    setState(() => app.debugMode = true);
+                    _scaffoldKey.currentState.showSnackBar(SnackBar(
+                      content: Text(
+                        "Debug mode enabled",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      duration: Duration(seconds: 3),
+                      backgroundColor: Colors.grey[900],
+                    ));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Image.asset("assets/icon.png"),
+                    width: 164,
+                  ),
                 ),
 
                 // Username Input
@@ -231,8 +244,9 @@ class _LoginPageState extends State<LoginPage> {
                           setState(() => loading = false);
 
                           if (success) {
-                            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                builder: (context) => PageFrame()));
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => PageFrame()));
 
                             // save login details & reset
                             loginContext = LoginContext();
@@ -276,13 +290,13 @@ class _LoginPageState extends State<LoginPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 6.0),
                     child: Text(
-                      (app.debugVersion ? "Dev Build " : "") +
+                      (app.debugMode ? "Dev Build " : "") +
                           "v" +
                           app.currentAppVersion,
                       style: TextStyle(color: Colors.white70),
                     ),
                   ),
-                  onTap: app.debugVersion
+                  onTap: app.debugMode
                       ? () {
                           setState(() {
                             loginUsernameController.text = "nobody";

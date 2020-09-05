@@ -43,8 +43,19 @@ class TimetableBuilder {
     if (schoolStart.weekday == 6 || schoolStart.weekday == 7)
       schoolStart = schoolStart.add(Duration(days: -schoolStart.weekday + 8));
 
-    currentWeek.start = schoolStart.add(Duration(days: 7 * weekOfYear));
-    currentWeek.end = schoolStart.add(Duration(days: 7 * weekOfYear + 6));
+    currentWeek.start = schoolStart
+        .add(Duration(days: 7 * weekOfYear - (schoolStart.weekday - 1)));
+    if (currentWeek.start.isBefore(DateTime(now.year, DateTime.september, 1))) {
+      currentWeek.start = DateTime(now.year, DateTime.september, 1);
+    }
+
+    currentWeek.end = schoolStart
+        .add(Duration(days: 7 * weekOfYear + (6 - schoolStart.weekday)));
+    if (DateTime(now.year, DateTime.september).isAfter(now)) {
+      if (currentWeek.end.isAfter(DateTime(now.year, DateTime.august, 31))) {
+        currentWeek.start = DateTime(now.year, 9, 1);
+      }
+    }
 
     return currentWeek;
   }

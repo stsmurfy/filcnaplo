@@ -18,12 +18,18 @@ class ProfileIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = TinyColor(stringToColor(name))
-        .desaturate(12)
-        .brighten(5)
-        .lighten(10)
-        .spin(64)
-        .color;
+    Color color;
+
+    if (name != null) {
+      color = TinyColor(stringToColor(name))
+          .desaturate(12)
+          .brighten(5)
+          .lighten(10)
+          .spin(64)
+          .color;
+    } else {
+      color = Colors.grey;
+    }
 
     return image == "" || image == null
         ? name != null

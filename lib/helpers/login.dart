@@ -17,7 +17,7 @@ class LoginHelper {
     // bypass login
     if (loginContext.username == "nobody" &&
         loginContext.password == "nobody" &&
-        app.debugVersion) {
+        app.debugMode) {
       app.users.add(User("debug", "nobody", "nobody", null));
       app.user.name = "Test User";
       app.user.realName = "Test User";
@@ -51,7 +51,7 @@ class LoginHelper {
     String userID = generateUserId(
         loginContext.username, loginContext.selectedSchool.instituteCode);
 
-    if (app.debugVersion) print("DEBUG: UserID: " + userID);
+    if (app.debugMode) print("DEBUG: UserID: " + userID);
 
     User user = User(
       userID,

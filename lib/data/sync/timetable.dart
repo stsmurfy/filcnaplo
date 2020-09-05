@@ -35,6 +35,7 @@ class TimetableSync {
         });
       } else {
         data = [];
+        await app.user.storage.delete("kreta_lessons");
       }
 
       return lessons != null;

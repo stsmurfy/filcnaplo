@@ -9,6 +9,10 @@ class StorageController {
   String appPath;
   Database storage;
   Map<String, Database> users = {};
+  Future createSettingsTable(Database db) async {
+    await db.execute(
+        "create table settings (language TEXT, app_color TEXT, theme TEXT, background_color INTIGER, notifications INTIGER, selected_user INTIGER, render_html INTIGER, debug_mode INTIGER, default_page INTIGER)");
+  }
 
   Future init() async {
     String databasesPath = await getDatabasesPath();
@@ -28,8 +32,7 @@ class StorageController {
         await db.execute("create table users (id TEXT, name TEXT)");
 
         // Create Settings
-        await db.execute(
-            "create table settings (language TEXT, app_color TEXT, theme TEXT, background_color INTIGER, notifications INTIGER, selected_user INTIGER, render_html INTIGER, debug_mode INTIGER)");
+        createSettingsTable(db);
         await db.insert("settings", {
           "language": "auto",
           "app_color": "default",
@@ -39,6 +42,7 @@ class StorageController {
           "selected_user": 0,
           "render_html": 1,
           "debug_mode": 0,
+          "default_page": 0
         });
 
         // Create Eval Colors
@@ -127,7 +131,7 @@ class StorageController {
     String databasesPath = await getDatabasesPath();
     await destroy(join(databasesPath, userID + ".db"));
     await storage.delete("users", where: "id='" + userID + "'");
-    if (app.debugVersion) print("DEBUG: Deleted User: " + userID);
+    if (app.debugMode) print("DEBUG: Deleted User: " + userID);
   }
 
   static Future<bool> writeFile(String path, List<int> data) async {
