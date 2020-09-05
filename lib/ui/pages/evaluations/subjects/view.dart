@@ -9,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/utils/colors.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:filcnaplo/ui/pages/evaluations/subjects/average_calc.dart';
 
 class SubjectView extends StatefulWidget {
   final Subject subject;
@@ -123,6 +125,18 @@ class _SubjectViewState extends State<SubjectView> {
             ],
           ),
         ),
+      ),
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(FeatherIcons.plus, color: app.settings.appColor),
+        backgroundColor: app.settings.theme.backgroundColor,
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.transparent,
+            builder: (BuildContext context) => AverageCalculator(),
+          );
+        },
       ),
     );
   }

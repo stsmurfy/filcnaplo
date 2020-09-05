@@ -30,7 +30,7 @@ class SettingsPage extends StatelessWidget {
             // Settings
             SettingTile(
                 color: Colors.blue,
-                description: capital(I18n.of(context).settingsGeneralStartPage) + ", " + capital(I18n.of(context).settingsGeneralLanguage),
+                description: capital(I18n.of(context).settingsGeneralLanguage) + ", " + capital(I18n.of(context).settingsGeneralStartPage),
                 title: I18n.of(context).settingsGeneralTitle,
                 icon: FeatherIcons.settings,
                 page: GeneralSettings()),

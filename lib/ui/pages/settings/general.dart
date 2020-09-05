@@ -37,27 +37,6 @@ class _GeneralSettingsState extends State<GeneralSettings> {
             ),
             ListTile(
               leading: Icon(FeatherIcons.globe),
-              title: Text(I18n.of(context).settingsGeneralStartPage),
-              trailing: DropdownButton(
-                underline: Container(),
-                value: app.settings.defaultPage,
-                items: [0, 1, 2, 3, 4].map((int value) {
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Text(pages[value]),
-                  );
-                }).toList(),
-                onChanged: (int newDefaultPage) {
-                  setState(() {
-                    app.settings.defaultPage = newDefaultPage;
-                  });
-                  app.storage.storage
-                      .update("settings", {"default_page": newDefaultPage});
-                },
-              ),
-            ),
-            ListTile(
-              leading: Icon(FeatherIcons.globe),
               title: Text(I18n.of(context).settingsGeneralLanguage),
               trailing: DropdownButton(
                 underline: Container(),
@@ -83,6 +62,27 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                   app.storage.storage.update("settings", {
                     "language": language,
                   });
+                },
+              ),
+            ),
+            ListTile(
+              leading: Icon(FeatherIcons.file),
+              title: Text(I18n.of(context).settingsGeneralStartPage),
+              trailing: DropdownButton(
+                underline: Container(),
+                value: app.settings.defaultPage,
+                items: [0, 1, 2, 3, 4].map((int value) {
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Text(pages[value]),
+                  );
+                }).toList(),
+                onChanged: (int newDefaultPage) {
+                  setState(() {
+                    app.settings.defaultPage = newDefaultPage;
+                  });
+                  app.storage.storage
+                      .update("settings", {"default_page": newDefaultPage});
                 },
               ),
             ),
