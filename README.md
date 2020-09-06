@@ -20,7 +20,7 @@ A Filc IOS-en is működni fog, azonban az AppStore-ba való kikerüléshez éve
 
 * Itt, a GitHub-on. A pontosan megfogalmazott hibajelentéseket és funkciókéréseket az [issues oldalon](https://github.com/filcnaplo/filcnaplo/issues) várjuk, ha van GitHub fiókod.
 * [Discord-on](https://filcnaplo.hu/discord). Bármilyen témában (hibajelentés, funkciókérés, jaj-miért-nem-működik probléma) szívesen várunk.
-* Email-ben. A filcnaplo@gmail.com email-címen is elérhetsz minket, ha sem github, sem discord fiókod nincs.
+* Email-ben. A filcnaplo@filcnaplo.hu email-címen is elérhetsz minket, ha sem github, sem discord fiókod nincs.
 
 ### Loptok adatot?
 
