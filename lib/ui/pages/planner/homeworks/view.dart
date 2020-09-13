@@ -112,7 +112,7 @@ class _HomeworkViewState extends State<HomeworkView> {
                               if (await canLaunch(url))
                                 await launch(url);
                               else
-                                throw 'Invalid URL';
+                                throw '[ERROR] HomeworkView.build: Invalid URL';
                             },
                           )
                         : SelectableLinkify(
@@ -121,7 +121,7 @@ class _HomeworkViewState extends State<HomeworkView> {
                               if (await canLaunch(url.url))
                                 await launch(url.url);
                               else
-                                throw 'Invalid URL';
+                                throw '[ERROR] HomeworkView.build: Invalid URL';
                             },
                           ),
                   ],

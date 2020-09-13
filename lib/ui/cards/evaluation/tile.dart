@@ -33,7 +33,7 @@ class EvaluationTile extends StatelessWidget {
             child: Text(
               evaluation.value.value != 0
                   ? evaluation.value.value.toString()
-                  : "?",
+                  : I18n.of(context).unknown,
               textAlign: TextAlign.center,
               style: GoogleFonts.quicksand(
                 fontSize: 38.0,
@@ -73,7 +73,7 @@ class EvaluationTile extends StatelessWidget {
                                       : "")
                           : capital(evaluation.subject != null
                               ? evaluation.subject.name
-                              : "?"),
+                              : I18n.of(context).unknown),
                       overflow: TextOverflow.ellipsis,
                     ),
             ),
@@ -93,7 +93,7 @@ class EvaluationTile extends StatelessWidget {
                 evaluation.type.name == "evkozi_jegy_ertekeles"
                     ? capital(evaluation.subject != null
                             ? evaluation.subject.name
-                            : "?") +
+                            : I18n.of(context).unknown) +
                         (evaluation.description != ""
                             ? (evaluation.mode != null
                                 ? "\n" +
