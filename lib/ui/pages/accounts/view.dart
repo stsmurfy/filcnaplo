@@ -53,7 +53,8 @@ class _AccountViewState extends State<AccountView> {
           onTap: () {
             AccountHelper(user: widget.user).deleteAccount(context);
           },
-          child: Expanded(
+          child: Container(
+            padding: EdgeInsets.only(top: 4, bottom: 4, right: 15, left: 15),
             child: Column(
               children: <Widget>[
                 Padding(
@@ -83,7 +84,8 @@ class _AccountViewState extends State<AccountView> {
               nameChanged = false;
             });
           },
-          child: Expanded(
+          child: Container(
+            padding: EdgeInsets.only(top: 4, bottom: 4, right: 15, left: 15),
             child: Column(
               children: <Widget>[
                 Padding(
