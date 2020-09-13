@@ -43,7 +43,7 @@ class _SubjectViewState extends State<SubjectView> {
       if (evaluation.date != null &&
           evaluation.value.value !=
               null) if (evaluation.id.startsWith("temp_")) {
-        evaluationTiles.add(GradeTile(evaluation, _deleteCallbackFunction));
+        evaluationTiles.add(GradeTile(evaluation, deleteCallback: _deleteCallbackFunction));
       } else
         evaluationTiles.add(GradeTile(evaluation));
     });

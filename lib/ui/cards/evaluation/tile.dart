@@ -10,7 +10,7 @@ class EvaluationTile extends StatelessWidget {
   final Evaluation evaluation;
   final Function deleteCallback;
 
-  EvaluationTile(this.evaluation, [this.deleteCallback]);
+  EvaluationTile(this.evaluation, {this.deleteCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class EvaluationTile extends StatelessWidget {
       margin: EdgeInsets.all(3),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
-        color: isTemp ? Theme.of(context).highlightColor : Colors.transparent,
+        color: isTemp ? Theme.of(context).highlightColor : null,
       ),
       child: ListTile(
         contentPadding: EdgeInsets.zero,
@@ -117,7 +117,7 @@ class EvaluationTile extends StatelessWidget {
                 color: Colors.red,
                 tooltip: I18n.of(context).evaluationsGhostTooltip,
                 onPressed: () {
-                  deleteCallback(evaluation);
+                  if (deleteCallback != null) deleteCallback(evaluation);
                 })
             : null,
       ),
