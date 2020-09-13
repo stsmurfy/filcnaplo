@@ -43,20 +43,19 @@ class _SubjectViewState extends State<SubjectView> {
       if (evaluation.date != null &&
           evaluation.value.value !=
               null) if (evaluation.id.startsWith("temp_")) {
-        evaluationTiles.add(GradeTile(evaluation, deleteCallback: _deleteCallbackFunction));
+        evaluationTiles.add(
+            GradeTile(evaluation, deleteCallback: _deleteCallbackFunction));
       } else
         evaluationTiles.add(GradeTile(evaluation));
     });
 
-    if (widget.tempEvals.isNotEmpty) {
-      widget.studentAvg = 0;
-      subjectEvals.forEach((e) {
-        widget.studentAvg += e.value.value * (e.value.weight / 100);
-      });
+    widget.studentAvg = 0;
+    subjectEvals.forEach((e) {
+      widget.studentAvg += e.value.value * (e.value.weight / 100);
+    });
 
-      widget.studentAvg = widget.studentAvg /
-          subjectEvals.map((e) => e.value.weight / 100).reduce((a, b) => a + b);
-    }
+    widget.studentAvg = widget.studentAvg /
+        subjectEvals.map((e) => e.value.weight / 100).reduce((a, b) => a + b);
 
     return Scaffold(
       appBar: AppBar(
