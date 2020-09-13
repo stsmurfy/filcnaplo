@@ -44,7 +44,9 @@ class _HomeworkViewState extends State<HomeworkView> {
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          capitalize(widget.homework.teacher),
+                          widget.homework.teacher != null
+                              ? capitalize(widget.homework.teacher)
+                              : I18n.of(context).unknown,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
