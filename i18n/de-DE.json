@@ -312,6 +312,12 @@
       "title": "Entwichlereinstellungen",
       "delete": "Appdaten löschen",
       "deleteSuccess": "Appdaten gelöscht"
+    },
+    "export": {
+      "lessonCount": "Stunden",
+      "exportTimetable": "Stundenplan drucken",
+      "exportTimetableSuccess": "Stundenplan gedruckt",
+      "timeTableOf": "s Stundenplan"
     }
   },
   "success": {

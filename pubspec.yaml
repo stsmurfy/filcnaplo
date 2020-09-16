@@ -36,6 +36,8 @@ dependencies:
   flutter_material_color_picker: ^1.0.5
   flutter_swiper: ^1.1.6
   in_app_review: ^0.2.0+3
+  pdf: ^1.11.1
+  printing: ^3.6.1
 
 dev_dependencies:
   flutter_test:
@@ -54,4 +56,5 @@ flutter:
     - assets/wave2.png
     - assets/wave3.png
     - assets/wave4.png
+    - assets/Roboto-Regular.ttf
     - assets/discord.png

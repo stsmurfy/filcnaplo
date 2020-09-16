@@ -312,6 +312,12 @@
       "title": "Fejlesztői beállítások",
       "delete": "Adatok törlése",
       "deleteSuccess": "Adatok törölve"
+    },
+    "export": {
+      "exportTimetable": "Órarend nyomtatása",
+      "lessonCount": "óra",
+      "exportTimetableSuccess": "Órarend kinyomtatva",
+      "timeTableOf": " órarendje"
     }
   },
   "success": {
