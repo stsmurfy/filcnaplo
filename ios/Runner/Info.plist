@@ -41,5 +41,7 @@
 	<false/>
   <key>NSPhotoLibraryUsageDescription</key>
   <string>The app requires this permission so the users can set a custom profile picture.</string>
+  <key>ITSAppUsesNonExemptEncryption</key>
+  <false/>
 </dict>
 </plist>
