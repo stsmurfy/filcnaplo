@@ -137,16 +137,19 @@ class _DebugSettingsState extends State<DebugSettings> {
                     var minLessonIndex = 1;
                     var maxLessonIndex = 1;
                     var weekDays = timetableBuilder.week.days;
-
-                    weekDays.forEach((day) {
-                      var lessonIntMin = int.parse(day.lessons[0].lessonIndex);
-                      if (lessonIntMin < minLessonIndex) {
-                        minLessonIndex = lessonIntMin;
+                    for (var day in weekDays) {
+                      for (var lesson in day.lessons) {
+                        if (lesson.lessonIndex == '+') {
+                          continue;
+                        }
+                        if (int.parse(lesson.lessonIndex) < minLessonIndex) {
+                          minLessonIndex = int.parse(lesson.lessonIndex);
+                        }
+                        if (int.parse(lesson.lessonIndex) > maxLessonIndex) {
+                          maxLessonIndex = int.parse(lesson.lessonIndex);
+                        }
                       }
-                      if (day.lessons.length + 1 > maxLessonIndex) {
-                        maxLessonIndex = day.lessons.length + 1;
-                      }
-                    });
+                    }
 
                     String days(BuildContext context, int i) => [
                           I18n.of(context).dateMondayShort,
@@ -185,9 +188,13 @@ class _DebugSettingsState extends State<DebugSettings> {
                           child: pw.Center(child: pw.Text('$i. '))));
 
                       weekDays.forEach((day) {
-                        day.lessons.forEach((lesson) {
+                        for (var lesson in day.lessons) {
+                          if (lesson.lessonIndex == '+') {
+                            continue;
+                          }
                           if (int.parse(lesson.lessonIndex) == i) {
-                            String name = lesson.subject.name ?? '';
+                            String name = lesson.subject.name ?? lesson.name;
+
                             String room = lesson.room ?? '';
                             thisChildren.add(pw.Padding(
                                 padding: pw.EdgeInsets.fromLTRB(5, 10, 5, 5),
@@ -205,7 +212,7 @@ class _DebugSettingsState extends State<DebugSettings> {
                           if (thisChildren.isEmpty) {
                             thisChildren.add(pw.Text(''));
                           }
-                        });
+                        }
                       });
                       pw.TableRow thisRow = pw.TableRow(
                           children: thisChildren,
