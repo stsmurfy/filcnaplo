@@ -1,6 +1,7 @@
 <img src=".github/assets/banner.png" width="100%">
 
 [![discord](https://img.shields.io/discord/712698455193157643?label=Discord)](http://filcnaplo.hu/discord)
+[![Codemagic build status](https://api.codemagic.io/apps/5f648f9eabae353a0aea5164/5f648f9eabae353a0aea5163/status_badge.svg)](https://codemagic.io/apps/5f648f9eabae353a0aea5164/5f648f9eabae353a0aea5163/latest_build)
 
 
 A népszerű Filc alkalmazás, alapoktól újraírva. Az eddiginél is gyorsabb és még könnyebben kezelhető.
