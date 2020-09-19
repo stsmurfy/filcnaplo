@@ -147,7 +147,6 @@ class _PageFrameState extends State<PageFrame> {
           ],
         ),
       ),
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButton: (app.selectedPage == 3 &&
               app.tabState.messages.index == 0)
           ? FloatingActionButton(

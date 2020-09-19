@@ -19,11 +19,9 @@ class EvaluationsDial extends StatelessWidget {
       animatedIconTheme:
           IconThemeData(size: 22.0, color: app.settings.appColor),
       marginRight: 14.0,
-      curve: Curves.bounceIn,
       overlayColor: Colors.black,
       overlayOpacity: 0.35,
       tooltip: I18n.of(context).sort,
-      heroTag: 'sort-fab',
       backgroundColor: app.settings.theme.backgroundColor,
       children: [
         speedDialButton(
