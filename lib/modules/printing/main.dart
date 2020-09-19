@@ -10,6 +10,13 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/builder.dart';
 
+/*
+Author: daaniiieel
+Name: Timetable Printer (Experimental)
+Description: This module prints out the timetable for the selected user on the 
+current week.
+*/
+
 class TimetablePrinter {
   String dayNames(BuildContext context, int i) => [
         I18n.of(context).dateMondayShort,
@@ -95,10 +102,9 @@ class TimetablePrinter {
     String className = app.user.sync.student.data.className;
 
     pw.Footer header = pw.Footer(
-        margin: pw.EdgeInsets.all(5),
-        leading: pw.Text(className, style: pw.TextStyle(fontSize: 30)),
-        trailing:
-            pw.Center(child: pw.Text(app.user.sync.student.data.school.name)));
+      margin: pw.EdgeInsets.all(5),
+      title: pw.Text(className, style: pw.TextStyle(fontSize: 30)),
+    );
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4
             .landscape, // so the page looks normal both in portrait and landscape
