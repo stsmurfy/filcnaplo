@@ -18,9 +18,6 @@ class TimetableBuilder {
       week = Dummy().getWeek();
       lessons = Dummy().getLessonList();
     }
-    print("duh ");
-    print(Dummy().getLessonList());
-    print(Dummy().getWeek());
 
     lessons.sort((a, b) => a.start.compareTo(b.start));
 
