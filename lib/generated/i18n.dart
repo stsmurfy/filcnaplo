@@ -494,6 +494,10 @@ class I18n implements WidgetsLocalizations {
   String get settingsDebugDelete => "Adatok törlése";
   /// "Adatok törölve"
   String get settingsDebugDeleteSuccess => "Adatok törölve";
+  /// "Kísérleti"
+  String get settingsDebugExperimental => "Kísérleti";
+  /// "Figyelem! Ezek a funkciók még instabilak lehetnek."
+  String get settingsDebugDisclamer => "Figyelem! Ezek a funkciók még instabilak lehetnek.";
   /// "Órarend nyomtatása"
   String get settingsExportExportTimetable => "Órarend nyomtatása";
   /// "óra"
@@ -1333,6 +1337,12 @@ class _I18n_en_US extends I18n {
   /// "Deleted app data"
   @override
   String get settingsDebugDeleteSuccess => "Deleted app data";
+  /// "Experimental"
+  @override
+  String get settingsDebugExperimental => "Experimental";
+  /// "Disclamer! These features can be still instable."
+  @override
+  String get settingsDebugDisclamer => "Disclamer! These features can be still instable.";
   /// "Print timetable"
   @override
   String get settingsExportExportTimetable => "Print timetable";
@@ -2235,6 +2245,12 @@ class _I18n_de_DE extends I18n {
   /// "Appdaten gelöscht"
   @override
   String get settingsDebugDeleteSuccess => "Appdaten gelöscht";
+  /// "Experimental"
+  @override
+  String get settingsDebugExperimental => "Experimental";
+  /// "Disclamer! These features can be still instable."
+  @override
+  String get settingsDebugDisclamer => "Disclamer! These features can be still instable.";
   /// "Stundenplan drucken"
   @override
   String get settingsExportExportTimetable => "Stundenplan drucken";

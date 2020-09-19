@@ -91,6 +91,17 @@ class _DebugSettingsState extends State<DebugSettings> {
               },
             ),
           ),
+          Container(
+            padding: EdgeInsets.all(12.0),
+            alignment: Alignment.topLeft,
+            child: Text(
+              I18n.of(context).settingsDebugExperimental.toUpperCase(),
+              style: TextStyle(
+                fontSize: 15.0,
+                letterSpacing: .7,
+              ),
+            ),
+          ),
           ListTile(
             leading: Icon(FeatherIcons.printer),
             title: Text(
@@ -114,6 +125,16 @@ class _DebugSettingsState extends State<DebugSettings> {
                   }
                 : null,
           ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              I18n.of(context).settingsDebugDisclamer,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.red,
+              ),
+            ),
+          )
         ]),
       ),
     );
