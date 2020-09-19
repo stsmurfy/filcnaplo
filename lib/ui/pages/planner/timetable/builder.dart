@@ -1,4 +1,5 @@
 import 'package:filcnaplo/data/context/app.dart';
+import 'package:filcnaplo/data/models/dummy.dart';
 import 'package:filcnaplo/data/models/lesson.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/day.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/tile.dart';
@@ -8,9 +9,18 @@ class TimetableBuilder {
   Week week = Week([]);
 
   void build(i) {
-    week = getWeek(i);
     List<Day> days = [];
-    List<Lesson> lessons = app.user.sync.timetable.data;
+    List<Lesson> lessons;
+    if (!app.debugUser) {
+      week = getWeek(i);
+      lessons = app.user.sync.timetable.data;
+    } else {
+      week = Dummy().getWeek();
+      lessons = Dummy().getLessonList();
+    }
+    print("duh ");
+    print(Dummy().getLessonList());
+    print(Dummy().getWeek());
 
     lessons.sort((a, b) => a.start.compareTo(b.start));
 
