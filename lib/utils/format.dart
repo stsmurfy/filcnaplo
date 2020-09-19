@@ -82,6 +82,5 @@ String monogram(String name) {
   name.split(' ').forEach((word) {
     if (word != '') mg += word[0];
   });
-  print(mg);
   return mg;
 }
