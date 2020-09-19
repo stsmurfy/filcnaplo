@@ -162,45 +162,37 @@ class Dummy {
     Recipient(2, "", "Test User 3", 0, null),
   ];
 
-//TODO idk why I needed a function, pls fix if you can
-//Didn't work with a normal static list, returned always null for some reason :/
-  List<Lesson> getLessonList() {
-    return <Lesson>[
-      Lesson(
-          Type("122455", "", ""),
-          DateTime.parse("20200918"),
-          Subject(
-              "1231651",
-              Type("1564531", "zenemuveszet", "vicceltemamugymatek"),
-              "Szolfézs"),
-          "3", //LessonIndex
-          12, //LessonYearIndex
-          "Jozsa Neni legjobb spanja", //Substitute teacher
-          "Jozsa Neni", //Teacher
-          true, //homeworkEnabled
-          DateTime.parse("20200918 10:00:00"), //start
-          DateTime.parse("20200918 10:45:00"), //end
-          Type("51654537", "student presence type desc",
-              "student presence type name"),
-          null, //Házi id - todo!
-          <Exam>[], //Számonkérések listája - todo!
-          "6153131",
-          Type("51561", "lesson type desc", "lesson type name"),
-          "Le van irva",
-          "Kisterem",
-          "9. C",
-          "Matekmatika - mi ez mi?"),
-    ];
-  }
+  static List<Lesson> lessons = [
+    Lesson(
+      Type("122455", "", ""),
+      DateTime.now(),
+      Subject("1231651", null,
+          "Szolfézs"),
+      "3",
+      12,
+      "Jozsa Neni legjobb spanja",
+      "Jozsa Neni",
+      true,
+      DateTime.now(),
+      DateTime.now().add(Duration(minutes: 45)),
+      Type("51654537", "student presence type desc",
+          "student presence type name"),
+      null, 
+      <Exam>[],
+      "6153131",
+      Type("51561", "lesson type desc", "lesson type name"),
+      "Le van irva",
+      "Kisterem",
+      "9. C",
+      "Matekmatika - mi ez mi?",
+    ),
+  ];
 
-  Week getWeek() {
-    return Week(<Day>[
-      Day(
-        date: DateTime.parse("20200918"),
-        lessons: Dummy().getLessonList(),
-      )
-    ]);
-  }
+  static Week week = Week([
+    Day(
+      date: DateTime.now(),
+    )
+  ]);
 
   // k0sz boa
 }

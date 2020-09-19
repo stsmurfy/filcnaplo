@@ -160,7 +160,6 @@ class _SubjectViewState extends State<SubjectView> {
             setState(() {
               widget.tempEvals.add(tempEval);
             });
-            for (Evaluation e in widget.tempEvals) print(e.value.value);
           }
         },
       ),

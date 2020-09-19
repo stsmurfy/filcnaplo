@@ -12,16 +12,16 @@ class StudentSync {
     if (!app.debugUser) {
       Student student;
       student = await app.user.kreta.getStudent();
-      var getGroups = await app.user.kreta.getGroups();
-      student.groupId = getGroups['uid'];
-      student.className = getGroups['className'];
+      Map group = await app.user.kreta.getGroup();
+      student.groupId = group['uid'];
+      student.className = group['className'];
 
       if (student == null) {
         await app.user.kreta.refreshLogin();
         student = await app.user.kreta.getStudent();
-        var getGroups = await app.user.kreta.getGroups();
-        student.groupId = getGroups['uid'];
-        student.className = getGroups['className'];
+        Map group = await app.user.kreta.getGroup();
+        student.groupId = group['uid'];
+        student.className = group['className'];
       }
 
       if (student != null) {
