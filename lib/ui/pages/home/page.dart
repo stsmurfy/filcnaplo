@@ -1,4 +1,5 @@
 import 'package:filcnaplo/generated/i18n.dart';
+import 'package:filcnaplo/modules/now/now.dart';
 import 'package:filcnaplo/ui/card.dart';
 import 'package:filcnaplo/ui/cards/evaluation/card.dart';
 import 'package:filcnaplo/ui/cards/message/card.dart';
@@ -93,6 +94,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> buildFeed() {
+    List<Widget> elements = [];
     List<BaseCard> cards = [];
 
     app.user.sync.messages.data[0].forEach((message) => cards.add(MessageCard(
@@ -109,7 +111,13 @@ class _HomePageState extends State<HomePage> {
 
     cards.sort((a, b) => -a.compare.compareTo(b.compare));
 
-    return cards;
+    if (true /*if now module is turned on in settings*/) {
+      elements.add(Now());
+    }
+
+    elements.addAll(cards);
+
+    return elements;
   }
 
   Route _searchRoute() {
