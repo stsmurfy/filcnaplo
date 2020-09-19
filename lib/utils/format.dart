@@ -74,3 +74,14 @@ String escapeHtml(String htmlString) {
   String parsedString = parse(document.body.text).documentElement.text;
   return parsedString;
 }
+
+String monogram(String name) {
+  String mg = '';
+  name = name.replaceFirst("Helyettesítő: ", "");
+  name = name.replaceAll("  ", " ");
+  name.split(' ').forEach((word) {
+    if (word != '') mg += word[0];
+  });
+  print(mg);
+  return mg;
+}

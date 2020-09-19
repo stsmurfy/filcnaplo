@@ -311,7 +311,9 @@
     "debug": {
       "title": "Developer settings",
       "delete": "Delete app data",
-      "deleteSuccess": "Deleted app data"
+      "deleteSuccess": "Deleted app data",
+      "experimental": "Experimental",
+      "disclamer": "Disclamer! These features can be still instable."
     },
     "export": {
       "lessonCount": "lessons",

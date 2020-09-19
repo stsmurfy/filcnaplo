@@ -15,8 +15,8 @@ class TimetableBuilder {
       week = getWeek(i);
       lessons = app.user.sync.timetable.data;
     } else {
-      week = Dummy().getWeek();
-      lessons = Dummy().getLessonList();
+      week = Dummy.week;
+      lessons = Dummy.lessons;
     }
 
     lessons.sort((a, b) => a.start.compareTo(b.start));

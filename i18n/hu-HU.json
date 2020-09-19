@@ -311,7 +311,9 @@
     "debug": {
       "title": "Fejlesztői beállítások",
       "delete": "Adatok törlése",
-      "deleteSuccess": "Adatok törölve"
+      "deleteSuccess": "Adatok törölve",
+      "experimental": "Kísérleti",
+      "disclamer": "Figyelem! Ezek a funkciók még instabilak lehetnek."
     },
     "export": {
       "exportTimetable": "Órarend nyomtatása",
