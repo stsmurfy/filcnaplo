@@ -80,6 +80,7 @@ class TimetablePrinter {
             }
           } else {
             thisChildren.add(pw.Container());
+            break;
           }
         }
       });
