@@ -38,7 +38,7 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
     - name: Build APK
-      run: ANDROID_SIGNING="signing/signing.properties" flutter build apk --target-platform android-x64
+      run: ANDROID_SIGNING="signing/signing.properties" flutter build apk --target-platform android-arm64
     - uses: actions/upload-artifact@v2
       with:
         name: 'hu.filcnaplo.ellenorzo'
