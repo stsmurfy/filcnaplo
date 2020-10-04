@@ -81,6 +81,12 @@ class SearchController {
         if (specialChars(item.text.toLowerCase()).contains(variation)) {
           contains++;
         }
+        
+        item.tags.forEach((tag) {
+          if (specialChars(tag.toLowerCase()) == variation) {
+            contains++;
+          }
+        });
       });
 
       if (contains == pattern.split(" ").length) results.add(item);
@@ -101,31 +107,36 @@ class SearchController {
     ].expand((x) => x).toList();
 
     messages.forEach((message) => searchables.add(Searchable(
-          text: searchString([escapeHtml(message.content), message.subject]),
-          child: GestureDetector(
-            child: MessageTile(message),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => MessageView([message])));
-            },
-          ),
-        )));
+        text: escapeHtml(message.content),
+        child: GestureDetector(
+          child: MessageTile(message),
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => MessageView([message])));
+          },
+        ),
+        tags: [message.subject])));
 
     // Evaluations
     app.user.sync.evaluation.data[0]
         .forEach((evaluation) => searchables.add(Searchable(
-              text: evaluation.description,
-              child: GestureDetector(
-                child: EvaluationTile(evaluation),
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    backgroundColor: Colors.transparent,
-                    builder: (context) => EvaluationView(evaluation),
-                  );
-                },
-              ),
-            )));
+                text: evaluation.description,
+                child: GestureDetector(
+                  child: EvaluationTile(evaluation),
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => EvaluationView(evaluation),
+                    );
+                  },
+                ),
+                tags: [
+                  evaluation.subject.name,
+                  evaluation.value.weight != 0
+                      ? '${evaluation.value.weight}%'
+                      : '100%'
+                ])));
 
     return searchables;
   }
