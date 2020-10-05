@@ -73,11 +73,12 @@ class SearchController {
     pattern = specialChars(pattern.toLowerCase());
     if (pattern == "") return [];
 
-    List<Searchable> results = all.where((item) =>
-        pattern.split(" ").every((variation) =>
-            item.tags.any((tag) =>
-                variation == specialChars(tag.toLowerCase())) ||
-            specialChars(item.text.toLowerCase()).contains(variation)));
+    List<Searchable> results = all
+        .where((item) => pattern.split(" ").every((variation) =>
+            item.tags
+                .any((tag) => variation == specialChars(tag.toLowerCase())) ||
+            specialChars(item.text.toLowerCase()).contains(variation)))
+        .toList();
 
     results.sort((a, b) => a.text.compareTo(b.text));
 
