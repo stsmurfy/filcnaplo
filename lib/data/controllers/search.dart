@@ -3,6 +3,7 @@ import 'package:filcnaplo/data/models/searchable.dart';
 import 'package:filcnaplo/data/models/school.dart';
 import 'package:filcnaplo/data/models/message.dart';
 import 'package:filcnaplo/data/context/app.dart';
+import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/cards/evaluation/tile.dart';
 import 'package:filcnaplo/ui/cards/evaluation/view.dart';
 import 'package:filcnaplo/ui/cards/message/tile.dart';
@@ -115,7 +116,7 @@ class SearchController {
                 builder: (context) => MessageView([message])));
           },
         ),
-        tags: [message.subject])));
+        tags: [message.subject, I18n.of(context).message])));
 
     // Evaluations
     app.user.sync.evaluation.data[0]
@@ -135,7 +136,8 @@ class SearchController {
                   evaluation.subject.name,
                   evaluation.value.weight != 0
                       ? '${evaluation.value.weight}%'
-                      : '100%'
+                      : '100%',
+                  I18n.of(context).grade
                 ])));
 
     return searchables;
