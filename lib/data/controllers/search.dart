@@ -73,25 +73,11 @@ class SearchController {
     pattern = specialChars(pattern.toLowerCase());
     if (pattern == "") return [];
 
-    List<Searchable> results = [];
-
-    all.forEach((item) {
-      int contains = 0;
-
-      pattern.split(" ").forEach((variation) {
-        if (specialChars(item.text.toLowerCase()).contains(variation)) {
-          contains++;
-        }
-        
-        item.tags.forEach((tag) {
-          if (specialChars(tag.toLowerCase()) == variation) {
-            contains++;
-          }
-        });
-      });
-
-      if (contains == pattern.split(" ").length) results.add(item);
-    });
+    List<Searchable> results = all.where((item) =>
+        pattern.split(" ").every((variation) =>
+            item.tags.any((tag) =>
+                variation == specialChars(tag.toLowerCase())) ||
+            specialChars(item.text.toLowerCase()).contains(variation)));
 
     results.sort((a, b) => a.text.compareTo(b.text));
 
