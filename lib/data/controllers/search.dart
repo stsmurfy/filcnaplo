@@ -3,7 +3,6 @@ import 'package:filcnaplo/data/models/searchable.dart';
 import 'package:filcnaplo/data/models/school.dart';
 import 'package:filcnaplo/data/models/message.dart';
 import 'package:filcnaplo/data/context/app.dart';
-import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/cards/evaluation/tile.dart';
 import 'package:filcnaplo/ui/cards/evaluation/view.dart';
 import 'package:filcnaplo/ui/cards/message/tile.dart';
