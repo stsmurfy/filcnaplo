@@ -75,8 +75,6 @@ class SearchController {
 
     List<Searchable> results = all
         .where((item) => pattern.split(" ").every((variation) =>
-            item.tags
-                .any((tag) => variation == specialChars(tag.toLowerCase())) ||
             specialChars(item.text.toLowerCase()).contains(variation)))
         .toList();
 
@@ -95,7 +93,7 @@ class SearchController {
     ].expand((x) => x).toList();
 
     messages.forEach((message) => searchables.add(Searchable(
-        text: escapeHtml(message.content),
+        text: searchString([escapeHtml(message.content), message.subject]),
         child: GestureDetector(
           child: MessageTile(message),
           onTap: () {
@@ -103,12 +101,15 @@ class SearchController {
                 builder: (context) => MessageView([message])));
           },
         ),
-        tags: [message.subject, I18n.of(context).message])));
+    )));
 
     // Evaluations
     app.user.sync.evaluation.data[0]
         .forEach((evaluation) => searchables.add(Searchable(
-                text: evaluation.description,
+                text: searchString([evaluation.description, evaluation.subject.name,
+				evaluation.value.weight != 0
+				 ? "${evaluation.value.weight}%"
+				 : "100%"]),
                 child: GestureDetector(
                   child: EvaluationTile(evaluation),
                   onTap: () {
@@ -119,13 +120,7 @@ class SearchController {
                     );
                   },
                 ),
-                tags: [
-                  evaluation.subject.name,
-                  evaluation.value.weight != 0
-                      ? '${evaluation.value.weight}%'
-                      : '100%',
-                  I18n.of(context).grade
-                ])));
+            )));
 
     return searchables;
   }
