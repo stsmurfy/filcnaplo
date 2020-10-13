@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:filcnaplo/modules/now/upcoming_exams/tile.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/models/exam.dart';
-import 'package:filcnaplo/data/models/lesson.dart';
 
 class UpcomingExamsBuilder {
   List<UpcomingExamTile> tiles = [];
