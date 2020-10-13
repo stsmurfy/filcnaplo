@@ -131,7 +131,8 @@ class _SubjectViewState extends State<SubjectView> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(12.0),
+                padding:
+                    EdgeInsets.only(right: 12, top: 12, left: 12, bottom: 75),
                 child: Column(
                   children: evaluationTiles.isNotEmpty
                       ? evaluationTiles
@@ -140,7 +141,6 @@ class _SubjectViewState extends State<SubjectView> {
                         ],
                 ),
               ),
-              Container(height: evaluationTiles.isNotEmpty ? 60 : 0)
             ],
           ),
         ),
