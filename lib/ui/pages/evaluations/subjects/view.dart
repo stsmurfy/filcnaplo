@@ -133,13 +133,14 @@ class _SubjectViewState extends State<SubjectView> {
               Container(
                 padding: EdgeInsets.all(12.0),
                 child: Column(
-                  children: evaluationTiles.length > 0
+                  children: evaluationTiles.isNotEmpty
                       ? evaluationTiles
                       : <Widget>[
                           Empty(title: I18n.of(context).emptySubjectGrades)
                         ],
                 ),
               ),
+              Container(height: evaluationTiles.isNotEmpty ? 60 : 0)
             ],
           ),
         ),
