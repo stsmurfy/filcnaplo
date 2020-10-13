@@ -17,7 +17,8 @@
   "exam": {
     "": "Exam",
     "title": "Exams",
-    "past": "Past exams"
+    "past": "Past exams",
+    "upcoming": "Upcoming exams"
   },
   "grade": {
     "": "grade",

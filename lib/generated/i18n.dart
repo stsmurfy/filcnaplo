@@ -60,6 +60,8 @@ class I18n implements WidgetsLocalizations {
   String get examTitle => "Számonkérések";
   /// "Korábbi dolgozatok"
   String get examPast => "Korábbi dolgozatok";
+  /// "Közelgő dolgozatok"
+  String get examUpcoming => "Közelgő dolgozatok";
   /// "1-es"
   String get grade1 => "1-es";
   /// "2-es"
@@ -686,6 +688,9 @@ class _I18n_en_US extends I18n {
   /// "Past exams"
   @override
   String get examPast => "Past exams";
+  /// "Upcoming exams"
+  @override
+  String get examUpcoming => "Upcoming exams";
   /// "1"
   @override
   String get grade1 => "1";
@@ -1594,6 +1599,9 @@ class _I18n_de_DE extends I18n {
   /// "Vorherige Prüfungen"
   @override
   String get examPast => "Vorherige Prüfungen";
+  /// "Kommende Tests"
+  @override
+  String get examUpcoming => "Kommende Tests";
   /// "1"
   @override
   String get grade1 => "1";
