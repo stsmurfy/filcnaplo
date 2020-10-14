@@ -17,7 +17,7 @@ class UpcomingExamsBuilder {
             (t.writeDate.isAfter(lastMidnight) &&
                 t.writeDate.isBefore(end)) ||
             t.writeDate.isAtSameMomentAs(lastMidnight))
-        .map((t) => UpcomingExamTile(t.description, t.writeDate))
+        .map((t) => UpcomingExamTile(t.subjectName, t.description, t.writeDate))
         .toList();
   }
 }

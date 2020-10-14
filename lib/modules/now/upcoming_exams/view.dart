@@ -1,22 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:filcnaplo/ui/card.dart';
 import 'builder.dart';
 import 'package:filcnaplo/generated/i18n.dart';
-
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:filcnaplo/ui/card.dart';
 class UpcomingExams extends BaseCard {
-  UpcomingExamsBuilder builder = UpcomingExamsBuilder();
+  final UpcomingExamsBuilder builder = UpcomingExamsBuilder();
   @override
   Widget build(BuildContext context) {
     builder.build();
     if (builder.tiles.length == 0) return Container();
     return BaseCard(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(children: [
+              Padding(
+                  child: Icon(
+                    FeatherIcons.calendar,
+                    size: 25,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  padding: EdgeInsets.only(right: 10)),
               Text(I18n.of(context).examUpcoming,
-                  style: TextStyle(fontSize: 17, color: Colors.black)),
-              ListView(shrinkWrap: true, children: builder.tiles)
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Theme.of(context).accentColor,
+                    fontWeight: FontWeight.bold
+                  ))
             ]),
-        padding: EdgeInsets.only(left: 30, right: 12, top: 12, bottom: 12));
+            ListView(shrinkWrap: true, children: builder.tiles)
+          ]),
+    );
   }
 }
