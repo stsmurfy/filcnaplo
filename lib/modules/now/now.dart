@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/ui/card.dart';
-
+import 'package:filcnaplo/modules/now/upcoming_exams/view.dart';
 class Now extends StatefulWidget {
   @override
   NowState createState() => NowState();
@@ -12,6 +12,6 @@ class Now extends StatefulWidget {
 class NowState extends State<Now> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("Hello World - FilcNow"));
+    return UpcomingExams();
   }
 }
