@@ -345,8 +345,6 @@ class KretaClient {
         });
       });
 
-      print(attachmentsJson);
-
       Map messageJson = {
         "cimzettLista": recipientsJson,
         "csatolmanyok": attachmentsJson,
@@ -560,13 +558,12 @@ class KretaClient {
       await checkResponse(response);
 
       List responseJson = jsonDecode(response.body);
-      print(responseJson[0]["OktatasNevelesiFeladat"]["Uid"]);
       return {
         "uid": responseJson[0]["OktatasNevelesiFeladat"]["Uid"],
         "className": responseJson[0]["Nev"]
       };
     } catch (error) {
-      print("ERROR: KretaAPI.: " + error.toString());
+      print("ERROR: KretaAPI.getGroup: " + error.toString());
       return null;
     }
   }

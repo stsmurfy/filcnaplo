@@ -1345,9 +1345,9 @@ class _I18n_en_US extends I18n {
   /// "Experimental"
   @override
   String get settingsDebugExperimental => "Experimental";
-  /// "Disclamer! These features can be still instable."
+  /// "Warning! These features can be still unstable."
   @override
-  String get settingsDebugDisclamer => "Disclamer! These features can be still instable.";
+  String get settingsDebugDisclamer => "Warning! These features can be still unstable.";
   /// "Print timetable"
   @override
   String get settingsExportExportTimetable => "Print timetable";
@@ -2253,12 +2253,12 @@ class _I18n_de_DE extends I18n {
   /// "Appdaten gelöscht"
   @override
   String get settingsDebugDeleteSuccess => "Appdaten gelöscht";
-  /// "Experimental"
+  /// "Experimentell"
   @override
-  String get settingsDebugExperimental => "Experimental";
-  /// "Disclamer! These features can be still instable."
+  String get settingsDebugExperimental => "Experimentell";
+  /// "Achtung! Diese Funktionen können immer noch instabil sein."
   @override
-  String get settingsDebugDisclamer => "Disclamer! These features can be still instable.";
+  String get settingsDebugDisclamer => "Achtung! Diese Funktionen können immer noch instabil sein.";
   /// "Stundenplan drucken"
   @override
   String get settingsExportExportTimetable => "Stundenplan drucken";

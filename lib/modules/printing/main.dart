@@ -56,27 +56,31 @@ class TimetablePrinter {
       ));
 
       days.forEach((Day day) {
+        var isNotEmpty = day.lessons.any((element) =>
+            element.lessonIndex != '+' && int.parse(element.lessonIndex) == i);
+
         for (Lesson lesson in day.lessons) {
           if (lesson.lessonIndex == '+') {
             continue;
           }
-          if (int.parse(lesson.lessonIndex) == i) {
-            String name = lesson.subject.name ?? lesson.name;
+          if (isNotEmpty) {
+            if (int.parse(lesson.lessonIndex) == i) {
+              String name = lesson.subject.name ?? lesson.name;
+              String room = lesson.room ?? '';
 
-            String room = lesson.room ?? '';
-            thisChildren.add(pw.Padding(
-                padding: pw.EdgeInsets.fromLTRB(5, 10, 5, 5),
-                child: pw.Column(children: <pw.Widget>[
-                  pw.Align(
-                      child: pw.Text(name), alignment: pw.Alignment.center),
-                  pw.Footer(
-                      leading: pw.Text(room),
-                      trailing: pw.Text(monogram(lesson.teacher))),
-                ])));
-          }
-
-          if (thisChildren.isEmpty) {
-            thisChildren.add(pw.Text(''));
+              thisChildren.add(pw.Padding(
+                  padding: pw.EdgeInsets.fromLTRB(5, 10, 5, 5),
+                  child: pw.Column(children: <pw.Widget>[
+                    pw.Align(
+                        child: pw.Text(name), alignment: pw.Alignment.center),
+                    pw.Footer(
+                        leading: pw.Text(room),
+                        trailing: pw.Text(monogram(lesson.teacher))),
+                  ])));
+            }
+          } else {
+            thisChildren.add(pw.Container());
+            break;
           }
         }
       });

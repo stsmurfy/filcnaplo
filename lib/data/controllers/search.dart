@@ -72,19 +72,10 @@ class SearchController {
     pattern = specialChars(pattern.toLowerCase());
     if (pattern == "") return [];
 
-    List<Searchable> results = [];
-
-    all.forEach((item) {
-      int contains = 0;
-
-      pattern.split(" ").forEach((variation) {
-        if (specialChars(item.text.toLowerCase()).contains(variation)) {
-          contains++;
-        }
-      });
-
-      if (contains == pattern.split(" ").length) results.add(item);
-    });
+    List<Searchable> results = all
+        .where((item) => pattern.split(" ").every((variation) =>
+            specialChars(item.text.toLowerCase()).contains(variation)))
+        .toList();
 
     results.sort((a, b) => a.text.compareTo(b.text));
 
@@ -101,30 +92,33 @@ class SearchController {
     ].expand((x) => x).toList();
 
     messages.forEach((message) => searchables.add(Searchable(
-          text: searchString([escapeHtml(message.content), message.subject]),
-          child: GestureDetector(
-            child: MessageTile(message),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => MessageView([message])));
-            },
-          ),
-        )));
+        text: searchString([escapeHtml(message.content), message.subject]),
+        child: GestureDetector(
+          child: MessageTile(message),
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => MessageView([message])));
+          },
+        ),
+    )));
 
     // Evaluations
     app.user.sync.evaluation.data[0]
         .forEach((evaluation) => searchables.add(Searchable(
-              text: evaluation.description,
-              child: GestureDetector(
-                child: EvaluationTile(evaluation),
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    backgroundColor: Colors.transparent,
-                    builder: (context) => EvaluationView(evaluation),
-                  );
-                },
-              ),
+                text: searchString([evaluation.description, evaluation.subject.name,
+				evaluation.value.weight != 0
+				 ? "${evaluation.value.weight}%"
+				 : "100%"]),
+                child: GestureDetector(
+                  child: EvaluationTile(evaluation),
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => EvaluationView(evaluation),
+                    );
+                  },
+                ),
             )));
 
     return searchables;
