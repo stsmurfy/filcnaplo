@@ -47,7 +47,8 @@
     "undo": "visszavonás",
     "cancel": "MÉGSEM",
     "skip": "ÁTUGRÁS",
-    "next": "TOVÁBB"
+    "next": "TOVÁBB",
+    "add": "Hozzáadás"
   },
   "time": {
     "": "idő",
@@ -209,7 +210,8 @@
     "valueType": "jelleg",
     "form": "értékelés formja",
     "writeDate": "írás ideje",
-    "date": "dátum"
+    "date": "dátum",
+    "weight": "súly"
   },
   "evaluations": {
     "": "Jegyeid",
@@ -221,7 +223,12 @@
     "4qYear": "4. Negyedév",
     "endYear": "Év végi",
     "subjects": "Tárgyak",
-    "statistics": "Statisztikák"
+    "statistics": "Statisztikák",
+    "ghost": {
+      "": "SZELLEMJEGY",
+      "title": "Szellemjegy hozzáadása",
+      "tooltip": "Szellemjegy eltávolítása"
+    }
   },
   "student": {
     "school": "Iskola",
@@ -304,7 +311,15 @@
     "debug": {
       "title": "Fejlesztői beállítások",
       "delete": "Adatok törlése",
-      "deleteSuccess": "Adatok törölve"
+      "deleteSuccess": "Adatok törölve",
+      "experimental": "Kísérleti",
+      "disclamer": "Figyelem! Ezek a funkciók még instabilak lehetnek."
+    },
+    "export": {
+      "exportTimetable": "Órarend nyomtatása",
+      "lessonCount": "óra",
+      "exportTimetableSuccess": "Órarend kinyomtatva",
+      "timeTableOf": " órarendje"
     }
   },
   "success": {
@@ -392,5 +407,6 @@
     "5": "Itt láthatod minden huncutság eredményét.\nFigyelheted, mikor vonják meg tőletek a családi pótlékot a hiányzások miatt,\nláthatod a késéseket, el nem készített házi feladatokat és felszereléshiányokat.\nHa nem látsz itt semmit, kiérdemelsz egy vállveregetést.",
     "6": "Itt válthatsz bejelentkezett fiókok között.\nEgy fióknak beállíthatsz egyéni nevet, és profilképet.\nFelvehetsz és törölhetsz fiókokat.\nItt találod az app beállításait és néhány további információt is.",
     "7": "Reméljük, elégedett leszel az új appal!\nNem találod a kedvenc régi funkciódat?\nNe aggódj, az app még kezdeti fázisban van, sok funkcióval fog gyarapodni."
-  }
+  },
+  "unknown": "ismeretlen"
 }

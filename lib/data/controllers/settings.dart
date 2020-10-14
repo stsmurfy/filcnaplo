@@ -25,7 +25,6 @@ class SettingsController {
   int backgroundColor;
   bool enableNotifications;
   bool renderHtml;
-
   int defaultPage;
 
   get locale {

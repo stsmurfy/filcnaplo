@@ -1,6 +1,6 @@
 name: filcnaplo
 description: 'Nem hivatalos e-napló alkalmazás az e-Kréta rendszerhez'
-version: 2.0.2+36
+version: 2.0.3+39
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -30,12 +30,17 @@ dependencies:
   open_file: ^3.0.1
   background_fetch: ^0.5.6
   circular_reveal_animation: ^1.1.5
-  flutter_speed_dial: ^1.2.5
+  flutter_speed_dial:
+    git:
+      url: https://github.com/irasekh3/flutter_speed_dial
+      ref: master
   image_cropper: ^1.2.3
   charts_flutter: ^0.9.0
   flutter_material_color_picker: ^1.0.5
   flutter_swiper: ^1.1.6
   in_app_review: ^0.2.0+3
+  pdf: ^1.11.1
+  printing: ^3.6.1
 
 dev_dependencies:
   flutter_test:
@@ -54,3 +59,5 @@ flutter:
     - assets/wave2.png
     - assets/wave3.png
     - assets/wave4.png
+    - assets/Roboto-Regular.ttf
+    - assets/discord.png

@@ -104,6 +104,8 @@ class I18n implements WidgetsLocalizations {
   String get dialogSkip => "ÁTUGRÁS";
   /// "TOVÁBB"
   String get dialogNext => "TOVÁBB";
+  /// "Hozzáadás"
+  String get dialogAdd => "Hozzáadás";
   /// "idő"
   String get time => "idő";
   /// "óra"
@@ -348,6 +350,8 @@ class I18n implements WidgetsLocalizations {
   String get evaluationWriteDate => "írás ideje";
   /// "dátum"
   String get evaluationDate => "dátum";
+  /// "súly"
+  String get evaluationWeight => "súly";
   /// "Jegyeid"
   String get evaluations => "Jegyeid";
   /// "Évközi"
@@ -368,6 +372,12 @@ class I18n implements WidgetsLocalizations {
   String get evaluationsSubjects => "Tárgyak";
   /// "Statisztikák"
   String get evaluationsStatistics => "Statisztikák";
+  /// "SZELLEMJEGY"
+  String get evaluationsGhost => "SZELLEMJEGY";
+  /// "Szellemjegy hozzáadása"
+  String get evaluationsGhostTitle => "Szellemjegy hozzáadása";
+  /// "Szellemjegy eltávolítása"
+  String get evaluationsGhostTooltip => "Szellemjegy eltávolítása";
   /// "Iskola"
   String get studentSchool => "Iskola";
   /// "Születési dátum"
@@ -484,6 +494,18 @@ class I18n implements WidgetsLocalizations {
   String get settingsDebugDelete => "Adatok törlése";
   /// "Adatok törölve"
   String get settingsDebugDeleteSuccess => "Adatok törölve";
+  /// "Kísérleti"
+  String get settingsDebugExperimental => "Kísérleti";
+  /// "Figyelem! Ezek a funkciók még instabilak lehetnek."
+  String get settingsDebugDisclamer => "Figyelem! Ezek a funkciók még instabilak lehetnek.";
+  /// "Órarend nyomtatása"
+  String get settingsExportExportTimetable => "Órarend nyomtatása";
+  /// "óra"
+  String get settingsExportLessonCount => "óra";
+  /// "Órarend kinyomtatva"
+  String get settingsExportExportTimetableSuccess => "Órarend kinyomtatva";
+  /// " órarendje"
+  String get settingsExportTimeTableOf => " órarendje";
   /// "Siker"
   String get success => "Siker";
   /// "Házi feladat feltöltve"
@@ -608,6 +630,8 @@ class I18n implements WidgetsLocalizations {
   String get tutorial6 => "Itt válthatsz bejelentkezett fiókok között.\nEgy fióknak beállíthatsz egyéni nevet, és profilképet.\nFelvehetsz és törölhetsz fiókokat.\nItt találod az app beállításait és néhány további információt is.";
   /// "Reméljük, elégedett leszel az új appal!\nNem találod a kedvenc régi funkciódat?\nNe aggódj, az app még kezdeti fázisban van, sok funkcióval fog gyarapodni."
   String get tutorial7 => "Reméljük, elégedett leszel az új appal!\nNem találod a kedvenc régi funkciódat?\nNe aggódj, az app még kezdeti fázisban van, sok funkcióval fog gyarapodni.";
+  /// "ismeretlen"
+  String get unknown => "ismeretlen";
 }
 
 class _I18n_hu_HU extends I18n {
@@ -728,6 +752,9 @@ class _I18n_en_US extends I18n {
   /// "NEXT"
   @override
   String get dialogNext => "NEXT";
+  /// "Add"
+  @override
+  String get dialogAdd => "Add";
   /// "time"
   @override
   String get time => "time";
@@ -1094,6 +1121,9 @@ class _I18n_en_US extends I18n {
   /// "date"
   @override
   String get evaluationDate => "date";
+  /// "weight"
+  @override
+  String get evaluationWeight => "weight";
   /// "Your grades"
   @override
   String get evaluations => "Your grades";
@@ -1124,6 +1154,15 @@ class _I18n_en_US extends I18n {
   /// "statistics"
   @override
   String get evaluationsStatistics => "statistics";
+  /// "GHOST GRADE"
+  @override
+  String get evaluationsGhost => "GHOST GRADE";
+  /// "Add new Ghost Grade"
+  @override
+  String get evaluationsGhostTitle => "Add new Ghost Grade";
+  /// "Remove this Ghost Grade"
+  @override
+  String get evaluationsGhostTooltip => "Remove this Ghost Grade";
   /// "School"
   @override
   String get studentSchool => "School";
@@ -1298,6 +1337,24 @@ class _I18n_en_US extends I18n {
   /// "Deleted app data"
   @override
   String get settingsDebugDeleteSuccess => "Deleted app data";
+  /// "Experimental"
+  @override
+  String get settingsDebugExperimental => "Experimental";
+  /// "Warning! These features can be still unstable."
+  @override
+  String get settingsDebugDisclamer => "Warning! These features can be still unstable.";
+  /// "Print timetable"
+  @override
+  String get settingsExportExportTimetable => "Print timetable";
+  /// "lessons"
+  @override
+  String get settingsExportLessonCount => "lessons";
+  /// "Timetable printed"
+  @override
+  String get settingsExportExportTimetableSuccess => "Timetable printed";
+  /// "'s timetable"
+  @override
+  String get settingsExportTimeTableOf => "'s timetable";
   /// "Success"
   @override
   String get success => "Success";
@@ -1484,6 +1541,9 @@ class _I18n_en_US extends I18n {
   /// "Hope, you'll enjoy the new app!\nAre you missing your favourite feature from the new version?\nFear not, this will change soon, as we have just begin the developement."
   @override
   String get tutorial7 => "Hope, you'll enjoy the new app!\nAre you missing your favourite feature from the new version?\nFear not, this will change soon, as we have just begin the developement.";
+  /// "unknown"
+  @override
+  String get unknown => "unknown";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
@@ -1600,6 +1660,9 @@ class _I18n_de_DE extends I18n {
   /// "NEXT"
   @override
   String get dialogNext => "NEXT";
+  /// "Addieren"
+  @override
+  String get dialogAdd => "Addieren";
   /// "zeit"
   @override
   String get time => "zeit";
@@ -1966,6 +2029,9 @@ class _I18n_de_DE extends I18n {
   /// "Hochladezeit"
   @override
   String get evaluationDate => "Hochladezeit";
+  /// "Gewicht"
+  @override
+  String get evaluationWeight => "Gewicht";
   /// "Deine Noten"
   @override
   String get evaluations => "Deine Noten";
@@ -1996,6 +2062,15 @@ class _I18n_de_DE extends I18n {
   /// "Statistiken"
   @override
   String get evaluationsStatistics => "Statistiken";
+  /// "SCHATTENNOTE"
+  @override
+  String get evaluationsGhost => "SCHATTENNOTE";
+  /// "Schattennote addieren"
+  @override
+  String get evaluationsGhostTitle => "Schattennote addieren";
+  /// "Schattennote löschen"
+  @override
+  String get evaluationsGhostTooltip => "Schattennote löschen";
   /// "Schule"
   @override
   String get studentSchool => "Schule";
@@ -2170,6 +2245,24 @@ class _I18n_de_DE extends I18n {
   /// "Appdaten gelöscht"
   @override
   String get settingsDebugDeleteSuccess => "Appdaten gelöscht";
+  /// "Experimentell"
+  @override
+  String get settingsDebugExperimental => "Experimentell";
+  /// "Achtung! Diese Funktionen können immer noch instabil sein."
+  @override
+  String get settingsDebugDisclamer => "Achtung! Diese Funktionen können immer noch instabil sein.";
+  /// "Stundenplan drucken"
+  @override
+  String get settingsExportExportTimetable => "Stundenplan drucken";
+  /// "Stunden"
+  @override
+  String get settingsExportLessonCount => "Stunden";
+  /// "Stundenplan gedruckt"
+  @override
+  String get settingsExportExportTimetableSuccess => "Stundenplan gedruckt";
+  /// "s Stundenplan"
+  @override
+  String get settingsExportTimeTableOf => "s Stundenplan";
   /// "Erfolg"
   @override
   String get success => "Erfolg";
@@ -2356,6 +2449,9 @@ class _I18n_de_DE extends I18n {
   /// "Wir hoffen, dass dir die neuem App gefallen wird!\nBitte sei nicht stört, wenn du deine Lieblingsfunktion nicht findest. Wir werden viele Funktionen noch addieren."
   @override
   String get tutorial7 => "Wir hoffen, dass dir die neuem App gefallen wird!\nBitte sei nicht stört, wenn du deine Lieblingsfunktion nicht findest. Wir werden viele Funktionen noch addieren.";
+  /// "unknown"
+  @override
+  String get unknown => "unknown";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;

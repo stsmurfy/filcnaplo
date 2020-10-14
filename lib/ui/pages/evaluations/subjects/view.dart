@@ -9,34 +9,55 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/utils/colors.dart';
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:filcnaplo/ui/pages/evaluations/subjects/average_calc.dart';
+import '../grades/tile.dart';
 
+//ignore: must_be_immutable
 class SubjectView extends StatefulWidget {
   final Subject subject;
-  final double studentAvg;
   final double classAvg;
+  List<Evaluation> tempEvals = List<Evaluation>();
 
-  SubjectView(this.subject, this.studentAvg, this.classAvg);
+  SubjectView(this.subject, this.classAvg);
 
   @override
   _SubjectViewState createState() => _SubjectViewState();
 }
 
 class _SubjectViewState extends State<SubjectView> {
+  double studentAvg;
+
   @override
   Widget build(BuildContext context) {
+    studentAvg = 0;
+
     List<Evaluation> evaluations = app.user.sync.evaluation.data[0]
         .where((evaluation) => evaluation.type.name == "evkozi_jegy_ertekeles")
         .toList();
 
-    List<GradeTile> evaluationTiles = [];
-
     List<Evaluation> subjectEvals =
         evaluations.where((e) => e.subject.id == widget.subject.id).toList();
+    subjectEvals.addAll(widget.tempEvals);
+
+    List<GradeTile> evaluationTiles = [];
 
     subjectEvals.forEach((evaluation) {
-      if (evaluation.date != null && evaluation.value.value != null)
+      if (evaluation.date != null &&
+          evaluation.value.value !=
+              null) if (evaluation.id.startsWith("temp_")) {
+        evaluationTiles.add(
+            GradeTile(evaluation, deleteCallback: _deleteCallbackFunction));
+      } else
         evaluationTiles.add(GradeTile(evaluation));
     });
+
+    subjectEvals.forEach((e) {
+      studentAvg += e.value.value * (e.value.weight / 100);
+    });
+
+    studentAvg = studentAvg /
+        subjectEvals.map((e) => e.value.weight / 100).reduce((a, b) => a + b);
 
     return Scaffold(
       appBar: AppBar(
@@ -48,20 +69,19 @@ class _SubjectViewState extends State<SubjectView> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                color: app.theme
-                    .evalColors[(widget.studentAvg.round() - 1).clamp(0, 4)],
+                color:
+                    app.theme.evalColors[(studentAvg.round() - 1).clamp(0, 4)],
               ),
               padding: EdgeInsets.all(8.0),
               child: Text(
                 app.settings.language == "en"
-                    ? widget.studentAvg.toStringAsFixed(2)
-                    : widget.studentAvg.toStringAsFixed(2).split(".").join(","),
+                    ? studentAvg.toStringAsFixed(2)
+                    : studentAvg.toStringAsFixed(2).split(".").join(","),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   height: 1.2,
                   color: textColor(
-                    app.theme.evalColors[
-                        (widget.studentAvg.round() - 1).clamp(0, 4)],
+                    app.theme.evalColors[(studentAvg.round() - 1).clamp(0, 4)],
                   ),
                 ),
               ),
@@ -111,9 +131,10 @@ class _SubjectViewState extends State<SubjectView> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(12.0),
+                padding:
+                    EdgeInsets.only(right: 12, top: 12, left: 12, bottom: 75),
                 child: Column(
-                  children: evaluationTiles.length > 0
+                  children: evaluationTiles.isNotEmpty
                       ? evaluationTiles
                       : <Widget>[
                           Empty(title: I18n.of(context).emptySubjectGrades)
@@ -124,6 +145,31 @@ class _SubjectViewState extends State<SubjectView> {
           ),
         ),
       ),
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(FeatherIcons.plus, color: app.settings.appColor),
+        backgroundColor: app.settings.theme.backgroundColor,
+        tooltip: I18n.of(context).evaluationsGhostTitle,
+        onPressed: () async {
+          Evaluation tempEval = await showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.transparent,
+            builder: (BuildContext context) =>
+                AverageCalculator(widget.subject),
+          );
+          if (tempEval != null) {
+            setState(() {
+              widget.tempEvals.add(tempEval);
+            });
+          }
+        },
+      ),
     );
+  }
+
+  _deleteCallbackFunction(Evaluation toRemove) {
+    setState(() {
+      widget.tempEvals.removeWhere((e) => e.id == toRemove.id);
+    });
   }
 }

@@ -47,7 +47,8 @@
     "undo": "Rückgängig",
     "cancel": "ABBRECHEN",
     "skip": "SKIP",
-    "next": "NEXT"
+    "next": "NEXT",
+    "add": "Addieren"
   },
   "time": {
     "": "zeit",
@@ -209,7 +210,8 @@
     "valueType": "art",
     "form": "Skala",
     "writeDate": "Prüfungszeit",
-    "date": "Hochladezeit"
+    "date": "Hochladezeit",
+    "weight": "Gewicht"
   },
   "evaluations": {
     "": "Deine Noten",
@@ -221,7 +223,12 @@
     "4qYear": "4. Quartal",
     "endYear": "Zeugnis",
     "subjects": "Fächer",
-    "statistics": "Statistiken"
+    "statistics": "Statistiken",
+    "ghost": {
+      "": "SCHATTENNOTE",
+      "title": "Schattennote addieren",
+      "tooltip": "Schattennote löschen"
+    }
   },
   "student": {
     "school": "Schule",
@@ -304,7 +311,15 @@
     "debug": {
       "title": "Entwichlereinstellungen",
       "delete": "Appdaten löschen",
-      "deleteSuccess": "Appdaten gelöscht"
+      "deleteSuccess": "Appdaten gelöscht",
+      "experimental": "Experimentell",
+      "disclamer": "Achtung! Diese Funktionen können immer noch instabil sein."
+    },
+    "export": {
+      "lessonCount": "Stunden",
+      "exportTimetable": "Stundenplan drucken",
+      "exportTimetableSuccess": "Stundenplan gedruckt",
+      "timeTableOf": "s Stundenplan"
     }
   },
   "success": {
@@ -392,5 +407,6 @@
     "5": "Hier siehst du alle Auslassungen, so die Abwesenheiten, Verspätungen und wenn du keine Hausaufgabe gemacht hast oder wenn du etwas nicht zum Stunde gebracht hast.",
     "6": "Hier kannst du die Konten bearbeiten, neue Konten hinzufügen oder anderen löschen. Es gibt auch die Einstellungen und ein Bisschen Info über den app hier.",
     "7": "Wir hoffen, dass dir die neuem App gefallen wird!\nBitte sei nicht stört, wenn du deine Lieblingsfunktion nicht findest. Wir werden viele Funktionen noch addieren."
-  }
+  },
+  "unknown": "unknown"
 }
