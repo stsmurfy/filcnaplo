@@ -312,8 +312,8 @@
       "title": "Entwichlereinstellungen",
       "delete": "Appdaten löschen",
       "deleteSuccess": "Appdaten gelöscht",
-      "experimental": "Experimental",
-      "disclamer": "Disclamer! These features can be still instable."
+      "experimental": "Experimentell",
+      "disclamer": "Achtung! Diese Funktionen können immer noch instabil sein."
     },
     "export": {
       "lessonCount": "Stunden",

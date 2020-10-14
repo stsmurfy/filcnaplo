@@ -313,7 +313,7 @@
       "delete": "Delete app data",
       "deleteSuccess": "Deleted app data",
       "experimental": "Experimental",
-      "disclamer": "Disclamer! These features can be still instable."
+      "disclamer": "Warning! These features can be still unstable."
     },
     "export": {
       "lessonCount": "lessons",
