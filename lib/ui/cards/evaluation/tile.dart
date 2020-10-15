@@ -33,7 +33,7 @@ class EvaluationTile extends StatelessWidget {
             child: Text(
               evaluation.value.value != 0
                   ? evaluation.value.value.toString()
-                  : I18n.of(context).unknown,
+                  : evaluation.value.shortName ?? I18n.of(context).unknown,
               textAlign: TextAlign.center,
               style: GoogleFonts.quicksand(
                 fontSize: 38.0,
