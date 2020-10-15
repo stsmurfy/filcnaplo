@@ -34,7 +34,7 @@ class ExamTile extends StatelessWidget {
                 ),
               ),
             ),
-            Text(formatDate(context, exam.date)),
+            Text(formatDate(context, exam.writeDate)),
           ],
         ),
       ),
