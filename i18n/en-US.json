@@ -126,7 +126,8 @@
     "subject": "subject",
     "uploadUser": "uploader",
     "uploadTime": "uploaded at",
-    "past": "Past homework"
+    "past": "Past homework",
+    "upcoming":"Upcoming homeworks"
   },
   "planner": {
     "title": "Planner",

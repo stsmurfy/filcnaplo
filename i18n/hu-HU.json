@@ -126,7 +126,8 @@
     "subject": "tantárgy",
     "uploadUser": "feltöltő",
     "uploadTime": "feltöltés ideje",
-    "past": "Korábbi házik"
+    "past": "Korábbi házik",
+    "upcoming":"Közelgő házik"
   },
   "planner": {
     "title": "Tervező",

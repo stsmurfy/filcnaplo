@@ -126,7 +126,8 @@
     "subject": "Fach",
     "uploadUser": "Hochgeladen von",
     "uploadTime": "Hochladezeit",
-    "past": "Vorherige Hausaufgaben"
+    "past": "Vorherige Hausaufgaben",
+    "upcoming": "Kommende Hausaufgaben"
   },
   "planner": {
     "title": "Planer",
