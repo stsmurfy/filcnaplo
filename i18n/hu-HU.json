@@ -208,7 +208,7 @@
     "description": "leírás",
     "type": "típus",
     "valueType": "jelleg",
-    "form": "értékelés formja",
+    "form": "értékelés formája",
     "writeDate": "írás ideje",
     "date": "dátum",
     "weight": "súly"
