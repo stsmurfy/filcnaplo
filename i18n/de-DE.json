@@ -17,7 +17,8 @@
   "exam": {
     "": "Prüfung",
     "title": "Prüfungen",
-    "past": "Vorherige Prüfungen"
+    "past": "Vorherige Prüfungen",
+    "upcoming": "Kommende Tests"
   },
   "grade": {
     "": "Note",
@@ -125,7 +126,8 @@
     "subject": "Fach",
     "uploadUser": "Hochgeladen von",
     "uploadTime": "Hochladezeit",
-    "past": "Vorherige Hausaufgaben"
+    "past": "Vorherige Hausaufgaben",
+    "upcoming": "Kommende Hausaufgaben"
   },
   "planner": {
     "title": "Planer",

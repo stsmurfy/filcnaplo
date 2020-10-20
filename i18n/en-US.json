@@ -17,7 +17,8 @@
   "exam": {
     "": "Exam",
     "title": "Exams",
-    "past": "Past exams"
+    "past": "Past exams",
+    "upcoming": "Upcoming exams"
   },
   "grade": {
     "": "grade",
@@ -125,7 +126,8 @@
     "subject": "subject",
     "uploadUser": "uploader",
     "uploadTime": "uploaded at",
-    "past": "Past homework"
+    "past": "Past homework",
+    "upcoming":"Upcoming homeworks"
   },
   "planner": {
     "title": "Planner",
