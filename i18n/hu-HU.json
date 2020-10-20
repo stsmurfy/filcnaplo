@@ -17,7 +17,8 @@
   "exam": {
     "": "Dolgozat",
     "title": "Számonkérések",
-    "past": "Korábbi dolgozatok"
+    "past": "Korábbi dolgozatok",
+    "upcoming": "Közelgő dolgozatok"
   },
   "grade": {
     "": "osztályzat",
@@ -125,7 +126,8 @@
     "subject": "tantárgy",
     "uploadUser": "feltöltő",
     "uploadTime": "feltöltés ideje",
-    "past": "Korábbi házik"
+    "past": "Korábbi házik",
+    "upcoming":"Közelgő házik"
   },
   "planner": {
     "title": "Tervező",
