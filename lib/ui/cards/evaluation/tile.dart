@@ -30,21 +30,24 @@ class EvaluationTile extends StatelessWidget {
           height: 46.0,
           child: Container(
             alignment: Alignment.center,
-            child: Text(
-              evaluation.value.value != 0
-                  ? evaluation.value.value.toString()
-                  : evaluation.value.shortName ?? I18n.of(context).unknown,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.quicksand(
-                fontSize: 38.0,
-                height: 1.2,
-                fontWeight: FontWeight.w500,
-                color: isTemp
-                    ? Theme.of(context).accentColor
-                    : evaluation.value.value != 0
-                        ? app.theme.evalColors[
-                            (evaluation.value.value - 1).clamp(0, 4)]
-                        : null,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                evaluation.value.value != 0
+                    ? evaluation.value.value.toString() + (evaluation.evaluationType.name == "Szazalekos" ? "%" : "")
+                    : evaluation.value.shortName ?? I18n.of(context).unknown,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.quicksand(
+                  fontSize: 38.0,
+                  height: 1.2,
+                  fontWeight: FontWeight.w500,
+                  color: isTemp
+                      ? Theme.of(context).accentColor
+                      : evaluation.value.value != 0
+                          ? app.theme.evalColors[
+                              (evaluation.value.value - 1).clamp(0, 4)]
+                          : null,
+                ),
               ),
             ),
           ),
