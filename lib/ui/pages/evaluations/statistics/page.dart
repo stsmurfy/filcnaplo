@@ -48,50 +48,54 @@ class StatisticsPage extends StatelessWidget {
               child: Text(I18n.of(context).evaluations,
                   style: TextStyle(fontSize: 18.0)),
             ),
-            FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  EvaluationBlock(
-                    title: "5",
-                    value: count5,
-                    color: app.theme.evalColors[4],
-                  ),
-                  EvaluationBlock(
-                    title: "4",
-                    value: count4,
-                    color: app.theme.evalColors[3],
-                  ),
-                  EvaluationBlock(
-                    title: "3",
-                    value: count3,
-                    color: app.theme.evalColors[2],
-                  ),
-                ],
-              ),
-            ),
-            FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  EvaluationBlock(
-                    title: "2",
-                    value: count2,
-                    color: app.theme.evalColors[1],
-                  ),
-                  EvaluationBlock(
-                    title: "1",
-                    value: count1,
-                    color: app.theme.evalColors[0],
-                  ),
-                  EvaluationBlock(
-                    value: allAvg.toStringAsFixed(2),
-                    color:
-                        app.theme.evalColors[(allAvg.round() - 1).clamp(0, 4)],
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        EvaluationBlock(
+                          title: "5",
+                          value: count5,
+                          color: app.theme.evalColors[4],
+                        ),
+                        EvaluationBlock(
+                          title: "4",
+                          value: count4,
+                          color: app.theme.evalColors[3],
+                        ),
+                        EvaluationBlock(
+                          title: "3",
+                          value: count3,
+                          color: app.theme.evalColors[2],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        EvaluationBlock(
+                          title: "2",
+                          value: count2,
+                          color: app.theme.evalColors[1],
+                        ),
+                        EvaluationBlock(
+                          title: "1",
+                          value: count1,
+                          color: app.theme.evalColors[0],
+                        ),
+                        EvaluationBlock(
+                          value: allAvg.toStringAsFixed(2),
+                          color: app.theme
+                              .evalColors[(allAvg.round() - 1).clamp(0, 4)],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
