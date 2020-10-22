@@ -100,6 +100,27 @@ class _HomePageState extends State<HomePage> {
     List<Widget> elements = [];
     List<BaseCard> cards = [];
 
+    if (app.settings.homeShowMessages)
+      app.user.sync.messages.data[0].forEach((message) => cards.add(MessageCard(
+            message,
+            key: Key(message.messageId.toString()),
+            compare: message.date,
+          )));
+
+    if (app.settings.homeShowEvaluations)
+      app.user.sync.evaluation.data[0]
+          .forEach((evaluation) => cards.add(EvaluationCard(
+                evaluation,
+                key: Key(evaluation.id),
+                compare: evaluation.date,
+              )));
+
+    if (app.settings.homeShowAbsences)
+      app.user.sync.absence.data.forEach((absence) => cards.add(AbsenceCard(
+        absence,
+        key: Key(absence.id.toString()),
+        compare: absence.submitDate,
+      )));
     app.user.sync.messages.data[0].forEach((message) => cards.add(MessageCard(
           message,
           key: Key(message.messageId.toString()),
@@ -129,7 +150,7 @@ class _HomePageState extends State<HomePage> {
 
     cards.sort((a, b) => -a.compare.compareTo(b.compare));
 
-    if (true /*if now module is turned on in settings*/) {
+    if (app.settings.homeShowUpcoming)
       elements.add(Now());
     }
 
