@@ -26,6 +26,11 @@ class SettingsController {
   bool enableNotifications;
   bool renderHtml;
   int defaultPage;
+  bool homeShowEvaluations;
+  bool homeShowAbsences;
+  bool homeShowMessages;
+  bool homeShowHomeworks;
+  bool homeShowUpcoming;
 
   get locale {
     List<String> lang = (language == "auto"
@@ -68,6 +73,12 @@ class SettingsController {
 
     enableNotifications = settingsInstance[0]["notifications"] == 1;
     renderHtml = settingsInstance[0]["render_html"] == 1;
+
+    homeShowEvaluations = settingsInstance[0]["home_show_evaluations"] == 1;
+    homeShowAbsences = settingsInstance[0]["home_show_absences"] == 1;
+    homeShowMessages = settingsInstance[0]["home_show_messages"] == 1;
+    homeShowHomeworks = settingsInstance[0]["home_show_homeworks"] == 1;
+    homeShowUpcoming = settingsInstance[0]["home_show_upcoming"] == 1;
 
     List usersInstance = await app.storage.storage.query("users");
 
