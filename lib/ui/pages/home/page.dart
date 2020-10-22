@@ -126,17 +126,6 @@ class _HomePageState extends State<HomePage> {
           key: Key(message.messageId.toString()),
           compare: message.date,
         )));
-    app.user.sync.evaluation.data[0]
-        .forEach((evaluation) => cards.add(EvaluationCard(
-              evaluation,
-              key: Key(evaluation.id),
-              compare: evaluation.date,
-            )));
-    app.user.sync.absence.data.forEach((absence) => cards.add(AbsenceCard(
-      absence,
-      key: Key(absence.id.toString()),
-      compare: absence.submitDate,
-    )));
     app.user.sync.homework.data.forEach((homework) => cards.add(HomeworkCard(
       homework,
       key: Key(homework.id.toString()),
@@ -152,7 +141,6 @@ class _HomePageState extends State<HomePage> {
 
     if (app.settings.homeShowUpcoming)
       elements.add(Now());
-    }
 
     elements.addAll(cards);
 
