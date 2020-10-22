@@ -1,7 +1,7 @@
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/generated/i18n.dart';
-import 'package:filcnaplo/utils/averages.dart';
+import 'package:filcnaplo/helpers/averages.dart';
 import 'package:filcnaplo/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
