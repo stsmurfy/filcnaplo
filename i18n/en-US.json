@@ -224,6 +224,7 @@
     "endYear": "Report",
     "subjects": "subjects",
     "statistics": "statistics",
+    "subjectsAverage":"Your subjects",
     "ghost": {
       "": "GHOST GRADE",
       "title": "Add new Ghost Grade",

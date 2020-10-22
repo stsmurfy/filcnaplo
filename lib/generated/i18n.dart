@@ -344,8 +344,8 @@ class I18n implements WidgetsLocalizations {
   String get evaluationType => "típus";
   /// "jelleg"
   String get evaluationValueType => "jelleg";
-  /// "értékelés formja"
-  String get evaluationForm => "értékelés formja";
+  /// "értékelés formája"
+  String get evaluationForm => "értékelés formája";
   /// "írás ideje"
   String get evaluationWriteDate => "írás ideje";
   /// "dátum"
@@ -372,6 +372,8 @@ class I18n implements WidgetsLocalizations {
   String get evaluationsSubjects => "Tárgyak";
   /// "Statisztikák"
   String get evaluationsStatistics => "Statisztikák";
+  /// "Tantárgyaid átlaga"
+  String get evaluationsSubjectsAverage => "Tantárgyaid átlaga";
   /// "SZELLEMJEGY"
   String get evaluationsGhost => "SZELLEMJEGY";
   /// "Szellemjegy hozzáadása"
@@ -1154,6 +1156,9 @@ class _I18n_en_US extends I18n {
   /// "statistics"
   @override
   String get evaluationsStatistics => "statistics";
+  /// "Your subjects"
+  @override
+  String get evaluationsSubjectsAverage => "Your subjects";
   /// "GHOST GRADE"
   @override
   String get evaluationsGhost => "GHOST GRADE";

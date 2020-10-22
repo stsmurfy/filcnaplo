@@ -138,7 +138,7 @@ class StatisticsPage extends StatelessWidget {
           children: <Widget>[
             StatsBlock(grades, allAvg, I18n.of(context).evaluations),
             StatsBlock(subjectGrades.map((e) => e.toString()).toList(),
-                subjectsAvg, I18n.of(context).evaluationsSubjects),
+                subjectsAvg, I18n.of(context).evaluationsSubjectsAverage),
           ],
         ),
       ),

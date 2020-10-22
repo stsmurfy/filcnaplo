@@ -224,6 +224,7 @@
     "endYear": "Év végi",
     "subjects": "Tárgyak",
     "statistics": "Statisztikák",
+    "subjectsAverage":"Tantárgyaid átlaga",
     "ghost": {
       "": "SZELLEMJEGY",
       "title": "Szellemjegy hozzáadása",
