@@ -14,19 +14,14 @@ class ToDoBuilder {
     List<Exam> exams = app.user.sync.exam.data;
     exams.sort((a, b) => -a.date.compareTo(b.date));
     examTiles = exams
-        .where((t) =>
-            (t.writeDate.isAfter(lastMidnight) && t.writeDate.isBefore(end)) ||
-            t.writeDate.isAtSameMomentAs(lastMidnight))
+        .where((t) => (t.writeDate.isAfter(now) && t.writeDate.isBefore(end)))
         .map((t) => ToDoTile(t.subjectName, t.description, t.writeDate))
         .toList();
 
     List<Homework> homeworks = app.user.sync.homework.data;
     homeworks.sort((a, b) => -a.deadline.compareTo(b.deadline));
     homeworkTiles = homeworks
-        .where((h) {
-          return (h.deadline.isAfter(lastMidnight) && h.deadline.isBefore(end)) ||
-              h.deadline.isAtSameMomentAs(lastMidnight);
-        })
+        .where((h) => (h.deadline.isAfter(now) && h.deadline.isBefore(end)))
         .map((h) => ToDoTile(h.subjectName, h.content, h.deadline))
         .toList();
   }
