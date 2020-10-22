@@ -32,44 +32,51 @@ class StatsBlock extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              EvaluationBlock(
-                title: "5",
-                value: values[4],
-                color: app.theme.evalColors[4],
-              ),
-              EvaluationBlock(
-                title: "4",
-                value: values[3],
-                color: app.theme.evalColors[3],
-              ),
-              EvaluationBlock(
-                title: "3",
-                value: values[2],
-                color: app.theme.evalColors[2],
-              ),
-            ],
+          FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                EvaluationBlock(
+                  title: "5",
+                  value: values[4],
+                  color: app.theme.evalColors[4],
+                ),
+                EvaluationBlock(
+                  title: "4",
+                  value: values[3],
+                  color: app.theme.evalColors[3],
+                ),
+                EvaluationBlock(
+                  title: "3",
+                  value: values[2],
+                  color: app.theme.evalColors[2],
+                ),
+              ],
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              EvaluationBlock(
-                title: "2",
-                value: values[1],
-                color: app.theme.evalColors[1],
-              ),
-              EvaluationBlock(
-                title: "1",
-                value: values[0],
-                color: app.theme.evalColors[0],
-              ),
-              EvaluationBlock(
-                value: average.toStringAsFixed(2),
-                color: app.theme.evalColors[(average.round() - 1).clamp(0, 4)],
-              ),
-            ],
+          FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                EvaluationBlock(
+                  title: "2",
+                  value: values[1],
+                  color: app.theme.evalColors[1],
+                ),
+                EvaluationBlock(
+                  title: "1",
+                  value: values[0],
+                  color: app.theme.evalColors[0],
+                ),
+                EvaluationBlock(
+                  value: average.toStringAsFixed(2),
+                  color:
+                      app.theme.evalColors[(average.round() - 1).clamp(0, 4)],
+                ),
+              ],
+            ),
           ),
         ],
       ),
