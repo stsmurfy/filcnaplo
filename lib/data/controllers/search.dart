@@ -7,6 +7,10 @@ import 'package:filcnaplo/ui/cards/absence/tile.dart';
 import 'package:filcnaplo/ui/pages/absences/absence/view.dart';
 import 'package:filcnaplo/ui/cards/evaluation/tile.dart';
 import 'package:filcnaplo/ui/cards/evaluation/view.dart';
+import 'package:filcnaplo/ui/cards/homework/tile.dart';
+import 'package:filcnaplo/ui/pages/planner/homeworks/view.dart';
+import 'package:filcnaplo/ui/cards/exam/tile.dart';
+import 'package:filcnaplo/ui/pages/planner/exams/view.dart';
 import 'package:filcnaplo/ui/cards/message/tile.dart';
 import 'package:filcnaplo/ui/pages/messages/message/view.dart';
 import 'package:filcnaplo/utils/format.dart';
@@ -114,6 +118,36 @@ class SearchController {
             context: context,
             backgroundColor: Colors.transparent,
             builder: (BuildContext context) => AbsenceView(absence),
+          );
+        },
+      ),
+    )));
+
+    // Homeworks
+    app.user.sync.homework.data.forEach((homework) => searchables.add(Searchable(
+      text: searchString([homework.teacher, homework.subjectName, homework.content]),
+      child: GestureDetector(
+        child: HomeworkTile(homework),
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.transparent,
+            builder: (BuildContext context) => HomeworkView(homework, () => {}),
+          );
+        },
+      ),
+    )));
+
+    // Exams
+    app.user.sync.exam.data.forEach((exam) => searchables.add(Searchable(
+      text: searchString([exam.teacher, exam.subjectName, exam.description]),
+      child: GestureDetector(
+        child: ExamTile(exam),
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.transparent,
+            builder: (BuildContext context) => ExamView(exam),
           );
         },
       ),
