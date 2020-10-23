@@ -13,6 +13,8 @@ import 'package:filcnaplo/ui/cards/exam/tile.dart';
 import 'package:filcnaplo/ui/pages/planner/exams/view.dart';
 import 'package:filcnaplo/ui/cards/message/tile.dart';
 import 'package:filcnaplo/ui/pages/messages/message/view.dart';
+import 'package:filcnaplo/ui/cards/note/tile.dart';
+import 'package:filcnaplo/ui/pages/messages/note/view.dart';
 import 'package:filcnaplo/utils/format.dart';
 import 'package:flutter/material.dart';
 
@@ -106,6 +108,22 @@ class SearchController {
                 builder: (context) => MessageView([message])));
           },
         ),
+    )));
+
+    // Notes
+    app.user.sync.note.data.forEach((note) => searchables.add(Searchable(
+      text: searchString([note.teacher, note.title, note.content]),
+      child: GestureDetector(
+        child: NoteTile(note),
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.transparent,
+            isScrollControlled: true,
+            builder: (BuildContext context) => NoteView(note),
+          );
+        },
+      ),
     )));
 
     // Absences
