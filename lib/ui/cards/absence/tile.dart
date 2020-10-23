@@ -11,44 +11,37 @@ class AbsenceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(3),
-      margin: EdgeInsets.all(3),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Container(
+          width: 46.0,
+          height: 46.0,
+          alignment: Alignment.center,
+          child: Icon(
+              absence.state == "Igazolando"
+                  ? FeatherIcons.slash
+                  : FeatherIcons.check,
+              color: absence.state == "Igazolando"
+                  ? Colors.yellow[600]
+                  : Colors.green)),
+      title: Row(
+        children: <Widget>[
+          Expanded(
+            child: Text(
+              absence.type.description,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Text(formatDate(context, absence.submitDate)),
+          ),
+        ],
       ),
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: Container(
-            width: 46.0,
-            height: 46.0,
-            alignment: Alignment.center,
-            child: Icon(
-                absence.state == "Igazolando"
-                    ? FeatherIcons.slash
-                    : FeatherIcons.check,
-                color: absence.state == "Igazolando"
-                    ? Colors.yellow[600]
-                    : Colors.green)),
-        title: Row(
-          children: <Widget>[
-            Expanded(
-              child: Text(
-                absence.type.description,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Text(formatDate(context, absence.submitDate)),
-            ),
-          ],
-        ),
-        subtitle: Text(
-          absence.mode.description + '\n' + absence.subject.name,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
+      subtitle: Text(
+        absence.mode.description + '\n' + absence.subject.name,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }
