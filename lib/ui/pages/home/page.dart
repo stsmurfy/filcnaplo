@@ -13,6 +13,8 @@ import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/ui/pages/search.dart';
 
 class HomePage extends StatefulWidget {
+  final Function jumpToPage;
+  HomePage(this.jumpToPage);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -118,7 +120,7 @@ class _HomePageState extends State<HomePage> {
     cards.sort((a, b) => -a.compare.compareTo(b.compare));
 
     if (true /*if now module is turned on in settings*/) {
-      elements.add(Now());
+      elements.add(Now(widget.jumpToPage));
     }
 
     elements.addAll(cards);
