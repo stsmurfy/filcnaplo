@@ -4,6 +4,7 @@ import 'package:filcnaplo/ui/card.dart';
 import 'package:filcnaplo/ui/cards/absence/card.dart';
 import 'package:filcnaplo/ui/cards/evaluation/card.dart';
 import 'package:filcnaplo/ui/cards/message/card.dart';
+import 'package:filcnaplo/ui/cards/note/card.dart';
 import 'package:filcnaplo/ui/cards/homework/card.dart';
 import 'package:filcnaplo/ui/cards/exam/card.dart';
 import 'package:filcnaplo/utils/format.dart';
@@ -105,6 +106,11 @@ class _HomePageState extends State<HomePage> {
           key: Key(message.messageId.toString()),
           compare: message.date,
         )));
+    app.user.sync.note.data.forEach((note) => cards.add(NoteCard(
+      note,
+      key: Key(note.id),
+      compare: note.date,
+    )));
     app.user.sync.evaluation.data[0]
         .forEach((evaluation) => cards.add(EvaluationCard(
               evaluation,
