@@ -11,40 +11,32 @@ class HomeworkTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(3),
-      margin: EdgeInsets.all(3),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Container(
+          width: 46.0,
+          height: 46.0,
+          alignment: Alignment.center,
+          child: Icon(FeatherIcons.home, color: app.settings.appColor)),
+      title: Row(
+        children: <Widget>[
+          Expanded(
+            child: Text(
+              homework.subjectName,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Text(formatDate(context, homework.date)),
+          ),
+        ],
       ),
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: Container(
-            width: 46.0,
-            height: 46.0,
-            alignment: Alignment.center,
-            child: Icon(FeatherIcons.home, color: app.settings.appColor)
-        ),
-        title: Row(
-          children: <Widget>[
-            Expanded(
-              child: Text(
-                homework.subjectName,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Text(formatDate(context, homework.date)),
-            ),
-          ],
-        ),
-        subtitle: Text(
-          escapeHtml(homework.content),
-          softWrap: true,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
+      subtitle: Text(
+        escapeHtml(homework.content),
+        softWrap: true,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }
