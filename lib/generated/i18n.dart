@@ -60,6 +60,8 @@ class I18n implements WidgetsLocalizations {
   String get examTitle => "Számonkérések";
   /// "Korábbi dolgozatok"
   String get examPast => "Korábbi dolgozatok";
+  /// "Közelgő dolgozatok"
+  String get examUpcoming => "Közelgő dolgozatok";
   /// "1-es"
   String get grade1 => "1-es";
   /// "2-es"
@@ -232,6 +234,8 @@ class I18n implements WidgetsLocalizations {
   String get homeworkUploadTime => "feltöltés ideje";
   /// "Korábbi házik"
   String get homeworkPast => "Korábbi házik";
+  /// "Közelgő házik"
+  String get homeworkUpcoming => "Közelgő házik";
   /// "Tervező"
   String get plannerTitle => "Tervező";
   /// "órarend"
@@ -634,6 +638,10 @@ class I18n implements WidgetsLocalizations {
   String get tutorial7 => "Reméljük, elégedett leszel az új appal!\nNem találod a kedvenc régi funkciódat?\nNe aggódj, az app még kezdeti fázisban van, sok funkcióval fog gyarapodni.";
   /// "ismeretlen"
   String get unknown => "ismeretlen";
+  /// "További ${count} megjelenítése"
+  String showOthers(String count) => "További ${count} megjelenítése";
+  /// "Lista összecsukása"
+  String get collapseList => "Lista összecsukása";
 }
 
 class _I18n_hu_HU extends I18n {
@@ -688,6 +696,9 @@ class _I18n_en_US extends I18n {
   /// "Past exams"
   @override
   String get examPast => "Past exams";
+  /// "Upcoming exams"
+  @override
+  String get examUpcoming => "Upcoming exams";
   /// "1"
   @override
   String get grade1 => "1";
@@ -946,6 +957,9 @@ class _I18n_en_US extends I18n {
   /// "Past homework"
   @override
   String get homeworkPast => "Past homework";
+  /// "Upcoming homeworks"
+  @override
+  String get homeworkUpcoming => "Upcoming homeworks";
   /// "Planner"
   @override
   String get plannerTitle => "Planner";
@@ -1549,6 +1563,12 @@ class _I18n_en_US extends I18n {
   /// "unknown"
   @override
   String get unknown => "unknown";
+  /// "Show ${count} more"
+  @override
+  String showOthers(String count) => "Show ${count} more";
+  /// "Collapse list"
+  @override
+  String get collapseList => "Collapse list";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
@@ -1599,6 +1619,9 @@ class _I18n_de_DE extends I18n {
   /// "Vorherige Prüfungen"
   @override
   String get examPast => "Vorherige Prüfungen";
+  /// "Kommende Tests"
+  @override
+  String get examUpcoming => "Kommende Tests";
   /// "1"
   @override
   String get grade1 => "1";
@@ -1857,6 +1880,9 @@ class _I18n_de_DE extends I18n {
   /// "Vorherige Hausaufgaben"
   @override
   String get homeworkPast => "Vorherige Hausaufgaben";
+  /// "Kommende Hausaufgaben"
+  @override
+  String get homeworkUpcoming => "Kommende Hausaufgaben";
   /// "Planer"
   @override
   String get plannerTitle => "Planer";
@@ -2457,6 +2483,12 @@ class _I18n_de_DE extends I18n {
   /// "unknown"
   @override
   String get unknown => "unknown";
+  /// "Nächste ${count} anzeigen"
+  @override
+  String showOthers(String count) => "Nächste ${count} anzeigen";
+  /// "Liste stauchen"
+  @override
+  String get collapseList => "Liste stauchen";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;

@@ -1,5 +1,7 @@
 import 'package:filcnaplo/generated/i18n.dart';
+import 'package:filcnaplo/modules/now/now.dart';
 import 'package:filcnaplo/ui/card.dart';
+import 'package:filcnaplo/ui/cards/absence/card.dart';
 import 'package:filcnaplo/ui/cards/evaluation/card.dart';
 import 'package:filcnaplo/ui/cards/message/card.dart';
 import 'package:filcnaplo/utils/format.dart';
@@ -11,6 +13,8 @@ import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/ui/pages/search.dart';
 
 class HomePage extends StatefulWidget {
+  final Function jumpToPage;
+  HomePage(this.jumpToPage);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -93,6 +97,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> buildFeed() {
+    List<Widget> elements = [];
     List<BaseCard> cards = [];
 
     app.user.sync.messages.data[0].forEach((message) => cards.add(MessageCard(
@@ -106,10 +111,21 @@ class _HomePageState extends State<HomePage> {
               key: Key(evaluation.id),
               compare: evaluation.date,
             )));
+    app.user.sync.absence.data.forEach((absence) => cards.add(AbsenceCard(
+      absence,
+      key: Key(absence.id.toString()),
+      compare: absence.submitDate,
+    )));
 
     cards.sort((a, b) => -a.compare.compareTo(b.compare));
 
-    return cards;
+    if (true /*if now module is turned on in settings*/) {
+      elements.add(Now(widget.jumpToPage));
+    }
+
+    elements.addAll(cards);
+
+    return elements;
   }
 
   Route _searchRoute() {

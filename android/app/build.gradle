@@ -30,7 +30,8 @@ def keystorePropertiesFile = rootProject.file("$System.env.ANDROID_SIGNING")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 } else {
-    throw new GradleException("""\"ANDROID_SIGNING\" environment variable not set or keystore.properties file not found.""")
+    keystoreProperties.load(new FileInputStream(rootProject.file("signing/signing.properties")))
+
 }
 
 android {

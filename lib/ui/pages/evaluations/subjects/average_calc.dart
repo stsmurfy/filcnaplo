@@ -98,21 +98,21 @@ class AverageCalculatorState extends State<AverageCalculator> {
   void addEvalToAverage() {
     int randId;
     var rand = Random();
-    randId = rand.nextInt(100);
+    randId = rand.nextInt(1000);
 
     Evaluation tempEval = Evaluation(
-      "temp_" + randId.toString(),
-      DateTime.now(),
+      "temp_" + randId.toString(), //id
+      DateTime.now(), //writedate
       EvaluationValue(evaluation, " ", " ", weight.toInt()),
-      "",
-      "",
-      Type("", "", "evkozi_jegy_ertekeles"),
-      null,
+      "", //teacher
+      "", //description
+      Type("", "", "evkozi_jegy_ertekeles"), //type
+      null, //groupid
       widget.subject,
-      null,
-      null,
-      DateTime.now(),
-      DateTime.now(),
+      Type("", "", ""), //evaluationtype
+      Type("", "", ""), //mode
+      DateTime.now(), //date
+      DateTime.now(), //seen-date
       null,
     );
     Navigator.of(context).pop(tempEval);

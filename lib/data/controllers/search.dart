@@ -3,6 +3,8 @@ import 'package:filcnaplo/data/models/searchable.dart';
 import 'package:filcnaplo/data/models/school.dart';
 import 'package:filcnaplo/data/models/message.dart';
 import 'package:filcnaplo/data/context/app.dart';
+import 'package:filcnaplo/ui/cards/absence/tile.dart';
+import 'package:filcnaplo/ui/pages/absences/absence/view.dart';
 import 'package:filcnaplo/ui/cards/evaluation/tile.dart';
 import 'package:filcnaplo/ui/cards/evaluation/view.dart';
 import 'package:filcnaplo/ui/cards/message/tile.dart';
@@ -100,6 +102,21 @@ class SearchController {
                 builder: (context) => MessageView([message])));
           },
         ),
+    )));
+
+    // Absences
+    app.user.sync.absence.data.forEach((absence) => searchables.add(Searchable(
+      text: searchString([absence.teacher, absence.subject.name, absence.type.description, absence.mode.description]),
+      child: GestureDetector(
+        child: AbsenceTile(absence),
+        onTap: () {
+          showModalBottomSheet(
+            context: context,
+            backgroundColor: Colors.transparent,
+            builder: (BuildContext context) => AbsenceView(absence),
+          );
+        },
+      ),
     )));
 
     // Evaluations

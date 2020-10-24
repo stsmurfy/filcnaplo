@@ -74,8 +74,9 @@ class StatsBlock extends StatelessWidget {
                   value: average.toStringAsFixed(2),
                   color:
                       app.theme.evalColors[(average.round() - 1).clamp(0, 4)],
+
                 ),
-              ],
+              ),
             ),
           ),
         ],
