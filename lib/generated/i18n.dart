@@ -348,8 +348,8 @@ class I18n implements WidgetsLocalizations {
   String get evaluationType => "típus";
   /// "jelleg"
   String get evaluationValueType => "jelleg";
-  /// "értékelés formja"
-  String get evaluationForm => "értékelés formja";
+  /// "értékelés formája"
+  String get evaluationForm => "értékelés formája";
   /// "írás ideje"
   String get evaluationWriteDate => "írás ideje";
   /// "dátum"
@@ -636,6 +636,10 @@ class I18n implements WidgetsLocalizations {
   String get tutorial7 => "Reméljük, elégedett leszel az új appal!\nNem találod a kedvenc régi funkciódat?\nNe aggódj, az app még kezdeti fázisban van, sok funkcióval fog gyarapodni.";
   /// "ismeretlen"
   String get unknown => "ismeretlen";
+  /// "További ${count} megjelenítése"
+  String showOthers(String count) => "További ${count} megjelenítése";
+  /// "Lista összecsukása"
+  String get collapseList => "Lista összecsukása";
 }
 
 class _I18n_hu_HU extends I18n {
@@ -1554,6 +1558,12 @@ class _I18n_en_US extends I18n {
   /// "unknown"
   @override
   String get unknown => "unknown";
+  /// "Show ${count} more"
+  @override
+  String showOthers(String count) => "Show ${count} more";
+  /// "Collapse list"
+  @override
+  String get collapseList => "Collapse list";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
@@ -2468,6 +2478,12 @@ class _I18n_de_DE extends I18n {
   /// "unknown"
   @override
   String get unknown => "unknown";
+  /// "Nächste ${count} anzeigen"
+  @override
+  String showOthers(String count) => "Nächste ${count} anzeigen";
+  /// "Liste stauchen"
+  @override
+  String get collapseList => "Liste stauchen";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
