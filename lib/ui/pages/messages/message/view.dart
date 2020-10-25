@@ -21,6 +21,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:filcnaplo/data/controllers/storage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:open_file/open_file.dart';
+import 'package:downloads_path_provider/downloads_path_provider.dart';
 
 class MessageView extends StatefulWidget {
   final List<Message> messages;
@@ -376,7 +377,15 @@ class _AttachmentTileState extends State<AttachmentTile> {
     }
 
     handleSave() async {
-      saveAttachment(attachment, data, true);
+      saveAttachment(attachment, data).then((String f) => OpenFile.open(f));
+    }
+
+    tapImage() {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ImageViewer(
+              imageProvider: MemoryImage(data),
+              shareHandler: handleShare,
+              downloadHandler: handleSave)));
     }
 
     /* String dir = (await getTemporaryDirectory()).path;
@@ -404,20 +413,7 @@ class _AttachmentTileState extends State<AttachmentTile> {
                                   image: MemoryImage(data),
                                   alignment: Alignment.center,
                                   fit: BoxFit.cover,
-                                  child: InkWell(
-                                      onTap: () => {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ImageViewer(
-                                                            imageProvider:
-                                                                MemoryImage(
-                                                                    data),
-                                                            shareHandler:
-                                                                handleShare,
-                                                            downloadHandler:
-                                                                handleSave)))
-                                          }),
+                                  child: InkWell(onTap: tapImage),
                                 )
                               : Center(
                                   child: Container(
@@ -448,7 +444,8 @@ class _AttachmentTileState extends State<AttachmentTile> {
                     icon: Icon(FeatherIcons.download),
                     onPressed: () {
                       if (data != null) {
-                        saveAttachment(attachment, data, true);
+                        saveAttachment(attachment, data)
+                            .then((String f) => OpenFile.open(f));
                       } else {
                         downloadAttachment(attachment);
                       }
@@ -465,22 +462,19 @@ class _AttachmentTileState extends State<AttachmentTile> {
 }
 
 // todo: error handling (snackbar)
-Future saveAttachment(Attachment attachment, Uint8List data, bool open) async {
-  String downloads;
-
+Future<String> saveAttachment(
+  Attachment attachment,
+  Uint8List data,
+) async {
   try {
-    var downloadsDir =
-        await getExternalStorageDirectories(type: StorageDirectory.downloads);
-    downloads = downloadsDir[0].path;
-    print(downloads);
+    String downloads = (await DownloadsPathProvider.downloadsDirectory).path;
 
     if (data != null) {
-      if (await StorageController.writeFile(
-          downloads + attachment.name, data)) {
-        if (open) {
-          await OpenFile.open(downloads + attachment.name);
-        }
+      var filePath = downloads + "/" + attachment.name;
+      print("File: " + filePath);
+      if (await StorageController.writeFile(filePath, data)) {
         print("Downloaded " + attachment.name);
+        return filePath;
       } else {
         throw "Storage Permission denied";
       }
@@ -494,5 +488,5 @@ Future saveAttachment(Attachment attachment, Uint8List data, bool open) async {
 
 Future downloadAttachment(Attachment attachment) async {
   var data = await app.user.kreta.downloadAttachment(attachment);
-  saveAttachment(attachment, data, true);
+  saveAttachment(attachment, data).then((String f) => OpenFile.open(f));
 }

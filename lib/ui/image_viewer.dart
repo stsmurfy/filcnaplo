@@ -21,17 +21,13 @@ class ImageViewer extends StatelessWidget {
             icon: Icon(
               FeatherIcons.download,
             ),
-            onPressed: () {
-              downloadHandler();
-            },
+            onPressed: downloadHandler,
           ),
           IconButton(
             icon: Icon(
               FeatherIcons.share2,
             ),
-            onPressed: () {
-              shareHandler();
-            },
+            onPressed: shareHandler,
           ),
         ],
       ),
