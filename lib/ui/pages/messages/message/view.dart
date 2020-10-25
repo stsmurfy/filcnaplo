@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'dart:typed_data';
+import 'package:filcnaplo/ui/image_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/models/message.dart';
@@ -364,6 +366,27 @@ class _AttachmentTileState extends State<AttachmentTile> {
   Widget build(BuildContext context) {
     var attachment = widget.attachment;
 
+    handleShare() async {
+      String dir = (await getTemporaryDirectory()).path;
+      print(dir);
+      File temp = new File('$dir/temp.file.' + attachment.name);
+      await temp.writeAsBytes(data);
+      await Share.shareFiles(['$dir/temp.file.' + attachment.name]);
+      temp.delete();
+    }
+
+    handleSave() async {
+      saveAttachment(attachment, data, true);
+    }
+
+    /* String dir = (await getTemporaryDirectory()).path;
+    print(dir);
+    File temp = new File('$dir/temp.file.' + attachment.name);
+    await temp.writeAsBytes(data);
+    /*do something with temp file*/
+    await Share.shareFiles(['$dir/temp.file']);
+    temp.delete(); */
+
     return Card(
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.symmetric(vertical: 0, horizontal: 14),
@@ -381,7 +404,20 @@ class _AttachmentTileState extends State<AttachmentTile> {
                                   image: MemoryImage(data),
                                   alignment: Alignment.center,
                                   fit: BoxFit.cover,
-                                  child: InkWell(onTap: () => {}),
+                                  child: InkWell(
+                                      onTap: () => {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ImageViewer(
+                                                            imageProvider:
+                                                                MemoryImage(
+                                                                    data),
+                                                            shareHandler:
+                                                                handleShare,
+                                                            downloadHandler:
+                                                                handleSave)))
+                                          }),
                                 )
                               : Center(
                                   child: Container(
@@ -411,7 +447,11 @@ class _AttachmentTileState extends State<AttachmentTile> {
                   IconButton(
                     icon: Icon(FeatherIcons.download),
                     onPressed: () {
-                      downloadAttachment(attachment);
+                      if (data != null) {
+                        saveAttachment(attachment, data, true);
+                      } else {
+                        downloadAttachment(attachment);
+                      }
                     },
                   ),
                 ],
@@ -425,19 +465,21 @@ class _AttachmentTileState extends State<AttachmentTile> {
 }
 
 // todo: error handling (snackbar)
-Future downloadAttachment(Attachment attachment) async {
-  var data = await app.user.kreta.downloadAttachment(attachment);
+Future saveAttachment(Attachment attachment, Uint8List data, bool open) async {
   String downloads;
 
   try {
     var downloadsDir =
         await getExternalStorageDirectories(type: StorageDirectory.downloads);
     downloads = downloadsDir[0].path;
+    print(downloads);
 
     if (data != null) {
       if (await StorageController.writeFile(
           downloads + attachment.name, data)) {
-        await OpenFile.open(downloads + attachment.name);
+        if (open) {
+          await OpenFile.open(downloads + attachment.name);
+        }
         print("Downloaded " + attachment.name);
       } else {
         throw "Storage Permission denied";
@@ -448,4 +490,9 @@ Future downloadAttachment(Attachment attachment) async {
   } catch (error) {
     print("ERROR: downloadAttachment: " + error.toString());
   }
+}
+
+Future downloadAttachment(Attachment attachment) async {
+  var data = await app.user.kreta.downloadAttachment(attachment);
+  saveAttachment(attachment, data, true);
 }

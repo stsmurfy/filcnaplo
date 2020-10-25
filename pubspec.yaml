@@ -41,6 +41,7 @@ dependencies:
   in_app_review: ^0.2.0+3
   pdf: ^1.11.1
   printing: ^3.6.1
+  photo_view: ^0.10.2
 
 dev_dependencies:
   flutter_test:
