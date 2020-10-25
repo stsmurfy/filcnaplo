@@ -58,26 +58,24 @@ class StatsBlock extends StatelessWidget {
           FittedBox(
             fit: BoxFit.fitWidth,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                EvaluationBlock(
-                  title: "2",
-                  value: values[1],
-                  color: app.theme.evalColors[1],
-                ),
-                EvaluationBlock(
-                  title: "1",
-                  value: values[0],
-                  color: app.theme.evalColors[0],
-                ),
-                EvaluationBlock(
-                  value: average.toStringAsFixed(2),
-                  color:
-                      app.theme.evalColors[(average.round() - 1).clamp(0, 4)],
-
-                ),
-              ),
-            ),
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  EvaluationBlock(
+                    title: "2",
+                    value: values[1],
+                    color: app.theme.evalColors[1],
+                  ),
+                  EvaluationBlock(
+                    title: "1",
+                    value: values[0],
+                    color: app.theme.evalColors[0],
+                  ),
+                  EvaluationBlock(
+                    value: average.toStringAsFixed(2),
+                    color:
+                        app.theme.evalColors[(average.round() - 1).clamp(0, 4)],
+                  ),
+                ]),
           ),
         ],
       ),
