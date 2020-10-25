@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/data/models/message.dart';
@@ -319,7 +320,7 @@ class _MessageViewTileState extends State<MessageViewTile> {
           showBody
               ? Column(
                   children: widget.message.attachments
-                      .map((attachment) => attachmentTile(attachment))
+                      .map((attachment) => AttachmentTile(attachment))
                       .toList())
               : Container(),
           (!widget.isLast) ? Divider() : Container(),
@@ -327,32 +328,97 @@ class _MessageViewTileState extends State<MessageViewTile> {
       ),
     );
   }
+}
 
-  Widget attachmentTile(Attachment attachment) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(99),
-      ),
-      child: Row(
-        children: <Widget>[
-          Icon(FeatherIcons.file),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(left: 12.0),
-              child: Text(
-                attachment.name,
-                overflow: TextOverflow.ellipsis,
+class AttachmentTile extends StatefulWidget {
+  AttachmentTile(this.attachment, {Key key}) : super(key: key);
+
+  final Attachment attachment;
+
+  @override
+  _AttachmentTileState createState() => new _AttachmentTileState();
+}
+
+class _AttachmentTileState extends State<AttachmentTile> {
+  Uint8List data;
+
+  isImage(Attachment attachment) {
+    return attachment.name.endsWith(".jpg") || attachment.name.endsWith(".png");
+    /* todo: check if it's an image by mime type */
+  }
+
+  @override
+  initState() {
+    var attachment = widget.attachment;
+    super.initState();
+    if (isImage(attachment)) {
+      app.user.kreta.downloadAttachment(this.widget.attachment).then((var d) {
+        setState(() {
+          data = d;
+        });
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var attachment = widget.attachment;
+
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      margin: EdgeInsets.symmetric(vertical: 0, horizontal: 14),
+      child: Container(
+        child: Column(
+          children: [
+            isImage(attachment)
+                ? Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 120,
+                          child: data != null
+                              ? Ink.image(
+                                  image: MemoryImage(data),
+                                  alignment: Alignment.center,
+                                  fit: BoxFit.cover,
+                                  child: InkWell(onTap: () => {}),
+                                )
+                              : Center(
+                                  child: Container(
+                                      width: 35,
+                                      height: 35,
+                                      child: CircularProgressIndicator()),
+                                ),
+                        ),
+                      ),
+                    ],
+                  )
+                : Container(),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.0),
+              child: Row(
+                children: <Widget>[
+                  Icon(FeatherIcons.file),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 12.0),
+                      child: Text(
+                        attachment.name,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(FeatherIcons.download),
+                    onPressed: () {
+                      downloadAttachment(attachment);
+                    },
+                  ),
+                ],
               ),
             ),
-          ),
-          IconButton(
-            icon: Icon(FeatherIcons.download),
-            onPressed: () {
-              downloadAttachment(attachment);
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
