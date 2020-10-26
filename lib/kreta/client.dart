@@ -184,6 +184,8 @@ class KretaClient {
           "institute_code": user.instituteCode,
         });
 
+        user.role = studentJson["role"];
+
         return true;
       }
 

@@ -151,7 +151,8 @@
   },
   "event": {
     "": "esemény",
-    "title": "Események"
+    "title": "Események",
+    "upcoming": "Közelgő események"
   },
   "message": {
     "": "üzenet",
@@ -298,7 +299,8 @@
     "general": {
       "title": "Általános",
       "language": "Nyelv",
-      "startPage": "Kezdőoldal"
+      "startPage": "Kezdőoldal",
+      "customizeHome": "Főoldal testreszabása"
     },
     "privacy": {
       "title": "Adatvédelem",

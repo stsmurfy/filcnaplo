@@ -30,6 +30,21 @@ void main() async {
       await app.storage.createSettingsTable(app.storage.storage);
       await app.storage.storage.update("settings", settings[0]);
     }
+
+    // Upgrade database for home settings
+    if (!settings[0].containsKey("home_show_evaluations")) {
+      await app.storage.storage.execute("ALTER TABLE settings ADD COLUMN home_show_evaluations INTIGER;");
+      await app.storage.storage.execute("ALTER TABLE settings ADD COLUMN home_show_messages INTIGER;");
+      await app.storage.storage.execute("ALTER TABLE settings ADD COLUMN home_show_absences INTIGER;");
+      await app.storage.storage.execute("ALTER TABLE settings ADD COLUMN home_show_homeworks INTIGER;");
+      await app.storage.storage.execute("ALTER TABLE settings ADD COLUMN home_show_upcoming INTIGER;");
+      settings[0]["home_show_evaluations"] = 1;
+      settings[0]["home_show_messages"] = 1;
+      settings[0]["home_show_absences"] = 1;
+      settings[0]["home_show_homeworks"] = 1;
+      settings[0]["home_show_upcoming"] = 1;
+      await app.storage.storage.update("settings", settings[0]);
+    }
   } catch (_) {
     await app.storage.create();
     app.firstStart = true;

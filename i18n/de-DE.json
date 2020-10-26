@@ -151,7 +151,8 @@
   },
   "event": {
     "": "Ereignis",
-    "title": "Ereignisse"
+    "title": "Ereignisse",
+    "upcoming": "Kommende Ereignisse"
   },
   "message": {
     "": "Benachrichtigung",
@@ -297,7 +298,8 @@
     "general": {
       "title": "Allgemein",
       "language": "Sprache",
-      "startPage": "Startseite"
+      "startPage": "Startseite",
+      "customizeHome": "Hauptbildschirm anpassen"
     },
     "privacy": {
       "title": "Datenschutz",

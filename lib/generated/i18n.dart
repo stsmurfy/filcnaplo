@@ -260,6 +260,8 @@ class I18n implements WidgetsLocalizations {
   String get event => "esemény";
   /// "Események"
   String get eventTitle => "Események";
+  /// "Közelgő események"
+  String get eventUpcoming => "Közelgő események";
   /// "üzenet"
   String get message => "üzenet";
   /// "Üzenetek"
@@ -484,6 +486,8 @@ class I18n implements WidgetsLocalizations {
   String get settingsGeneralLanguage => "Nyelv";
   /// "Kezdőoldal"
   String get settingsGeneralStartPage => "Kezdőoldal";
+  /// "Főoldal testreszabása"
+  String get settingsGeneralCustomizeHome => "Főoldal testreszabása";
   /// "Adatvédelem"
   String get settingsPrivacyTitle => "Adatvédelem";
   /// "\"Láttam\" küldése"
@@ -996,6 +1000,9 @@ class _I18n_en_US extends I18n {
   /// "Events"
   @override
   String get eventTitle => "Events";
+  /// "Upcoming events"
+  @override
+  String get eventUpcoming => "Upcoming events";
   /// "message"
   @override
   String get message => "message";
@@ -1332,6 +1339,9 @@ class _I18n_en_US extends I18n {
   /// "Start page"
   @override
   String get settingsGeneralStartPage => "Start page";
+  /// "Customize home"
+  @override
+  String get settingsGeneralCustomizeHome => "Customize home";
   /// "Privacy"
   @override
   String get settingsPrivacyTitle => "Privacy";
@@ -1919,6 +1929,9 @@ class _I18n_de_DE extends I18n {
   /// "Ereignisse"
   @override
   String get eventTitle => "Ereignisse";
+  /// "Kommende Ereignisse"
+  @override
+  String get eventUpcoming => "Kommende Ereignisse";
   /// "Benachrichtigung"
   @override
   String get message => "Benachrichtigung";
@@ -2252,6 +2265,9 @@ class _I18n_de_DE extends I18n {
   /// "Startseite"
   @override
   String get settingsGeneralStartPage => "Startseite";
+  /// "Hauptbildschirm anpassen"
+  @override
+  String get settingsGeneralCustomizeHome => "Hauptbildschirm anpassen";
   /// "Datenschutz"
   @override
   String get settingsPrivacyTitle => "Datenschutz";

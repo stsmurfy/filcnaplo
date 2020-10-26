@@ -201,6 +201,11 @@ class _AccountTileState extends State<AccountTile> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
+          subtitle: Text(
+            widget.user.role ?? I18n.of(context).unknown,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           trailing: IconButton(
             icon: Icon(FeatherIcons.moreVertical),
             onPressed: () {

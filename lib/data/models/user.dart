@@ -11,6 +11,7 @@ class User {
   String username;
   String password;
   String instituteCode;
+  String role;
   bool loginState = false;
   ProfileIcon profileIcon = ProfileIcon();
   String customProfileIcon;
@@ -45,6 +46,14 @@ class CurrentUser {
 
   String get realName {
     return app.users[app.selectedUser].realName;
+  }
+
+  set role(String value) {
+    app.users[app.selectedUser].role = value;
+  }
+
+  String get role {
+    return app.users[app.selectedUser].role;
   }
 
   set username(String value) {
