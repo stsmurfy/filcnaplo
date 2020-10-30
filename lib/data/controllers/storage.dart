@@ -11,7 +11,7 @@ class StorageController {
   Map<String, Database> users = {};
   Future createSettingsTable(Database db) async {
     await db.execute(
-        "create table settings (language TEXT, app_color TEXT, theme TEXT, background_color INTIGER, notifications INTIGER, selected_user INTIGER, render_html INTIGER, debug_mode INTIGER, default_page INTIGER)");
+        "create table settings (language TEXT, app_color TEXT, theme TEXT, background_color INTIGER, notifications INTIGER, selected_user INTIGER, render_html INTIGER, debug_mode INTIGER, default_page INTIGER, evening_start_hour INTIGER, studying_periods_bitfield INTIGER)");
   }
 
   Future init() async {
@@ -42,7 +42,9 @@ class StorageController {
           "selected_user": 0,
           "render_html": 1,
           "debug_mode": 0,
-          "default_page": 0
+          "default_page": 0,
+          "evening_start_hour": 18,
+          "studying_periods_bitfield": 0
         });
 
         // Create Eval Colors

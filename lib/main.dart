@@ -19,23 +19,40 @@ void main() async {
 
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   app.currentAppVersion = packageInfo.version;
-  
+
   await app.storage.init();
   List<Map<String, dynamic>> settings;
+
+  bool migrationRequired = false;
+  Map<String, dynamic> settingsCopy;
   try {
     settings = await app.storage.storage.query("settings");
-    if (!settings[0].containsKey("default_page")) {
+    List<String> addedDBKeys = [
+      "default_page",
+      "evening_start_hour",
+      "studying_periods_bitfield"
+    ];
+    for (String item in addedDBKeys) {
+      if (!settings[0].containsKey(item)) {
+        migrationRequired = true;
+        break;
+      }
+    }
+
+    if (migrationRequired) {
+      settingsCopy = Map<String, dynamic>.from(settings[0]);
+      settingsCopy["default_page"] = settingsCopy["default_page"] ?? 0;
+      settingsCopy["evening_start_hour"] = settingsCopy["evening_start_hour"] ?? 18;
+      settingsCopy["studying_periods_bitfield"] = settingsCopy["studying_periods_bitfield"] ?? 0;
       await app.storage.storage.execute("drop table settings");
-      settings[0]["default_page"] = 0;
       await app.storage.createSettingsTable(app.storage.storage);
-      await app.storage.storage.update("settings", settings[0]);
+      await app.storage.storage.insert("settings", settingsCopy);
     }
   } catch (_) {
     await app.storage.create();
     app.firstStart = true;
   }
-
-  await app.settings.update(login: false, settings: settings);
+  await app.settings.update(login: false, settings: migrationRequired ? [settingsCopy] : settings);
   // Set current page to default page
   app.selectedPage = app.settings.defaultPage;
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -134,7 +151,9 @@ class _AppState extends State<App> {
           theme: theme,
           home: app.firstStart
               ? WelcomePage()
-              : app.users.length > 0 ? PageFrame() : LoginPage(),
+              : app.users.length > 0
+                  ? PageFrame()
+                  : LoginPage(),
         );
       },
     );

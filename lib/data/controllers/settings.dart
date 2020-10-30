@@ -17,6 +17,7 @@ import 'package:filcnaplo/data/models/user.dart';
 import 'package:filcnaplo/ui/profile_icon.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'package:filcnaplo/modules/now/period.dart';
 class SettingsController {
   String language;
   String deviceLanguage;
@@ -26,7 +27,8 @@ class SettingsController {
   bool enableNotifications;
   bool renderHtml;
   int defaultPage;
-
+  int eveningStartHour;
+  Set<Period> studyingPeriods = Set();
   get locale {
     List<String> lang = (language == "auto"
             ? deviceLanguage != null ? deviceLanguage : "hu_HU"
@@ -48,6 +50,15 @@ class SettingsController {
     language = settingsInstance[0]["language"];
     appColor = ThemeContext.colors[settingsInstance[0]["app_color"]];
     backgroundColor = settingsInstance[0]["background_color"];
+
+    eveningStartHour = settingsInstance[0]["evening_start_hour"];
+    
+    int studyingPeriodsBitfield = settingsInstance[0]["studying_periods_bitfield"];
+    for (int i = 0; i < Period.values.length; i++) {
+      if ((studyingPeriodsBitfield & (1 << i)) > 0) {
+        studyingPeriods.add(Period.values[i]);
+      }
+    }
 
     defaultPage = settingsInstance[0]["default_page"];
     theme = {
