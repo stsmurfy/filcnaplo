@@ -14,6 +14,7 @@ class CurrentLessonCard extends BaseCard {
             currentLesson.description,
             currentLesson.room,
             -DateTime.now().difference(currentLesson.end).inMinutes),
-            padding: EdgeInsets.all(20),);
+            padding: EdgeInsets.all(0)
+    );
   }
 }
