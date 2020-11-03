@@ -43,7 +43,7 @@ void main() async {
       settingsCopy = Map<String, dynamic>.from(settings[0]);
       settingsCopy["default_page"] = settingsCopy["default_page"] ?? 0;
       settingsCopy["evening_start_hour"] = settingsCopy["evening_start_hour"] ?? 18;
-      settingsCopy["studying_periods_bitfield"] = settingsCopy["studying_periods_bitfield"] ?? 0;
+      settingsCopy["studying_periods_bitfield"] = settingsCopy["studying_periods_bitfield"] ?? 1 << 3 | 1 << 4 | 1 << 5 ;
       await app.storage.storage.execute("drop table settings");
       await app.storage.createSettingsTable(app.storage.storage);
       await app.storage.storage.insert("settings", settingsCopy);

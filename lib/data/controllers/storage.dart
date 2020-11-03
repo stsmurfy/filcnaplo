@@ -23,7 +23,7 @@ class StorageController {
 
   Future create() async {
     await destroy(appPath);
-
+    
     storage = await openDatabase(
       appPath,
       version: 1,
@@ -44,7 +44,7 @@ class StorageController {
           "debug_mode": 0,
           "default_page": 0,
           "evening_start_hour": 18,
-          "studying_periods_bitfield": 0
+          "studying_periods_bitfield": 1 << 3 | 1 << 4 | 1 << 5 //Weekend, evening, and afternoon by default
         });
 
         // Create Eval Colors
