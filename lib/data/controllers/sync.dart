@@ -8,7 +8,9 @@ import 'package:filcnaplo/data/sync/exam.dart';
 import 'package:filcnaplo/data/sync/homework.dart';
 import 'package:filcnaplo/data/sync/timetable.dart';
 import 'package:filcnaplo/data/context/app.dart';
-
+import 'package:filcnaplo/ui/pages/planner/timetable/builder.dart';
+import 'package:filcnaplo/ui/pages/planner/timetable/week.dart';
+import 'dart:async';
 class SyncController {
   // Users
   Map<String, SyncUser> users = {};
@@ -17,7 +19,7 @@ class SyncController {
   List<Map<String, dynamic>> tasks = [];
   Function updateCallback;
   int currentTask = 0;
-
+  Future<void> fullSyncFinished = Completer().future;
   void addUser(String userID) {
     if (users[userID] == null) users[userID] = SyncUser();
   }
@@ -95,7 +97,7 @@ class SyncController {
       }
     });
     tasks = [];
-
+    fullSyncFinished = Future.value(true);
     print("INFO: Full sync completed.");
   }
 
@@ -143,4 +145,10 @@ class SyncUser {
   ExamSync exam = ExamSync();
   HomeworkSync homework = HomeworkSync();
   TimetableSync timetable = TimetableSync();
+  SyncUser() {
+    TimetableBuilder builder = TimetableBuilder();
+    Week currentWeek = builder.getWeek(builder.getCurrentWeek());
+    timetable.from = currentWeek.start;
+    timetable.to = currentWeek.end;
+  }
 }

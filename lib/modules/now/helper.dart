@@ -1,9 +1,6 @@
 import 'package:filcnaplo/data/models/lesson.dart';
 import 'package:filcnaplo/data/context/app.dart';
-import 'package:filcnaplo/ui/pages/planner/timetable/week.dart';
-import 'package:filcnaplo/ui/pages/planner/timetable/day.dart';
 import 'package:filcnaplo/modules/now/period.dart';
-
 import 'package:filcnaplo/modules/now/mode.dart';
 
 Period getCurrentPeriod(
@@ -27,17 +24,17 @@ Period getCurrentPeriod(
   return Period.Break;
 }
 
-Mode getMode(Week currentWeek) {
+Mode getMode(List<Lesson> lessonsThisWeek) {
   Set<Period> studyingPeriods = app.settings.studyingPeriods;
 
   DateTime now = DateTime.now();
-  List<Day> daysToday = currentWeek.days
+  List<Lesson> lessonsToday = lessonsThisWeek
       .where((e) => (e.date.year == now.year &&
           e.date.month == now.month &&
           e.date.day == now.day))
       .toList();
   Period currentPeriod = getCurrentPeriod(
-      daysToday.length == 0 ? [] : daysToday[0].lessons,
+      lessonsToday.length == 0 ? [] : lessonsToday,
       now,
       app.settings.eveningStartHour);
   if (currentPeriod == Period.Class) return Mode.AtSchool;
