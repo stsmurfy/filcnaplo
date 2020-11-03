@@ -77,11 +77,10 @@ class TimetableBuilder {
     else
       schoolStart = DateTime.utc(now.year, DateTime.september, 1);
 
-    if (schoolStart.weekday == 6 || schoolStart.weekday == 7)
-      schoolStart = schoolStart.add(Duration(days: -schoolStart.weekday + 8));
+    if (schoolStart.weekday >= 6)
+      schoolStart = schoolStart.add(Duration(days: 8 - schoolStart.weekday));
 
     return ((now.difference(schoolStart).inDays - (now.weekday - 1)) / 7)
-            .floor() +
-        1;
+            .floor() + 1 + (now.weekday >= 6 ? 1 : 0);
   }
 }
