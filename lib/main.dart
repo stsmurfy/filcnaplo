@@ -21,26 +21,20 @@ void main() async {
   app.currentAppVersion = packageInfo.version;
 
   await app.storage.init();
-  List<Map<String, dynamic>> settings;
+  Map<String, dynamic> settings;
 
   bool migrationRequired = false;
   Map<String, dynamic> settingsCopy;
   try {
-    settings = await app.storage.storage.query("settings");
+    settings = (await app.storage.storage.query("settings"))[0];
     List<String> addedDBKeys = [
       "default_page",
       "evening_start_hour",
       "studying_periods_bitfield"
     ];
-    for (String item in addedDBKeys) {
-      if (!settings[0].containsKey(item)) {
-        migrationRequired = true;
-        break;
-      }
-    }
-
+    migrationRequired = addedDBKeys.any((item) => !settings.containsKey(item));
     if (migrationRequired) {
-      settingsCopy = Map<String, dynamic>.from(settings[0]);
+      settingsCopy = Map<String, dynamic>.from(settings); //settings is immutable, see https://github.com/tekartik/sqflite/issues/140
       settingsCopy["default_page"] = settingsCopy["default_page"] ?? 0;
       settingsCopy["evening_start_hour"] = settingsCopy["evening_start_hour"] ?? 18;
       settingsCopy["studying_periods_bitfield"] = settingsCopy["studying_periods_bitfield"] ?? 1 << 3 | 1 << 4 | 1 << 5 ;
@@ -52,7 +46,7 @@ void main() async {
     await app.storage.create();
     app.firstStart = true;
   }
-  await app.settings.update(login: false, settings: migrationRequired ? [settingsCopy] : settings);
+  await app.settings.update(login: false, settings: migrationRequired ? settingsCopy : settings);
   // Set current page to default page
   app.selectedPage = app.settings.defaultPage;
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

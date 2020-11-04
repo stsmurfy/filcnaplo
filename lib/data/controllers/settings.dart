@@ -45,29 +45,29 @@ class SettingsController {
     return Color(int.parse(hexColor, radix: 16));
   }
 
-  Future update({bool login = true, List settings}) async {
-    List settingsInstance = settings ?? await app.storage.storage.query("settings");
-    language = settingsInstance[0]["language"];
-    appColor = ThemeContext.colors[settingsInstance[0]["app_color"]];
-    backgroundColor = settingsInstance[0]["background_color"];
+  Future update({bool login = true, Map<String, dynamic> settings}) async {
+    settings = settings ?? (await app.storage.storage.query("settings"))[0];
+    language = settings["language"];
+    appColor = ThemeContext.colors[settings["app_color"]];
+    backgroundColor = settings["background_color"];
 
-    eveningStartHour = settingsInstance[0]["evening_start_hour"];
+    eveningStartHour = settings["evening_start_hour"];
     
-    int studyingPeriodsBitfield = settingsInstance[0]["studying_periods_bitfield"];
+    int studyingPeriodsBitfield = settings["studying_periods_bitfield"];
     for (int i = 0; i < Period.values.length; i++) {
       if ((studyingPeriodsBitfield & (1 << i)) > 0) {
         studyingPeriods.add(Period.values[i]);
       }
     }
 
-    defaultPage = settingsInstance[0]["default_page"];
+    defaultPage = settings["default_page"];
     theme = {
       "light": ThemeContext().light(app.settings.appColor),
       "tinted": ThemeContext().tinted(),
       "dark": ThemeContext()
           .dark(app.settings.appColor, app.settings.backgroundColor)
-    }[settingsInstance[0]["theme"]];
-    app.debugMode = settingsInstance[0]["debug_mode"] == 1;
+    }[settings["theme"]];
+    app.debugMode = settings["debug_mode"] == 1;
 
     List evalColorsI = await app.storage.storage.query("eval_colors");
 
@@ -77,8 +77,8 @@ class SettingsController {
     app.theme.evalColors[3] = colorFromHex(evalColorsI[0]["color4"]);
     app.theme.evalColors[4] = colorFromHex(evalColorsI[0]["color5"]);
 
-    enableNotifications = settingsInstance[0]["notifications"] == 1;
-    renderHtml = settingsInstance[0]["render_html"] == 1;
+    enableNotifications = settings["notifications"] == 1;
+    renderHtml = settings["render_html"] == 1;
 
     List usersInstance = await app.storage.storage.query("users");
 
