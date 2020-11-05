@@ -21,6 +21,7 @@ import 'package:filcnaplo/data/models/student.dart';
 import 'package:filcnaplo/data/models/user.dart';
 import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/data/models/absence.dart';
+import 'package:filcnaplo/data/models/application.dart';
 import 'package:intl/intl.dart';
 
 class KretaClient {
@@ -703,6 +704,54 @@ class KretaClient {
       await checkResponse(response);
     } catch (error) {
       print("ERROR: KretaAPI.homeworkSolved: " + error.toString());
+    }
+  }
+
+  Future<List<Application>> getApplications() async {
+    try {
+      var response = await client.get(
+        BaseURL.KRETA_ADMIN + AdminEndpoints.applications,
+        headers: {
+          "Authorization": "Bearer $accessToken",
+          "User-Agent": userAgent,
+        },
+      );
+
+      await checkResponse(response);
+
+      List responseJson = jsonDecode(response.body);
+      List<Application> applications = [];
+
+      await Future.forEach(responseJson, (application) async {
+        Map msg = await getApplication(application["azonosito"]);
+        if (msg != null) applications.add(Application.fromJson(msg));
+      });
+
+      return applications;
+    } catch (error) {
+      print("ERROR: KretaAPI.getApplications: " + error.toString());
+      return null;
+    }
+  }
+
+  Future<Map> getApplication(int id) async {
+    try {
+      var response = await client.get(
+        BaseURL.KRETA_ADMIN + AdminEndpoints.application(id.toString()),
+        headers: {
+          "Authorization": "Bearer $accessToken",
+          "User-Agent": userAgent,
+        },
+      );
+
+      await checkResponse(response);
+
+      Map responseJson = jsonDecode(response.body);
+
+      return responseJson;
+    } catch (error) {
+      print("ERROR: KretaAPI.getApplication: " + error.toString());
+      return null;
     }
   }
 

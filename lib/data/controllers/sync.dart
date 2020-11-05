@@ -1,6 +1,7 @@
 import 'package:filcnaplo/data/sync/evaluation.dart';
 import 'package:filcnaplo/data/sync/message.dart';
 import 'package:filcnaplo/data/sync/note.dart';
+import 'package:filcnaplo/data/sync/application.dart';
 import 'package:filcnaplo/data/sync/event.dart';
 import 'package:filcnaplo/data/sync/student.dart';
 import 'package:filcnaplo/data/sync/absence.dart';
@@ -76,6 +77,11 @@ class SyncController {
       task: app.user.sync.absence.sync(),
     );
 
+    createTask(
+      name: "application",
+      task: app.user.sync.application.sync(),
+    );
+
     currentTask = 0;
     await Future.forEach(tasks, (task) async {
       try {
@@ -123,6 +129,7 @@ class SyncController {
     users.forEach((_, sync) {
       sync.messages.delete();
       sync.note.delete();
+      sync.application.delete();
       sync.event.delete();
       sync.student.delete();
       sync.evaluation.delete();
@@ -138,6 +145,7 @@ class SyncUser {
   // Syncers
   MessageSync messages = MessageSync();
   NoteSync note = NoteSync();
+  ApplicationSync application = ApplicationSync();
   EventSync event = EventSync();
   StudentSync student = StudentSync();
   EvaluationSync evaluation = EvaluationSync();

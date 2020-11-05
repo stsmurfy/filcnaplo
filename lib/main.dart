@@ -39,6 +39,8 @@ void main() async {
       }
     }
 
+    await app.storage.createCacheStorage();
+
     if (migrationRequired) {
       settingsCopy = Map<String, dynamic>.from(settings[0]);
       settingsCopy["default_page"] = settingsCopy["default_page"] ?? 0;

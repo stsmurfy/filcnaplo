@@ -50,6 +50,9 @@ class AdminEndpoints {
       "/api/v1/dokumentumok/uzenetek/$id";
   static const trashMessage = "/api/v1/kommunikacio/postaladaelemek/kuka";
   static const deleteMessage = "/api/v1/kommunikacio/postaladaelemek/torles";
+
+  static const applications = "/api/v1/ugy/kerelmek?isLezartakIs=true";
+  static String application(String id) => "/api/v1/ugy/kerelmek/$id";
 }
 
 class KretaAPI {

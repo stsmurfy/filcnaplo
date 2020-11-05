@@ -5,6 +5,7 @@ import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/data/models/subject.dart';
 import 'package:filcnaplo/data/models/message.dart';
 import 'package:filcnaplo/data/models/note.dart';
+import 'package:filcnaplo/data/models/application.dart';
 import 'package:filcnaplo/data/models/recipient.dart';
 import 'package:filcnaplo/data/models/type.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/day.dart';
@@ -143,6 +144,21 @@ class Dummy {
       null,
       "This is a test note.",
       Type("", "", "ElektronikusUzenet"),
+    ),
+  ];
+
+  static List<Application> applications = [
+    Application(
+      123,
+      1234,
+      true,
+      false,
+      DateTime.now(),
+      "Test User",
+      "This is a test.",
+      "Test",
+      [Recipient(0, '0', "Test Teacher", 0, null)],
+      [],
     ),
   ];
 
