@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:filcnaplo/ui/pages/settings/page.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/pages/accounts/view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -79,6 +80,15 @@ class _AccountPageState extends State<AccountPage> {
                             onDelete: () => setState(() {}),
                           )
                         : Container(),
+
+                    RaisedButton(
+                      child: Text("Digitális Kollaborációs Tér megnyitása"),
+                      color: app.settings.theme.backgroundColor,
+                      colorBrightness: app.settings.theme.brightness,
+                      onPressed: () {
+                        _launchDKT();
+                      },
+                    ),
 
                     app.users.length > 1 ? Divider() : Container(),
 
@@ -217,5 +227,15 @@ class _AccountTileState extends State<AccountTile> {
         ),
       ),
     );
+  }
+}
+
+_launchDKT() async {
+  String url = "https://dkttanulo.e-kreta.hu/sso?accessToken=${app.user.kreta.accessToken}";
+
+  if (await canLaunch(url)) {
+    await launch(url, forceSafariVC: false, forceWebView: false);
+  } else {
+    throw 'Could not launch $url';
   }
 }
