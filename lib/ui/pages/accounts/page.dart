@@ -81,15 +81,6 @@ class _AccountPageState extends State<AccountPage> {
                           )
                         : Container(),
 
-                    RaisedButton(
-                      child: Text("Digitális Kollaborációs Tér megnyitása"),
-                      color: app.settings.theme.backgroundColor,
-                      colorBrightness: app.settings.theme.brightness,
-                      onPressed: () {
-                        _launchDKT();
-                      },
-                    ),
-
                     app.users.length > 1 ? Divider() : Container(),
 
                     app.users.length > 1
@@ -211,18 +202,41 @@ class _AccountTileState extends State<AccountTile> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          trailing: IconButton(
-            icon: Icon(FeatherIcons.moreVertical),
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) =>
-                    AccountView(widget.user, callback: setState),
-                backgroundColor: Colors.transparent,
-              ).then((deleted) {
-                if (deleted == true) widget.onDelete();
-              });
-            },
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RaisedButton(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Icon(FeatherIcons.grid),
+                    ),
+                    Text("DKT"),
+                  ],
+                ),
+                color: app.settings.theme.backgroundColor,
+                colorBrightness: app.settings.theme.brightness,
+                shape: StadiumBorder(),
+                onPressed: () {
+                  _launchDKT();
+                },
+              ),
+              IconButton(
+                icon: Icon(FeatherIcons.moreVertical),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) =>
+                        AccountView(widget.user, callback: setState),
+                    backgroundColor: Colors.transparent,
+                  ).then((deleted) {
+                    if (deleted == true) widget.onDelete();
+                  });
+                },
+              ),
+            ],
           ),
         ),
       ),
@@ -231,7 +245,8 @@ class _AccountTileState extends State<AccountTile> {
 }
 
 _launchDKT() async {
-  String url = "https://dkttanulo.e-kreta.hu/sso?accessToken=${app.user.kreta.accessToken}";
+  String url =
+      "https://dkttanulo.e-kreta.hu/sso?accessToken=${app.user.kreta.accessToken}";
 
   if (await canLaunch(url)) {
     await launch(url, forceSafariVC: false, forceWebView: false);
