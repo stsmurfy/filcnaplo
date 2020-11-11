@@ -20,7 +20,7 @@ class ApplicationSync {
       if (applications != null) {
         data = applications;
 
-        try {
+        /*try {
           await app.user.storage.delete("kreta_applications");
         }
         catch (_) {
@@ -32,7 +32,7 @@ class ApplicationSync {
               "json": jsonEncode(application.json),
             });
           }
-        });
+        });*/
       }
 
       return applications != null;

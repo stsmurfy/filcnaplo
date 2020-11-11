@@ -53,6 +53,36 @@ class EvaluationsDial extends StatelessWidget {
   }
 }
 
+class ApplicationsDial extends StatelessWidget {
+  final Function onSelect;
+
+  ApplicationsDial({this.onSelect});
+
+  @override
+  Widget build(BuildContext context) {
+    return SpeedDial(
+      animatedIcon: AnimatedIcons.menu_close,
+      animatedIconTheme:
+      IconThemeData(size: 22.0, color: app.settings.appColor),
+      marginRight: 14.0,
+      overlayColor: Colors.black,
+      overlayOpacity: 0.35,
+      tooltip: I18n.of(context).sort,
+      backgroundColor: app.settings.theme.backgroundColor,
+      children: [
+        speedDialButton(
+          context,
+          selected: false,
+          sortInverted: false,
+          icon: FeatherIcons.folderPlus,
+          text: "TMGI igazolás beküldése",
+          onTap: () => onSelect(1),
+        )
+      ],
+    );
+  }
+}
+
 SpeedDialChild speedDialButton(
   BuildContext context, {
   bool sortInverted,

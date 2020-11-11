@@ -8,6 +8,7 @@ import 'package:filcnaplo/ui/pages/evaluations/dial.dart';
 import 'package:filcnaplo/ui/pages/evaluations/page.dart';
 import 'package:filcnaplo/ui/pages/home/page.dart';
 import 'package:filcnaplo/ui/pages/messages/page.dart';
+import 'package:filcnaplo/ui/pages/parental/page.dart';
 import 'package:filcnaplo/ui/pages/planner/page.dart';
 import 'package:filcnaplo/ui/pages/tutorial.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class _PageFrameState extends State<PageFrame> {
           "timetable": I18n.of(context).syncTimetable,
           "homework": I18n.of(context).syncHomework,
           "exam": I18n.of(context).syncExam,
+          "application": "Kérelmek szinkronizálása...",
         };
 
         setState(() {
@@ -100,6 +102,9 @@ class _PageFrameState extends State<PageFrame> {
         break;
       case 4:
         pageContent = AbsencesPage(_homeKey);
+        break;
+      case 5:
+        pageContent = ParentalPage(_homeKey);
         break;
       default:
         pageContent = HomePage(_navItemSelected);
@@ -172,7 +177,11 @@ class _PageFrameState extends State<PageFrame> {
                     );
                   },
                 )
-              : null,
+          : (app.selectedPage == 5)
+              ? ApplicationsDial(
+                  onSelect: (int selected) {},
+                )
+          : null,
       bottomNavigationBar: BottomNavbar(this._navItemSelected),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:filcnaplo/data/models/administration_type.dart';
 import 'package:filcnaplo/data/models/event.dart';
 import 'package:filcnaplo/data/models/school.dart';
 import 'package:filcnaplo/data/models/student.dart';
@@ -5,13 +6,14 @@ import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/data/models/subject.dart';
 import 'package:filcnaplo/data/models/message.dart';
 import 'package:filcnaplo/data/models/note.dart';
-import 'package:filcnaplo/data/models/application.dart';
 import 'package:filcnaplo/data/models/recipient.dart';
 import 'package:filcnaplo/data/models/type.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/day.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/week.dart';
 
+import 'application.dart';
 import 'exam.dart';
+import 'excuse.dart';
 import 'lesson.dart';
 
 class Dummy {
@@ -148,17 +150,31 @@ class Dummy {
   ];
 
   static List<Application> applications = [
-    Application(
+    Excuse(
       123,
-      1234,
-      true,
-      false,
       DateTime.now(),
-      "Test User",
-      "This is a test.",
+      DateTime.now(),
+      AdministrationType(2, "GONDVISELOI", "Gondviselői igazolás", "Gondviselői igazolás", "Gondviselői igazolás"),
+      DateTime.now(),
+      "klik123456789/12345-1/2020",
+      "",
       "Test",
-      [Recipient(0, '0', "Test Teacher", 0, null)],
-      [],
+      "User",
+      "123",
+      "TMGI/123456/20/123456",
+      DateTime.now(),
+      AdministrationType(
+          13,
+          "TMGI",
+          "Tanulói mulasztás igazolására szolgáló gondviselői igazolás benyújtása",
+          "Tanulói mulasztás igazolására szolgáló gondviselői igazolás benyújtása",
+          "Tanulói mulasztás igazolására szolgáló gondviselői igazolás benyújtása"
+      ),
+      AdministrationType(5, "LEZART", "Lezárt", "Lezárt", "Lezárt"),
+      AdministrationType(1, "NINCS_BEKULDVE", "Nincs beküldve", "Nincs beküldve", "Nincs beküldve"),
+      KretaUser(123, "Test User", "", 123, "12345678-90ab-cdef-1234-567890abcdef1"),
+      KretaUser(123, "Test User", "", 123, null),
+      []
     ),
   ];
 

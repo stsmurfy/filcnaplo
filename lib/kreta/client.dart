@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:filcnaplo/data/models/excuse.dart';
 import 'package:http/http.dart' as http;
 import 'package:filcnaplo/kreta/api.dart';
 import 'package:filcnaplo/utils/parse_jwt.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/data/context/message.dart';
 import 'package:filcnaplo/data/models/attachment.dart';
+import 'package:filcnaplo/data/models/document.dart';
 import 'package:filcnaplo/data/models/subject.dart';
 import 'package:filcnaplo/data/models/supporter.dart';
 import 'package:filcnaplo/data/models/exam.dart';
@@ -13,6 +15,7 @@ import 'package:filcnaplo/data/models/homework.dart';
 import 'package:filcnaplo/data/models/lesson.dart';
 import 'package:filcnaplo/data/context/login.dart';
 import 'package:filcnaplo/data/models/message.dart';
+import 'package:filcnaplo/data/models/application.dart';
 import 'package:filcnaplo/data/models/recipient.dart';
 import 'package:filcnaplo/data/models/school.dart';
 import 'package:filcnaplo/data/models/note.dart';
@@ -21,7 +24,6 @@ import 'package:filcnaplo/data/models/student.dart';
 import 'package:filcnaplo/data/models/user.dart';
 import 'package:filcnaplo/data/models/evaluation.dart';
 import 'package:filcnaplo/data/models/absence.dart';
-import 'package:filcnaplo/data/models/application.dart';
 import 'package:intl/intl.dart';
 
 class KretaClient {
@@ -429,6 +431,25 @@ class KretaClient {
     }
   }
 
+  Future<Uint8List> downloadDocument(Document document) async {
+    try {
+      var response = await client.get(
+        BaseURL.KRETA_ADMIN + document.kretaFilePath,
+        headers: {
+          "Authorization": "Bearer $accessToken",
+          "User-Agent": userAgent,
+        },
+      );
+
+      await checkResponse(response);
+
+      return response.bodyBytes;
+    } catch (error) {
+      print("ERROR: KretaAPI.downloadDocument: " + error.toString());
+      return null;
+    }
+  }
+
   Future<List<Note>> getNotes() async {
     try {
       var response = await client.get(
@@ -707,6 +728,31 @@ class KretaClient {
     }
   }
 
+  Future<List<KretaUser>> getClassTeachers() async {
+    try {
+      var response = await client.get(
+        BaseURL.KRETA_ADMIN + AdminEndpoints.listClassTeachers,
+        headers: {
+          "Authorization": "Bearer $accessToken",
+          "User-Agent": userAgent
+        },
+      );
+
+      await checkResponse(response);
+
+      List responseJson = jsonDecode(response.body);
+      List<KretaUser> teachers = [];
+
+      responseJson
+          .forEach((teacher) => teachers.add(KretaUser.fromJson(teacher)));
+
+      return teachers;
+    } catch (error) {
+      print("ERROR: KretaAPI.getClassTeachers: " + error.toString());
+      return null;
+    }
+  }
+
   Future<List<Application>> getApplications() async {
     try {
       var response = await client.get(
@@ -721,10 +767,28 @@ class KretaClient {
 
       List responseJson = jsonDecode(response.body);
       List<Application> applications = [];
+      List<KretaUser> classTeachers;
+
+      if (responseJson.isNotEmpty) {
+        classTeachers = await getClassTeachers();
+      }
 
       await Future.forEach(responseJson, (application) async {
         Map msg = await getApplication(application["azonosito"]);
-        if (msg != null) applications.add(Application.fromJson(msg));
+        if (msg != null) {
+          Application application = msg["igazolasTipus"] != null
+              ? Excuse.fromJson(msg)
+              : Application.fromJson(msg);
+
+          if (application.verdicts.isNotEmpty) {
+            // Fill signatory details, cause it's not part of the response
+            application.verdicts.forEach((verdict) => verdict.signatory =
+                classTeachers
+                    .firstWhere((e) => e.kretaId == verdict.signatory.kretaId));
+          }
+
+          applications.add(application);
+        }
       });
 
       return applications;
@@ -737,7 +801,7 @@ class KretaClient {
   Future<Map> getApplication(int id) async {
     try {
       var response = await client.get(
-        BaseURL.KRETA_ADMIN + AdminEndpoints.application(id.toString()),
+        BaseURL.KRETA_ADMIN + AdminEndpoints.application(id),
         headers: {
           "Authorization": "Bearer $accessToken",
           "User-Agent": userAgent,

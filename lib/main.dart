@@ -39,8 +39,6 @@ void main() async {
       }
     }
 
-    await app.storage.createCacheStorage();
-
     if (migrationRequired) {
       settingsCopy = Map<String, dynamic>.from(settings[0]);
       settingsCopy["default_page"] = settingsCopy["default_page"] ?? 0;
@@ -91,7 +89,7 @@ class _AppState extends State<App> {
     }
 
     if (app.settings.theme.backgroundColor.value !=
-            ThemeContext().tinted().backgroundColor.value &&
+        ThemeContext().tinted().backgroundColor.value &&
         app.settings.theme.brightness == Brightness.dark &&
         app.settings.backgroundColor == 1) {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -101,7 +99,7 @@ class _AppState extends State<App> {
     }
 
     if (app.settings.theme.backgroundColor.value !=
-            ThemeContext().tinted().backgroundColor.value &&
+        ThemeContext().tinted().backgroundColor.value &&
         app.settings.theme.brightness == Brightness.dark &&
         app.settings.backgroundColor == 0) {
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -154,8 +152,8 @@ class _AppState extends State<App> {
           home: app.firstStart
               ? WelcomePage()
               : app.users.length > 0
-                  ? PageFrame()
-                  : LoginPage(),
+              ? PageFrame()
+              : LoginPage(),
         );
       },
     );

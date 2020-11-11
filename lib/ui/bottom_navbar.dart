@@ -64,6 +64,16 @@ class BottomNavbar extends StatelessWidget {
           ),
           label: I18n.of(context).absenceTitle,
         ),
+        // Applications Page
+        BottomNavigationBarItem(
+          icon: Padding(
+            padding: EdgeInsets.all(14.0),
+            child: Icon(
+              FeatherIcons.atSign,
+            ),
+          ),
+          label: "e-Ügyintézés",
+        ),
       ],
       currentIndex: app.selectedPage,
       selectedFontSize: 0,

@@ -1,93 +1,120 @@
-import 'package:filcnaplo/data/models/recipient.dart';
-import 'package:filcnaplo/data/models/attachment.dart';
+import 'package:filcnaplo/data/models/administration_type.dart';
+import 'package:filcnaplo/data/models/document.dart';
+import 'package:filcnaplo/data/models/verdict.dart';
+import 'package:filcnaplo/kreta/api.dart';
 
 class Application {
-  int id;
-  int replyId;
-  int messageId;
-  int conversationId;
-  bool seen;
-  bool deleted;
-  DateTime date;
-  String sender;
-  String content;
-  String subject;
-  List<Recipient> recipients;
-  List<Attachment> attachments;
   Map json;
+  int id;
+  DateTime sendDate;
+  String registrationNumber;
+  String justification;
+  String studentLastName;
+  String studentFirstName;
+  String studentOM;
+  String fileNumber;
+  DateTime lastModified;
+  AdministrationType type;
+  AdministrationType status;
+  AdministrationType mailStatus;
+  KretaUser applicant;
+  KretaUser administrator;
+  Document filedApplication;
+  List<Verdict> verdicts;
+
+  String get displayName { return 'Kérelem'; }
 
   Application(
-      this.id,
-      this.messageId,
-      this.seen,
-      this.deleted,
-      this.date,
-      this.sender,
-      this.content,
-      this.subject,
-      this.recipients,
-      this.attachments, {
-        this.replyId,
-        this.conversationId,
-        this.json,
+    this.id,
+    this.sendDate,
+    this.registrationNumber,
+    this.justification,
+    this.studentLastName,
+    this.studentFirstName,
+    this.studentOM,
+    this.fileNumber,
+    this.lastModified,
+    this.type,
+    this.status,
+    this.mailStatus,
+    this.applicant,
+    this.administrator,
+    this.verdicts, {
+    this.json,
+  });
+
+  static void parseJson(Application instance, Map json) {
+    instance.id = json["azonosito"];
+    instance.sendDate = json["bekuldesDatum"] != null
+        ? DateTime.parse(json["bekuldesDatum"]).toLocal()
+        : null;
+    instance.registrationNumber = json["iktatoszam"] ?? "";
+    instance.justification = json["indoklas"] ?? "";
+    instance.studentLastName = json["tanuloCsaladiNev"] ?? "";
+    instance.studentFirstName = json["tanuloKeresztNev"] ?? "";
+    instance.studentOM = json["tanuloOktatasiAzonosito"] ?? "";
+    instance.fileNumber = json["ugyiratszam"] ?? "";
+    instance.lastModified = json["utolsoModositasDatum"] != null
+        ? DateTime.parse(json["utolsoModositasDatum"]).toLocal()
+        : null;
+    instance.type = json["tipus"] != null
+        ? AdministrationType.fromJson(json["tipus"])
+        : null;
+    instance.status = json["statusz"] != null
+        ? AdministrationType.fromJson(json["statusz"])
+        : null;
+    instance.mailStatus = json["postazasiStatusz"] != null
+        ? AdministrationType.fromJson(json["postazasiStatusz"])
+        : null;
+    instance.applicant = json["kerelmezo"] != null
+        ? KretaUser.fromJson(json["kerelmezo"])
+        : null;
+    instance.administrator = json["ugyintezo"] != null
+        ? KretaUser.fromJson(json["ugyintezo"])
+        : null;
+    instance.filedApplication = json["iktatottKerelem"] != null
+        ? Document.fromJson(
+            AdminEndpoints.downloadApplication, json["iktatottKerelem"])
+        : null;
+
+    instance.verdicts = [];
+
+    if (json["hatarozatLista"] != null) {
+      json["hatarozatLista"].forEach((verdict) {
+        instance.verdicts.add(Verdict.fromJson(verdict));
       });
-
-  factory Application.fromJson(Map json) {
-    Map message = json["uzenet"];
-
-    int id = message["azonosito"] ?? 0;
-    int messageId = message["azonosito"];
-    int replyId = message["elozoUzenetAzonosito"];
-    int conversationId = message["beszelgetesAzonosito"];
-    bool seen = json["isElolvasva"] ?? false;
-    bool deleted = json["isToroltElem"] ?? false;
-    DateTime date = message["utolsoModositasDatum"] != null
-        ? DateTime.parse(message["utolsoModositasDatum"]).toLocal()
-        : null;
-    DateTime submissionDate = message["bekuldesDatum"] != null
-        ? DateTime.parse(message["bekuldesDatum"]).toLocal()
-        : null;
-    String sender = message["feladoNev"] ?? "";
-    String content = message["szoveg"].replaceAll("\r", "") ?? "";
-    String subject = message["targy"] ?? "";
-
-    List<Recipient> recipients = [];
-    List<Attachment> attachments = [];
-
-    message["cimzettLista"].forEach((recipient) {
-      recipients.add(Recipient.fromJson(recipient));
-    });
-
-    message["csatolmanyok"].forEach((attachment) {
-      attachments.add(Attachment.fromJson(attachment));
-    });
-
-    return Application(
-      id,
-      messageId,
-      seen,
-      deleted,
-      date,
-      sender,
-      content,
-      subject,
-      recipients,
-      attachments,
-      replyId: replyId,
-      conversationId: conversationId,
-      json: json,
-    );
+    }
   }
 
-  bool compareTo(dynamic other) {
-    if (this.runtimeType != other.runtimeType) return false;
+  factory Application.fromJson(Map json) {
+    Application app = new Application(null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null,
+        json: json);
 
-    if (this.id == other.id &&
-        this.seen == other.seen &&
-        this.deleted == other.deleted) {
-      return true;
-    }
+    parseJson(app, json);
 
-    return false;
+    return app;
+  }
+}
+
+class KretaUser {
+  int id;
+  String name;
+  int kretaId;
+  String uid;
+  String title;
+
+  KretaUser(this.id, this.name, this.title, this.kretaId, this.uid);
+
+  factory KretaUser.fromJson(Map json) {
+    int id = json["azonosito"];
+    String name = json["nev"] ?? "";
+    String title = json["titulus"] != null
+        ? (json["titulus"] == "nincs" ? "" : json["titulus"])
+        : "";
+    int kretaId = json["kretaAzonosito"] ?? json["kretaFelhasznaloAzonosito"];
+    String uid = json["egyediAzonosito"] ?? "";
+
+    return KretaUser(id, name, title, kretaId, uid);
   }
 }

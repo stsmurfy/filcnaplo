@@ -23,7 +23,7 @@ class StorageController {
 
   Future create() async {
     await destroy(appPath);
-    
+
     storage = await openDatabase(
       appPath,
       version: 1,
@@ -111,7 +111,19 @@ class StorageController {
           "institute_code": "",
         });
 
-        createCacheStorage();
+        // Create Offline Storage
+        await db.execute("create table student (json TEXT)");
+        await db.execute("create table evaluations (json TEXT)");
+        await db.execute("create table messages_inbox (json TEXT)");
+        await db.execute("create table messages_sent (json TEXT)");
+        await db.execute("create table messages_trash (json TEXT)");
+        await db.execute("create table messages_draft (json TEXT)");
+        await db.execute("create table kreta_notes (json TEXT)");
+        await db.execute("create table kreta_events (json TEXT)");
+        await db.execute("create table kreta_absences (json TEXT)");
+        await db.execute("create table kreta_exams (json TEXT)");
+        await db.execute("create table kreta_homeworks (json TEXT)");
+        await db.execute("create table kreta_lessons (json TEXT)");
       },
     );
   }
@@ -139,22 +151,5 @@ class StorageController {
       print("ERROR: writeFile: " + error.toString());
       return false;
     }
-  }
-
-  // Create Offline Storage
-  Future createCacheStorage() async {
-    await storage.execute("CREATE TABLE IF NOT EXISTS student (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS evaluations (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS messages_inbox (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS messages_sent (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS messages_trash (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS messages_draft (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS kreta_notes (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS kreta_applications (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS kreta_events (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS kreta_absences (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS kreta_exams (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS kreta_homeworks (json TEXT)");
-    await storage.execute("CREATE TABLE IF NOT EXISTS kreta_lessons (json TEXT)");
   }
 }
