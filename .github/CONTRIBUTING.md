@@ -18,6 +18,7 @@ Nem ígérhetünk itt sem programozás-, sem git-kurzust, de a projektspecifikus
 A Filc a Google által pár éve létrehozott **[Fluttert](https://flutter.dev/)** használja, aminek nyelve a **[Dart](https://dart.dev/)**. Ha ismered a C#-ot, Javát, C++t, vagy egyéb hasonló nyelvet, **nem fog gondot okozni a használata.** A felhasználói felület létrehozásában az is segíthet, ha foglalkoztál már korábban weboldalakkal.
 Ha még nem használtál Fluttert, mindenképp böngészd át a [YouTube csatornájukat](https://www.youtube.com/channel/UCwXdFgeE9KYzlDdR7TG9cMw).
 Könnyen tudsz kódot, vagy akár UI-t is tesztelni a [DartPad](https://dartpad.dev/) oldalon.
+[Itt](https://github.com/bczsalba/ekreta-docs-v3) találsz egy Kréta Api v3 dokumentációt @bczsalba-tól.
 
 #### [Segítség a Flutter telepítéséhez és a forráskód futtatásához](/.github/SETUP.md)
 Fontos: **Legyél a flutter dev verzióján!** Írd be: `flutter channel dev`
