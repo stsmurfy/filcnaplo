@@ -1,7 +1,7 @@
 
 # Contributing Guide
 Köszönjük, ha programozással segíted a munkánkat!\
-A folytatáshoz szükséged lesz egy Linuxot vagy Windowst futtató számítógépre, minimális programozási tapasztalatra és egy kis angoltudásra.\
+A folytatáshoz szükséged lesz egy számítógépre, minimális programozási tapasztalatra és egy kis angoltudásra.\
 Segít, ha nem csak kicsit tudsz programozni, és ha ismered a Gitet és a GitHubot ;)
 
 ## Miben segítsek?
