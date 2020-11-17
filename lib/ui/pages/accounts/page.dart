@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:filcnaplo/ui/pages/settings/page.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/pages/accounts/view.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:filcnaplo/ui/pages/accounts/dkt.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -220,7 +220,19 @@ class _AccountTileState extends State<AccountTile> {
                 colorBrightness: app.settings.theme.brightness,
                 shape: StadiumBorder(),
                 onPressed: () {
-                  _launchDKT();
+                  app.kretaApi.users[widget.user.id]
+                      .refreshLogin()
+                      .then((success) {
+                    if (success) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DKTPage(widget.user)));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(I18n.of(context).loginError),
+                        duration: Duration(seconds: 5),
+                      ));
+                    }
+                  });
                 },
               ),
               IconButton(
@@ -241,16 +253,5 @@ class _AccountTileState extends State<AccountTile> {
         ),
       ),
     );
-  }
-}
-
-_launchDKT() async {
-  String url =
-      "https://dkttanulo.e-kreta.hu/sso?accessToken=${app.user.kreta.accessToken}";
-
-  if (await canLaunch(url)) {
-    await launch(url, forceSafariVC: false, forceWebView: false);
-  } else {
-    throw 'Could not launch $url';
   }
 }
