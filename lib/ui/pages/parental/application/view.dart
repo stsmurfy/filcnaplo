@@ -17,6 +17,7 @@ import 'package:flutter_html/style.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pdf_flutter/pdf_flutter.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -52,7 +53,8 @@ class _ApplicationViewState extends State<ApplicationView> {
           AppBar(
             centerTitle: true,
             leading: BackButton(),
-            title: Text(application.type.code + ' - ' + application.displayName),
+            title:
+                Text(application.type.code + ' - ' + application.displayName),
             shadowColor: Colors.transparent,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           ),
@@ -144,7 +146,9 @@ class _ApplicationViewState extends State<ApplicationView> {
                                               style: TextStyle(fontSize: 16.0)),
                                         ]),
                             ])),
-                    (verdict != null ? DocumentTile(verdict.filedVerdict) : Container()),
+                    (verdict != null
+                        ? DocumentTile(verdict.filedVerdict)
+                        : Container()),
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: Text("Kérelem".toUpperCase(),
@@ -302,23 +306,46 @@ class DocumentTile extends StatefulWidget {
 
 class _DocumentTileState extends State<DocumentTile> {
   Uint8List data;
+  String _path;
 
   isImage(Document document) {
     return document.name.endsWith(".jpg") || document.name.endsWith(".png");
     /* todo: check if it's an image by mime type */
   }
 
+  isPDF(Document document) {
+    return document.name.endsWith(".pdf");
+  }
+
   @override
   initState() {
     super.initState();
 
-    if (isImage(widget.document)) {
+    if (isImage(widget.document) || isPDF(widget.document)) {
       app.user.kreta.downloadDocument(widget.document).then((var d) {
         setState(() {
           data = d;
         });
+
+        handlePreview();
       });
     }
+  }
+
+  handlePreview() async {
+    String dir = (await getTemporaryDirectory()).path;
+    File temp = new File('$dir/temp.file.' + widget.document.name.replaceAll("/", "_"));
+    await temp.writeAsBytes(data);
+
+    print("Preview created: ${temp.path}");
+
+    setState(() => _path = temp.path);
+
+    // Hack, but no other idea
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      temp.delete();
+      print("Preview deleted: ${temp.path}");
+    });
   }
 
   @override
@@ -333,7 +360,7 @@ class _DocumentTileState extends State<DocumentTile> {
     }
 
     handleSave() async {
-      //saveAttachment(attachment, data).then((String f) => OpenFile.open(f));
+      saveDocument(widget.document, data).then((String f) => OpenFile.open(f));
     }
 
     tapImage() {
@@ -350,29 +377,34 @@ class _DocumentTileState extends State<DocumentTile> {
       child: Container(
         child: Column(
           children: [
-            isImage(widget.document)
+            isImage(widget.document) || isPDF(widget.document)
                 ? Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 120,
-                    child: data != null
-                        ? Ink.image(
-                      image: MemoryImage(data),
-                      alignment: Alignment.center,
-                      fit: BoxFit.cover,
-                      child: InkWell(onTap: tapImage),
-                    )
-                        : Center(
-                      child: Container(
-                          width: 35,
-                          height: 35,
-                          child: CircularProgressIndicator()),
-                    ),
-                  ),
-                ),
-              ],
-            )
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 120,
+                          child: data != null && _path != null
+                              ? isImage(widget.document)
+                                  ? Ink.image(
+                                      image: MemoryImage(data),
+                                      alignment: Alignment.center,
+                                      fit: BoxFit.cover,
+                                      child: InkWell(onTap: tapImage),
+                                    )
+                                  : PDF.file(
+                                      File(_path),
+                                      width: double.infinity,
+                                    )
+                              : Center(
+                                  child: Container(
+                                      width: 35,
+                                      height: 35,
+                                      child: CircularProgressIndicator()),
+                                ),
+                        ),
+                      ),
+                    ],
+                  )
                 : Container(),
             Container(
               padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.0),
@@ -384,6 +416,7 @@ class _DocumentTileState extends State<DocumentTile> {
                       padding: EdgeInsets.only(left: 12.0),
                       child: Text(
                         widget.document.name,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -411,9 +444,9 @@ class _DocumentTileState extends State<DocumentTile> {
 
 // todo: error handling (snackbar)
 Future<String> saveDocument(
-    Document document,
-    Uint8List data,
-    ) async {
+  Document document,
+  Uint8List data,
+) async {
   try {
     String downloads = (await DownloadsPathProvider.downloadsDirectory).path;
 

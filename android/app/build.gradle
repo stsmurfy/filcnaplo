@@ -30,7 +30,7 @@ def keystorePropertiesFile = rootProject.file("$System.env.ANDROID_SIGNING")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 } else {
-    keystoreProperties.load(new FileInputStream(rootProject.file("signing/signing.properties")))
+    keystoreProperties.load(new FileInputStream(rootProject.file("signing/filcnaplo.properties")))
 
 }
 
@@ -66,6 +66,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }

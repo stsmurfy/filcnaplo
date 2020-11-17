@@ -16,6 +16,10 @@ class User {
   ProfileIcon profileIcon = ProfileIcon();
   String customProfileIcon;
 
+  bool get isParent {
+    return role == "Gondviselo";
+  }
+
   User(this.id, this.username, this.password, this.instituteCode);
 }
 
@@ -129,6 +133,10 @@ class CurrentUser {
 
   KretaClient get kreta {
     return _kreta;
+  }
+
+  bool get isParent {
+    return role == "Gondviselo";
   }
 
   CurrentUser(

@@ -191,10 +191,23 @@ class _AccountTileState extends State<AccountTile> {
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
         child: ListTile(
-          leading: ProfileIcon(
-              name: widget.user.name,
-              size: 0.85,
-              image: widget.user.customProfileIcon),
+          leading: SizedBox(
+            width: 40,
+              height: 40,
+              child: Stack(children: [
+            ProfileIcon(
+                name: widget.user.name,
+                size: 0.85,
+                image: widget.user.customProfileIcon),
+            widget.user.isParent
+                ? Positioned(
+                    right: -2,
+                    bottom: 0,
+                    child:
+                        Icon(Icons.security, color: Colors.yellow, size: 18.0),
+                  )
+                : Container()
+          ])),
           //cannot reuse the default profile icon because of size differences
           title: Text(
             widget.user.name ?? I18n.of(context).unknown,
