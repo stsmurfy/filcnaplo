@@ -64,15 +64,20 @@ class MessageBuilder {
   }
 
   Future archiveMessage(BuildContext context, Message message) async {
+    app.user.kreta.trashMessage(true, message.id);
+
     _scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Text(I18n.of(context).messageDeleted),
       duration: Duration(seconds: 5),
       action: SnackBarAction(
         label: I18n.of(context).dialogUndo,
         onPressed: () {
-          // magic
+          app.kretaApi.client.trashMessage(false, message.id);
         },
       ),
     ));
+
+    app.user.sync.messages.data[app.selectedMessagePage]
+        .removeWhere((msg) => msg.id == message.id);
   }
 }
