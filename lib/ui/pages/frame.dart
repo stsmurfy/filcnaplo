@@ -178,18 +178,29 @@ class _PageFrameState extends State<PageFrame> {
                     );
                   },
                 )
-          : (app.selectedPage == 5)
-              ? ApplicationsDial(
-                  onSelect: (int selected) {
-                    switch (selected) {
-                      case 0:
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => NewExcusePage()));
-                        break;
-                    }
-                  },
-                )
-          : null,
+              : (app.selectedPage == 4 && app.tabState.absences.index == 0 && app.user.isParent)
+                  ? FloatingActionButton(
+                      child: Icon(Icons.done, color: app.settings.appColor),
+                      backgroundColor: app.settings.theme.backgroundColor,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NewExcusePage()));
+                      },
+                    )
+                  : (app.selectedPage == 5)
+                      ? ApplicationsDial(
+                          onSelect: (int selected) {
+                            switch (selected) {
+                              case 0:
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => NewExcusePage()));
+                                break;
+                            }
+                          },
+                        )
+                      : null,
       bottomNavigationBar: BottomNavbar(this._navItemSelected),
     );
   }

@@ -86,6 +86,7 @@ class _AbsenceTabsState extends State<AbsenceTabs>
                 onTap: (value) {
                   app.tabState.absences.index = value;
                   _tabController.animateTo(value);
+                  app.sync.updateCallback();
                   app.storage.storage.update("tabs", {"absences": value});
                 },
                 color: app.settings.theme.textTheme.bodyText1.color,

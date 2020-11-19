@@ -204,7 +204,7 @@ class _AccountTileState extends State<AccountTile> {
                     ? Positioned(
                         right: -2,
                         bottom: 0,
-                        child: Icon(Icons.security,
+                        child: Icon(Icons.admin_panel_settings,
                             color: Colors.yellow, size: 18.0),
                       )
                     : Container()

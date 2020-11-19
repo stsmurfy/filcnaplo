@@ -49,16 +49,16 @@ class _NewExcusePageState extends State<NewExcusePage> {
       ),
       fillColor: Colors.black12,
       filled: true,
-      contentPadding: EdgeInsets.all(8.0),
+      contentPadding: EdgeInsets.all(8),
       isDense: true,
       hintText: hint);
 
   Widget attachmentTile(File file, List<Attachment> attachments) {
     return Container(
-      padding: EdgeInsets.only(bottom: 12.0),
+      padding: EdgeInsets.symmetric(horizontal: 6),
+      margin: EdgeInsets.only(top: 1, bottom: 6),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(99),
-      ),
+          borderRadius: BorderRadius.circular(8), color: Colors.black12),
       child: Row(
         children: <Widget>[
           Icon(FeatherIcons.file),
@@ -116,7 +116,11 @@ class _NewExcusePageState extends State<NewExcusePage> {
                             },
                           ),
 
-                          Spacer(),
+                          Expanded(
+                              child: Text("Mulasztás igazolása",
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontSize: 20))),
 
                           // Send
                           IconButton(
@@ -143,9 +147,9 @@ class _NewExcusePageState extends State<NewExcusePage> {
                         ],
                       ),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 14),
+                          padding: EdgeInsets.only(left: 14, right: 14, top: 10),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Row(children: [
                                   Expanded(
@@ -197,7 +201,7 @@ class _NewExcusePageState extends State<NewExcusePage> {
                                         color: Colors.black12,
                                         borderRadius: BorderRadius.circular(8)),
                                     padding: EdgeInsets.all(8.0),
-                                    margin: EdgeInsets.symmetric(vertical: 6),
+                                    margin: EdgeInsets.only(top: 1, bottom: 6),
                                     child: DropdownButton(
                                       isDense: true,
                                       isExpanded: true,
@@ -219,7 +223,7 @@ class _NewExcusePageState extends State<NewExcusePage> {
                                     )),
                                 TextField(
                                   controller: justificationController,
-                                  decoration: inputDecoration(hint: "Indoklás"),
+                                  decoration: inputDecoration(hint: "Indoklás (nem kötelező)"),
                                   keyboardType: TextInputType.multiline,
                                   maxLines: null,
                                   minLines: 3,
@@ -324,8 +328,7 @@ class _NewExcusePageState extends State<NewExcusePage> {
     try {
       List<File> files = await FilePicker.getMultiFile();
 
-      if (files == null)
-        return;
+      if (files == null) return;
 
       setState(() {
         for (var i = 0; i < files.length; i++) {
