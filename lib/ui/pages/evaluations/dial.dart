@@ -76,7 +76,7 @@ class ApplicationsDial extends StatelessWidget {
           sortInverted: false,
           icon: FeatherIcons.folderPlus,
           text: "TMGI igazolás beküldése",
-          onTap: () => onSelect(1),
+          onTap: () => onSelect(0),
         )
       ],
     );

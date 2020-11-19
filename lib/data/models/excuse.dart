@@ -1,10 +1,10 @@
-import 'package:filcnaplo/data/models/administration_type.dart';
+import 'package:filcnaplo/data/models/kreta_dictionary_item.dart';
 import 'package:filcnaplo/data/models/application.dart';
 
 class Excuse extends Application {
   DateTime start;
   DateTime end;
-  AdministrationType excuseType;
+  KretaDictionaryItem excuseType;
 
   @override
   String get displayName { return 'Igazolás'; }
@@ -41,7 +41,7 @@ class Excuse extends Application {
 
     excuse.start =json["igazoltTavolletKezdeteDatum"] != null ? DateTime.parse(json["igazoltTavolletKezdeteDatum"]).toLocal() : null;
     excuse.end = json["igazoltTavolletVegeDatum"] != null ? DateTime.parse(json["igazoltTavolletVegeDatum"]).toLocal() : null;
-    excuse.excuseType = json["igazolasTipus"] != null ? AdministrationType.fromJson(json["igazolasTipus"]) : null;
+    excuse.excuseType = json["igazolasTipus"] != null ? KretaDictionaryItem.fromJson(json["igazolasTipus"]) : null;
 
     return excuse;
   }

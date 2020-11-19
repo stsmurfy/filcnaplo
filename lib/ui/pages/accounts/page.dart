@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:filcnaplo/ui/pages/settings/page.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/pages/accounts/view.dart';
+import 'package:filcnaplo/ui/pages/accounts/dkt.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -192,22 +193,22 @@ class _AccountTileState extends State<AccountTile> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
         child: ListTile(
           leading: SizedBox(
-            width: 40,
+              width: 40,
               height: 40,
               child: Stack(children: [
-            ProfileIcon(
-                name: widget.user.name,
-                size: 0.85,
-                image: widget.user.customProfileIcon),
-            widget.user.isParent
-                ? Positioned(
-                    right: -2,
-                    bottom: 0,
-                    child:
-                        Icon(Icons.security, color: Colors.yellow, size: 18.0),
-                  )
-                : Container()
-          ])),
+                ProfileIcon(
+                    name: widget.user.name,
+                    size: 0.85,
+                    image: widget.user.customProfileIcon),
+                widget.user.isParent
+                    ? Positioned(
+                        right: -2,
+                        bottom: 0,
+                        child: Icon(Icons.security,
+                            color: Colors.yellow, size: 18.0),
+                      )
+                    : Container()
+              ])),
           //cannot reuse the default profile icon because of size differences
           title: Text(
             widget.user.name ?? I18n.of(context).unknown,
@@ -219,18 +220,55 @@ class _AccountTileState extends State<AccountTile> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          trailing: IconButton(
-            icon: Icon(FeatherIcons.moreVertical),
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) =>
-                    AccountView(widget.user, callback: setState),
-                backgroundColor: Colors.transparent,
-              ).then((deleted) {
-                if (deleted == true) widget.onDelete();
-              });
-            },
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              widget.user.isParent
+                  ? Container()
+                  : RaisedButton(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Icon(FeatherIcons.grid),
+                          ),
+                          Text("DKT"),
+                        ],
+                      ),
+                      color: app.settings.theme.backgroundColor,
+                      colorBrightness: app.settings.theme.brightness,
+                      shape: StadiumBorder(),
+                      onPressed: () {
+                        app.kretaApi.users[widget.user.id]
+                            .refreshLogin()
+                            .then((success) {
+                          if (success) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DKTPage(widget.user)));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(I18n.of(context).loginError),
+                              duration: Duration(seconds: 5),
+                            ));
+                          }
+                        });
+                      },
+                    ),
+              IconButton(
+                icon: Icon(FeatherIcons.moreVertical),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) =>
+                        AccountView(widget.user, callback: setState),
+                    backgroundColor: Colors.transparent,
+                  ).then((deleted) {
+                    if (deleted == true) widget.onDelete();
+                  });
+                },
+              ),
+            ],
           ),
         ),
       ),

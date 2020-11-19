@@ -45,13 +45,14 @@ class AdminEndpoints {
   static const recipientCategories = "/api/v1/adatszotarak/cimzetttipusok";
   static const availableCategories = "/api/v1/kommunikacio/cimezhetotipusok";
   static const recipientsTeacher = "/api/v1/kreta/alkalmazottak/tanar";
-  static const listClassTeachers = "/api/v1/kreta/alkalmazottak/oszalyfonok";
+  static const classMasters = "/api/v1/kreta/alkalmazottak/oszalyfonok";
   static const uploadAttachment = "/ideiglenesfajlok";
   static String downloadAttachment(String id) =>
       "/api/v1/dokumentumok/uzenetek/$id";
   static const trashMessage = "/api/v1/kommunikacio/postaladaelemek/kuka";
   static const deleteMessage = "/api/v1/kommunikacio/postaladaelemek/torles";
 
+  static const tmgiTypes = "/api/v1/adatszotarak/tmgiigazolastipusok";
   static const applications = "/api/v1/ugy/kerelmek?isLezartakIs=true";
   static String application(int id) => "/api/v1/ugy/kerelmek/$id";
   static String downloadApplication(String id) =>

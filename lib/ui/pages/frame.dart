@@ -8,6 +8,7 @@ import 'package:filcnaplo/ui/pages/evaluations/dial.dart';
 import 'package:filcnaplo/ui/pages/evaluations/page.dart';
 import 'package:filcnaplo/ui/pages/home/page.dart';
 import 'package:filcnaplo/ui/pages/messages/page.dart';
+import 'package:filcnaplo/ui/pages/parental/application/compose.dart';
 import 'package:filcnaplo/ui/pages/parental/page.dart';
 import 'package:filcnaplo/ui/pages/planner/page.dart';
 import 'package:filcnaplo/ui/pages/tutorial.dart';
@@ -179,7 +180,14 @@ class _PageFrameState extends State<PageFrame> {
                 )
           : (app.selectedPage == 5)
               ? ApplicationsDial(
-                  onSelect: (int selected) {},
+                  onSelect: (int selected) {
+                    switch (selected) {
+                      case 0:
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => NewExcusePage()));
+                        break;
+                    }
+                  },
                 )
           : null,
       bottomNavigationBar: BottomNavbar(this._navItemSelected),

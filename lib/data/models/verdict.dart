@@ -1,4 +1,4 @@
-import 'package:filcnaplo/data/models/administration_type.dart';
+import 'package:filcnaplo/data/models/kreta_dictionary_item.dart';
 import 'package:filcnaplo/data/models/application.dart';
 import 'package:filcnaplo/data/models/document.dart';
 import 'package:filcnaplo/kreta/api.dart';
@@ -9,9 +9,9 @@ class Verdict {
   DateTime date;
   String content;
   KretaUser signatory;
-  AdministrationType decision;
+  KretaDictionaryItem decision;
   Document filedVerdict;
-  AdministrationType mailStatus;
+  KretaDictionaryItem mailStatus;
 
   Verdict(
       this.id,
@@ -31,9 +31,9 @@ class Verdict {
     json["hatarozatDatum"] != null ? DateTime.parse(json["hatarozatDatum"]).toLocal() : null;
     String content = json["dontesSzovege"] ?? "";
     KretaUser signatory = KretaUser(null, "", null, json["alairoKretaAzonosito"], "");
-    AdministrationType decision = json["dontes"] != null ? AdministrationType.fromJson(json["dontes"]) : null;
+    KretaDictionaryItem decision = json["dontes"] != null ? KretaDictionaryItem.fromJson(json["dontes"]) : null;
     Document filedVerdict = json["iktatottHatarozat"] != null ? Document.fromJson(AdminEndpoints.downloadVerdict, json["iktatottHatarozat"]) : null;
-    AdministrationType mailStatus = json["postazasiStatusz"] != null ? AdministrationType.fromJson(json["postazasiStatusz"]) : null;
+    KretaDictionaryItem mailStatus = json["postazasiStatusz"] != null ? KretaDictionaryItem.fromJson(json["postazasiStatusz"]) : null;
 
     return Verdict(
       id,

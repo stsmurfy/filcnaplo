@@ -1,4 +1,4 @@
-import 'package:filcnaplo/data/models/administration_type.dart';
+import 'package:filcnaplo/data/models/kreta_dictionary_item.dart';
 import 'package:filcnaplo/data/models/event.dart';
 import 'package:filcnaplo/data/models/school.dart';
 import 'package:filcnaplo/data/models/student.dart';
@@ -154,7 +154,7 @@ class Dummy {
       123,
       DateTime.now(),
       DateTime.now(),
-      AdministrationType(2, "GONDVISELOI", "Gondviselői igazolás", "Gondviselői igazolás", "Gondviselői igazolás"),
+      KretaDictionaryItem(2, "GONDVISELOI", "Gondviselői igazolás", "Gondviselői igazolás", "Gondviselői igazolás"),
       DateTime.now(),
       "klik123456789/12345-1/2020",
       "",
@@ -163,15 +163,15 @@ class Dummy {
       "123",
       "TMGI/123456/20/123456",
       DateTime.now(),
-      AdministrationType(
+      KretaDictionaryItem(
           13,
           "TMGI",
           "Tanulói mulasztás igazolására szolgáló gondviselői igazolás benyújtása",
           "Tanulói mulasztás igazolására szolgáló gondviselői igazolás benyújtása",
           "Tanulói mulasztás igazolására szolgáló gondviselői igazolás benyújtása"
       ),
-      AdministrationType(5, "LEZART", "Lezárt", "Lezárt", "Lezárt"),
-      AdministrationType(1, "NINCS_BEKULDVE", "Nincs beküldve", "Nincs beküldve", "Nincs beküldve"),
+      KretaDictionaryItem(5, "LEZART", "Lezárt", "Lezárt", "Lezárt"),
+      KretaDictionaryItem(1, "NINCS_BEKULDVE", "Nincs beküldve", "Nincs beküldve", "Nincs beküldve"),
       KretaUser(123, "Test User", "", 123, "12345678-90ab-cdef-1234-567890abcdef1"),
       KretaUser(123, "Test User", "", 123, null),
       []

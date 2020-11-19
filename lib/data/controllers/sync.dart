@@ -77,10 +77,12 @@ class SyncController {
       task: app.user.sync.absence.sync(),
     );
 
-    createTask(
-      name: "application",
-      task: app.user.sync.application.sync(),
-    );
+    if (app.user.isParent) {
+      createTask(
+        name: "application",
+        task: app.user.sync.application.sync(),
+      );
+    }
 
     currentTask = 0;
     await Future.forEach(tasks, (task) async {

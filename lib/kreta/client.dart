@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:filcnaplo/data/models/excuse.dart';
+import 'package:filcnaplo/data/models/kreta_dictionary_item.dart';
 import 'package:http/http.dart' as http;
 import 'package:filcnaplo/kreta/api.dart';
 import 'package:filcnaplo/utils/parse_jwt.dart';
@@ -731,7 +732,7 @@ class KretaClient {
   Future<List<KretaUser>> getClassTeachers() async {
     try {
       var response = await client.get(
-        BaseURL.KRETA_ADMIN + AdminEndpoints.listClassTeachers,
+        BaseURL.KRETA_ADMIN + AdminEndpoints.classMasters,
         headers: {
           "Authorization": "Bearer $accessToken",
           "User-Agent": userAgent
@@ -815,6 +816,31 @@ class KretaClient {
       return responseJson;
     } catch (error) {
       print("ERROR: KretaAPI.getApplication: " + error.toString());
+      return null;
+    }
+  }
+
+  Future<List<KretaDictionaryItem>> getTMGITypes() async {
+    try {
+      var response = await client.get(
+        BaseURL.KRETA_ADMIN + AdminEndpoints.tmgiTypes,
+        headers: {
+          "Authorization": "Bearer $accessToken",
+          "User-Agent": userAgent,
+        },
+      );
+
+      await checkResponse(response);
+
+      List responseJson = jsonDecode(response.body);
+      List<KretaDictionaryItem> types = [];
+
+      responseJson
+          .forEach((type) => types.add(KretaDictionaryItem.fromJson(type)));
+
+      return types;
+    } catch (error) {
+      print("ERROR: KretaAPI.getTMGITypes: " + error.toString());
       return null;
     }
   }

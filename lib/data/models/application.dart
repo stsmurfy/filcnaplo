@@ -1,4 +1,4 @@
-import 'package:filcnaplo/data/models/administration_type.dart';
+import 'package:filcnaplo/data/models/kreta_dictionary_item.dart';
 import 'package:filcnaplo/data/models/document.dart';
 import 'package:filcnaplo/data/models/verdict.dart';
 import 'package:filcnaplo/kreta/api.dart';
@@ -14,9 +14,9 @@ class Application {
   String studentOM;
   String fileNumber;
   DateTime lastModified;
-  AdministrationType type;
-  AdministrationType status;
-  AdministrationType mailStatus;
+  KretaDictionaryItem type;
+  KretaDictionaryItem status;
+  KretaDictionaryItem mailStatus;
   KretaUser applicant;
   KretaUser administrator;
   Document filedApplication;
@@ -58,13 +58,13 @@ class Application {
         ? DateTime.parse(json["utolsoModositasDatum"]).toLocal()
         : null;
     instance.type = json["tipus"] != null
-        ? AdministrationType.fromJson(json["tipus"])
+        ? KretaDictionaryItem.fromJson(json["tipus"])
         : null;
     instance.status = json["statusz"] != null
-        ? AdministrationType.fromJson(json["statusz"])
+        ? KretaDictionaryItem.fromJson(json["statusz"])
         : null;
     instance.mailStatus = json["postazasiStatusz"] != null
-        ? AdministrationType.fromJson(json["postazasiStatusz"])
+        ? KretaDictionaryItem.fromJson(json["postazasiStatusz"])
         : null;
     instance.applicant = json["kerelmezo"] != null
         ? KretaUser.fromJson(json["kerelmezo"])
