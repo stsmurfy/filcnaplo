@@ -10,12 +10,9 @@ import 'package:package_info/package_info.dart';
 import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/utils/format.dart';
-import 'package:filcnaplo/helpers/notification.dart';
 
 import 'package:filcnaplo/ui/pages/frame.dart';
 import 'package:filcnaplo/ui/pages/login.dart';
-
-import 'package:filcnaplo/data/controllers/background.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -101,9 +98,6 @@ class _AppState extends State<App> {
         ));
       }
     }
-
-    NotificationHelper.init();
-    BackgroundController.init();
   }
 
   void onLocaleChange(Locale locale) {

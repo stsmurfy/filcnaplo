@@ -1,6 +1,9 @@
+import 'package:filcnaplo/data/context/message.dart';
+import 'package:filcnaplo/data/controllers/background.dart';
 import 'package:filcnaplo/data/state/sync.dart';
 import 'package:filcnaplo/data/sync/ui/indicator.dart';
 import 'package:filcnaplo/generated/i18n.dart';
+import 'package:filcnaplo/helpers/notification.dart';
 import 'package:filcnaplo/ui/pages/absences/page.dart';
 import 'package:filcnaplo/ui/pages/evaluations/page.dart';
 import 'package:filcnaplo/ui/pages/home/page.dart';
@@ -25,7 +28,12 @@ class _PageFrameState extends State<PageFrame> {
 
     // Sync at startup
     app.settings.update().then((_) {
-      if (app.user.loginState) app.sync.fullSync();
+      if (app.user.loginState) {
+        //app.sync.fullSync();
+
+        NotificationHelper.init();
+        BackgroundController.init();
+      }
     });
   }
 

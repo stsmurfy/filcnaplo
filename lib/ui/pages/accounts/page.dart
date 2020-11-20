@@ -1,4 +1,5 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:filcnaplo/data/models/user.dart';
 import 'package:filcnaplo/ui/pages/accounts/tile.dart';
 import 'package:filcnaplo/ui/pages/login.dart';
 import 'package:filcnaplo/utils/format.dart';
@@ -9,6 +10,8 @@ import 'package:filcnaplo/ui/pages/settings/page.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/pages/accounts/view.dart';
 import 'package:filcnaplo/ui/pages/accounts/dkt.dart';
+
+import '../../profile_icon.dart';
 
 class AccountPage extends StatefulWidget {
   @override

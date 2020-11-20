@@ -29,27 +29,29 @@ class BackgroundController {
       print("ERROR: [BackgroundFetch] configure failed: " + error.toString());
     });
 
-    //BackgroundFetch.registerHeadlessTask(_notificationsTask);
+    BackgroundFetch.registerHeadlessTask(_notificationsTask);
+
+    app.sync.listener.listen((user) {
+      check(DateTime.now().add(Duration(days: -10)));
+    });
   }
 
-  static _notificationsTask(String taskId) async {
-    print('[BackgroundFetch] Task received: $taskId');
-
-    //await app.sync.fullSync();
-
+  static check(DateTime lastSync) {
     int i = 0;
-    DateTime lastSync = DateTime.now().add(Duration(days: -10));
+    String userName = ''; //'' [' + app.user.name + ']';
 
     // Evaluations
-    (app.user.sync.evaluation.data[0] as List<Evaluation>).forEach((evaluation) {
+    (app.user.sync.evaluation.data[0] as List<Evaluation>)
+        .forEach((evaluation) {
       if (evaluation.date.isAfter(lastSync)) {
         AwesomeNotifications().createNotification(
             content: NotificationContent(
-          id: i++,
-          channelKey: 'evaluations',
-          title: 'Új jegy',
-          body: "${evaluation.subject.name}: ${evaluation.value.value} (${evaluation.value.weight}%)",
-        ));
+              id: i++,
+              channelKey: 'evaluations',
+              title: 'Új jegy' + userName,
+              body:
+              "${evaluation.subject.name}: ${evaluation.value.value} (${evaluation.value.weight}%)",
+            ));
       }
     });
 
@@ -60,8 +62,9 @@ class BackgroundController {
             content: NotificationContent(
               id: i++,
               channelKey: 'homeworks',
-              title: 'Új házi feladat',
-              body: "${homework.subjectName}, határidő: " + DateFormat('yyyy. MM. dd.').format(homework.deadline),
+              title: 'Új házi feladat' + userName,
+              body: "${homework.subjectName}, Határidő: " +
+                  DateFormat('yyyy. MM. dd.').format(homework.deadline),
             ));
       }
     });
@@ -73,8 +76,8 @@ class BackgroundController {
             content: NotificationContent(
               id: i++,
               channelKey: 'messages',
-              title: 'Új üzenet',
-              body: "${message.sender}: ${message.subject}",
+              title: 'Új üzenet' + userName,
+              body: "${message.subject}",
             ));
       }
     });
@@ -86,7 +89,7 @@ class BackgroundController {
             content: NotificationContent(
               id: i++,
               channelKey: 'exams',
-              title: 'Új dolgozat',
+              title: 'Új dolgozat' + userName,
               body: "${exam.subjectName}: ${exam.mode.name}",
             ));
       }
@@ -99,7 +102,7 @@ class BackgroundController {
             content: NotificationContent(
               id: i++,
               channelKey: 'notes',
-              title: 'Új feljegyzés',
+              title: 'Új feljegyzés' + userName,
               body: "${note.title}",
             ));
       }
@@ -112,11 +115,22 @@ class BackgroundController {
             content: NotificationContent(
               id: i++,
               channelKey: 'absences',
-              title: 'Mulasztás lett rögzítve',
-              body: "${absence.subject.name}: " + DateFormat('yyyy. MM. dd.').format(absence.date),
+              title: 'Mulasztás' + userName,
+              body: "(${absence.lessonIndex}. óra) ${absence.subject.name}, " +
+                  DateFormat('yyyy. MM. dd.').format(absence.date),
             ));
       }
     });
+  }
+
+  static _notificationsTask(String taskId) async {
+    print('[BackgroundFetch] Task received: $taskId');
+
+    DateTime lastSync = app.user.sync.lastSync; //DateTime.now().add(Duration(days: -10));
+
+    await app.sync.fullSync();
+
+    //check(lastSync);
 
     BackgroundFetch.finish(taskId);
   }

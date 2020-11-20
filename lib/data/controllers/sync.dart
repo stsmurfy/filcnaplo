@@ -11,6 +11,7 @@ import 'package:filcnaplo/data/context/app.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/builder.dart';
 import 'package:filcnaplo/ui/pages/planner/timetable/week.dart';
 import 'dart:async';
+
 class SyncController {
   // Users
   Map<String, SyncUser> users = {};
@@ -20,60 +21,69 @@ class SyncController {
   Function updateCallback;
   int currentTask = 0;
   Future<void> fullSyncFinished = Completer().future;
+  StreamController<SyncUser> _controller = StreamController<SyncUser>();
+
+  get listener {
+    return _controller.stream;
+  }
+
   void addUser(String userID) {
     if (users[userID] == null) users[userID] = SyncUser();
   }
 
-  Future fullSync() async {
+  Future fullSync({ SyncUser sync }) async {
+    if (sync == null)
+      sync = app.user.sync;
+
     print("INFO: Full sync initiated.");
 
     tasks = [];
 
     createTask(
       name: "student",
-      task: app.user.sync.student.sync(),
+      task: sync.student.sync(),
     );
 
     createTask(
       name: "evaluation",
-      task: app.user.sync.evaluation.sync(),
+      task: sync.evaluation.sync(),
     );
 
     createTask(
       name: "timetable",
-      task: app.user.sync.timetable.sync(),
+      task: sync.timetable.sync(),
     );
 
     createTask(
       name: "homework",
-      task: app.user.sync.homework.sync(),
+      task: sync.homework.sync(),
     );
 
     createTask(
       name: "exam",
-      task: app.user.sync.exam.sync(),
+      task: sync.exam.sync(),
     );
 
     for (var i = 0; i < 3; i++) {
       createTask(
         name: "message",
-        task: app.user.sync.messages.sync(i),
+        task: sync.messages.sync(i),
       );
     }
 
     createTask(
       name: "note",
-      task: app.user.sync.note.sync(),
+      task: sync.note.sync(),
     );
 
     createTask(
       name: "event",
-      task: app.user.sync.event.sync(),
+      task: sync.event.sync(),
     );
 
     createTask(
       name: "absence",
-      task: app.user.sync.absence.sync(),
+      task: sync.absence.sync(),
     );
 
     currentTask = 0;
@@ -98,6 +108,8 @@ class SyncController {
     });
     tasks = [];
     fullSyncFinished = Future.value(true);
+    sync.lastSync = DateTime.now();
+    _controller.add(sync);
     print("INFO: Full sync completed.");
   }
 
@@ -145,6 +157,8 @@ class SyncUser {
   ExamSync exam = ExamSync();
   HomeworkSync homework = HomeworkSync();
   TimetableSync timetable = TimetableSync();
+  DateTime lastSync = DateTime.utc(0);
+
   SyncUser() {
     TimetableBuilder builder = TimetableBuilder();
     Week currentWeek = builder.getWeek(builder.getCurrentWeek());
