@@ -1,15 +1,14 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
+import 'package:filcnaplo/ui/pages/accounts/tile.dart';
 import 'package:filcnaplo/ui/pages/login.dart';
-import 'package:filcnaplo/ui/profile_icon.dart';
 import 'package:filcnaplo/utils/format.dart';
 import 'package:filcnaplo/data/context/app.dart';
-import 'package:filcnaplo/data/models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/ui/pages/settings/page.dart';
 import 'package:filcnaplo/generated/i18n.dart';
 import 'package:filcnaplo/ui/pages/accounts/view.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:filcnaplo/ui/pages/accounts/dkt.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -102,7 +101,7 @@ class _AccountPageState extends State<AccountPage> {
                       child: FlatButton(
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6.0)),
+                            borderRadius: BorderRadius.circular(12.0)),
                         child: ListTile(
                           leading: Padding(
                             padding: EdgeInsets.only(left: 8.0),
@@ -120,7 +119,7 @@ class _AccountPageState extends State<AccountPage> {
                         ),
                         onPressed: !app.debugUser
                             ? () {
-                                Navigator.of(context).push(MaterialPageRoute(
+                                Navigator.of(context).push(CupertinoPageRoute(
                                     builder: (context) => LoginPage()));
                               }
                             : null,
@@ -133,22 +132,20 @@ class _AccountPageState extends State<AccountPage> {
 
             // Settings
             Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
+              padding: EdgeInsets.only(bottom: 14.0),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 14.0),
                 child: FlatButton(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6.0)),
+                      borderRadius: BorderRadius.circular(12.0)),
                   child: ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: Icon(FeatherIcons.settings),
                     title: Text(I18n.of(context).settingsTitle),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SettingsPage()));
+                    Navigator.of(context).push(CupertinoPageRoute(
+                        builder: (context) => SettingsPage()));
                   },
                 ),
               ),
@@ -220,7 +217,19 @@ class _AccountTileState extends State<AccountTile> {
                 colorBrightness: app.settings.theme.brightness,
                 shape: StadiumBorder(),
                 onPressed: () {
-                  _launchDKT();
+                  app.kretaApi.users[widget.user.id]
+                      .refreshLogin()
+                      .then((success) {
+                    if (success) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DKTPage(widget.user)));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(I18n.of(context).loginError),
+                        duration: Duration(seconds: 5),
+                      ));
+                    }
+                  });
                 },
               ),
               IconButton(
@@ -241,16 +250,5 @@ class _AccountTileState extends State<AccountTile> {
         ),
       ),
     );
-  }
-}
-
-_launchDKT() async {
-  String url =
-      "https://dkttanulo.e-kreta.hu/sso?accessToken=${app.user.kreta.accessToken}";
-
-  if (await canLaunch(url)) {
-    await launch(url, forceSafariVC: false, forceWebView: false);
-  } else {
-    throw 'Could not launch $url';
   }
 }
